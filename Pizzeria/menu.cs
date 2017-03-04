@@ -141,5 +141,12 @@ namespace Pizzeria
                 Environment.Exit(0);
             }
         }
+
+        private void btn_tomapedido_Click(object sender, EventArgs e)
+        {
+            TomaPedidos tm = new TomaPedidos();
+            tm.ShowDialog();
+            tm.Dispose();
+        }
     }
 }

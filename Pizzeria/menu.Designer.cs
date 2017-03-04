@@ -228,6 +228,7 @@
             this.btn_tomapedido.TabIndex = 0;
             this.btn_tomapedido.TabStop = false;
             this.toolTip1.SetToolTip(this.btn_tomapedido, "TOMA DE PEDIDOS");
+            this.btn_tomapedido.Click += new System.EventHandler(this.btn_tomapedido_Click);
             this.btn_tomapedido.MouseLeave += new System.EventHandler(this.btn_tomapedido_MouseLeave);
             this.btn_tomapedido.MouseHover += new System.EventHandler(this.btn_tomapedido_MouseHover);
             // 
