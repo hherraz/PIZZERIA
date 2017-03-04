@@ -47,6 +47,7 @@
             this.minimizar = new System.Windows.Forms.Button();
             this.cerrar = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -160,6 +161,8 @@
             this.btn_salir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btn_salir.TabIndex = 5;
             this.btn_salir.TabStop = false;
+            this.toolTip1.SetToolTip(this.btn_salir, "SALIR DEL SISTEMA");
+            this.btn_salir.Click += new System.EventHandler(this.btn_salir_Click);
             this.btn_salir.MouseLeave += new System.EventHandler(this.btn_salir_MouseLeave);
             this.btn_salir.MouseHover += new System.EventHandler(this.btn_salir_MouseHover);
             // 
@@ -172,6 +175,7 @@
             this.btn_administrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btn_administrar.TabIndex = 4;
             this.btn_administrar.TabStop = false;
+            this.toolTip1.SetToolTip(this.btn_administrar, "ADMINISTRAR");
             this.btn_administrar.MouseLeave += new System.EventHandler(this.btn_administrar_MouseLeave);
             this.btn_administrar.MouseHover += new System.EventHandler(this.btn_administrar_MouseHover);
             // 
@@ -184,6 +188,7 @@
             this.btn_cierrecaja.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btn_cierrecaja.TabIndex = 3;
             this.btn_cierrecaja.TabStop = false;
+            this.toolTip1.SetToolTip(this.btn_cierrecaja, "CIERRE DE CAJA");
             this.btn_cierrecaja.MouseLeave += new System.EventHandler(this.btn_cierrecaja_MouseLeave);
             this.btn_cierrecaja.MouseHover += new System.EventHandler(this.btn_cierrecaja_MouseHover);
             // 
@@ -196,6 +201,7 @@
             this.btn_productos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btn_productos.TabIndex = 2;
             this.btn_productos.TabStop = false;
+            this.toolTip1.SetToolTip(this.btn_productos, "MANAGER DE PRODUCTOS");
             this.btn_productos.MouseLeave += new System.EventHandler(this.btn_productos_MouseLeave);
             this.btn_productos.MouseHover += new System.EventHandler(this.btn_productos_MouseHover);
             // 
@@ -208,6 +214,7 @@
             this.btn_delivery.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btn_delivery.TabIndex = 1;
             this.btn_delivery.TabStop = false;
+            this.toolTip1.SetToolTip(this.btn_delivery, "ESTADO PEDIDOS / DELIVERY");
             this.btn_delivery.MouseLeave += new System.EventHandler(this.btn_delivery_MouseLeave);
             this.btn_delivery.MouseHover += new System.EventHandler(this.btn_delivery_MouseHover);
             // 
@@ -220,6 +227,7 @@
             this.btn_tomapedido.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btn_tomapedido.TabIndex = 0;
             this.btn_tomapedido.TabStop = false;
+            this.toolTip1.SetToolTip(this.btn_tomapedido, "TOMA DE PEDIDOS");
             this.btn_tomapedido.MouseLeave += new System.EventHandler(this.btn_tomapedido_MouseLeave);
             this.btn_tomapedido.MouseHover += new System.EventHandler(this.btn_tomapedido_MouseHover);
             // 
@@ -234,6 +242,7 @@
             this.minimizar.Size = new System.Drawing.Size(36, 29);
             this.minimizar.TabIndex = 3;
             this.minimizar.Text = "--";
+            this.toolTip1.SetToolTip(this.minimizar, "MINIMIZAR");
             this.minimizar.UseVisualStyleBackColor = false;
             this.minimizar.Click += new System.EventHandler(this.minimizar_Click);
             // 
@@ -249,6 +258,7 @@
             this.cerrar.Size = new System.Drawing.Size(36, 29);
             this.cerrar.TabIndex = 4;
             this.cerrar.Text = "X";
+            this.toolTip1.SetToolTip(this.cerrar, "SALIR");
             this.cerrar.UseVisualStyleBackColor = false;
             this.cerrar.Click += new System.EventHandler(this.cerrar_Click);
             // 
@@ -317,5 +327,6 @@
         private System.Windows.Forms.Button minimizar;
         private System.Windows.Forms.Button cerrar;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Pizzeria
 {
@@ -20,19 +21,19 @@ namespace Pizzeria
         private void menu_Load(object sender, EventArgs e)
         {
             //a la izquierda
-            label1.Location = new Point(10,panel1.Location.Y+5);
-            
+            label1.Location = new Point(10, panel1.Location.Y + 5);
+
             //al centro
             Int32 ancho = (this.Width - label2.Width) / 2;
-            label2.Location = new Point(ancho, panel1.Location.Y+5);
+            label2.Location = new Point(ancho, panel1.Location.Y + 5);
 
             //a la derecha
             Int32 derecha = (this.Width - label3.Width - 10);
-            label3.Location = new Point(derecha, panel1.Location.Y+5);
+            label3.Location = new Point(derecha, panel1.Location.Y + 5);
 
             //minimizar y cerrar a la derecha
             Int32 derecha1 = (this.Width - minimizar.Width - 10);
-            minimizar.Location = new Point(derecha1-40, minimizar.Location.Y);
+            minimizar.Location = new Point(derecha1 - 40, minimizar.Location.Y);
             cerrar.Location = new Point(derecha1, minimizar.Location.Y);
 
 
@@ -118,12 +119,27 @@ namespace Pizzeria
 
         private void cerrar_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            int cerr = Program.cerrar();
+
+            if (cerr == 1)
+            {
+                Environment.Exit(0);
+            }
         }
 
         private void minimizar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btn_salir_Click(object sender, EventArgs e)
+        {
+            int cerr = Program.cerrar();
+
+            if (cerr == 1)
+            {
+                Environment.Exit(0);
+            }
         }
     }
 }

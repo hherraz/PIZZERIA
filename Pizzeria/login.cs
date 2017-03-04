@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -26,9 +27,6 @@ namespace Pizzeria
             {
                 m_frm.panel3.Visible = true;
                 m_frm.label2.Text = "Usuario: "+user.Text;
-                //menu mnu = new menu();
-                //mnu.label2.Text = user.Text;
-                //mnu.panel3.Visible = true;
                 this.Close();
                 this.Dispose();
             }
@@ -42,7 +40,14 @@ namespace Pizzeria
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+
+            int cerr = Program.cerrar();
+
+            if (cerr == 1)
+            {
+                Environment.Exit(0);
+            }
+
         }
     }
 }

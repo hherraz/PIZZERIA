@@ -18,5 +18,19 @@ namespace Pizzeria
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
         }
+
+        public static int cerrar()
+        {
+            DialogResult result = MessageBox.Show("Esta Seguro que desea salir de la Aplicación?", "Salir", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                return 1; //cerrar la aplicacion
+            }
+            else
+            {
+                return 0; //no hacer nada
+            }
+        }
     }
 }
