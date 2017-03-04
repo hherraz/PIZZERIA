@@ -41,9 +41,9 @@ namespace Pizzeria
         private void button2_Click(object sender, EventArgs e)
         {
 
-            int cerr = Program.cerrar();
+            int cerrar = Program.cerrar();
 
-            if (cerr == 1)
+            if (cerrar == 1)
             {
                 Environment.Exit(0);
             }
