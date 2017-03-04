@@ -93,6 +93,16 @@ namespace Pizzeria.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FONDO_MENU {
+            get {
+                object obj = ResourceManager.GetObject("FONDO_MENU", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap login1 {
             get {
                 object obj = ResourceManager.GetObject("login1", resourceCulture);
@@ -106,6 +116,16 @@ namespace Pizzeria.Properties {
         internal static System.Drawing.Bitmap pedidos {
             get {
                 object obj = ResourceManager.GetObject("pedidos", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pizzeria {
+            get {
+                object obj = ResourceManager.GetObject("pizzeria", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
