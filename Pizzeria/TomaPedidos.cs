@@ -17,26 +17,105 @@ namespace Pizzeria
             InitializeComponent();
         }
 
+        public int ancho = Screen.PrimaryScreen.Bounds.Width;
+        public int alto = Screen.PrimaryScreen.Bounds.Height;
+
         private void TomaPedidos_Load(object sender, EventArgs e)
         {
             // tamaño de la pantalla para todos los menus
-            int ancho=Screen.PrimaryScreen.Bounds.Width;
-            int alto=Screen.PrimaryScreen.Bounds.Height;
             this.Location = new Point(0, 25);
-            this.Size = new Size(ancho, alto - 160);
-
-            //boton cerrar al tope derecho
-            Int32 derecha = (this.Width - btn_cerrar.Width - 3);
-            btn_cerrar.Location = new Point(derecha, panel1.Location.Y);
-
-            //TABS
-            tabControl1.Size = new Size(ancho-20,this.Height-50);
-            tabControl1.Location = new Point(10,35);
-
-
+            this.Size = new Size(ancho, alto - 25);
         }
 
         private void btn_cerrar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("CONFIRMAR LA FORMA DE PAGO EN OTRO FORMULARIO");
+            MessageBox.Show("DESEA CERRAR LA MESA?");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            PanelConsumoLocal.Visible = true;
+            PanelConsumoLocal.Size = new Size(821, 422);
+            PanelConsumoLocal.Location = new Point((ancho-PanelConsumoLocal.Width)/2, (alto-PanelConsumoLocal.Height)/2);
+
+            btnConsumoLocal.BackColor=Color.Gray;
+            btnRetiroLocal.BackColor = Color.Silver;
+            btnDelivery.BackColor = Color.Silver;
+
+            PanelRetiro.Visible = false;
+            PanelDelivery.Visible = false;
+
+            FooterTitle.Text = "TOMA DE PEDIDOS / CONSUMO EN EL LOCAL";
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRetiroLocal_Click(object sender, EventArgs e)
+        {
+            PanelRetiro.Visible = true;
+            PanelRetiro.Size = new Size(821, 422);
+            PanelRetiro.Location = new Point((ancho - PanelRetiro.Width) / 2, (alto - PanelRetiro.Height) / 2);
+
+            btnConsumoLocal.BackColor = Color.Silver;
+            btnRetiroLocal.BackColor = Color.Gray;
+            btnDelivery.BackColor = Color.Silver;
+
+            PanelConsumoLocal.Visible = false;
+            PanelDelivery.Visible = false;
+
+            FooterTitle.Text = "TOMA DE PEDIDOS / RETIRO EN EL LOCAL";
+        }
+
+        private void btnDelivery_Click(object sender, EventArgs e)
+        {
+            PanelDelivery.Visible = true;
+            PanelDelivery.Size = new Size(821, 511);
+            PanelDelivery.Location = new Point((ancho - PanelDelivery.Width) / 2, (alto - PanelDelivery.Height) / 2);
+
+            btnConsumoLocal.BackColor = Color.Silver;
+            btnRetiroLocal.BackColor = Color.Silver;
+            btnDelivery.BackColor = Color.Gray;
+
+            PanelRetiro.Visible = false;
+            PanelConsumoLocal.Visible = false;
+
+            FooterTitle.Text = "TOMA DE PEDIDOS / PEDIDO TELEFONICO";
+        }
+
+        private void cerrar_Click(object sender, EventArgs e)
+        {
+            PanelConsumoLocal.Visible = false;
+            PanelRetiro.Visible = false;
+            PanelDelivery.Visible = false;
+
+            btnConsumoLocal.BackColor = Color.Silver;
+            btnRetiroLocal.BackColor = Color.Silver;
+            btnDelivery.BackColor = Color.Silver;
+
+            FooterTitle.Text = "TOMA DE PEDIDOS";
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
         {
             Close();
         }

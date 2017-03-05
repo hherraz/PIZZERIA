@@ -63,6 +63,16 @@ namespace Pizzeria.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _240_F_99640866_dNj6uLcGW8pd5VyM8TO9lTzCePZYyvRR {
+            get {
+                object obj = ResourceManager.GetObject("240_F_99640866_dNj6uLcGW8pd5VyM8TO9lTzCePZYyvRR", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cierre {
             get {
                 object obj = ResourceManager.GetObject("cierre", resourceCulture);
@@ -116,6 +126,26 @@ namespace Pizzeria.Properties {
         internal static System.Drawing.Bitmap pedidos {
             get {
                 object obj = ResourceManager.GetObject("pedidos", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pizza_parallax_bg {
+            get {
+                object obj = ResourceManager.GetObject("pizza_parallax_bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pizza_parallax_bg1 {
+            get {
+                object obj = ResourceManager.GetObject("pizza_parallax_bg1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
