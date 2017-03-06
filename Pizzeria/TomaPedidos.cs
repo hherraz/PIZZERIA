@@ -119,5 +119,11 @@ namespace Pizzeria
         {
             Close();
         }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            AddProductos add = new AddProductos();
+            add.ShowDialog();
+        }
     }
 }
