@@ -34,7 +34,6 @@
             System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Familiar", 2);
             System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("XL", 3);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddProductos));
-            this.ListaPizzasDeLaCasa = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -44,26 +43,21 @@
             this.button6 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.ListaTamano = new System.Windows.Forms.ListView();
+            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button7 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.button8 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ListaPizzasDeLaCasa
-            // 
-            this.ListaPizzasDeLaCasa.Location = new System.Drawing.Point(15, 87);
-            this.ListaPizzasDeLaCasa.Name = "ListaPizzasDeLaCasa";
-            this.ListaPizzasDeLaCasa.Size = new System.Drawing.Size(972, 246);
-            this.ListaPizzasDeLaCasa.TabIndex = 0;
-            this.ListaPizzasDeLaCasa.UseCompatibleStateImageBehavior = false;
-            this.ListaPizzasDeLaCasa.DoubleClick += new System.EventHandler(this.ListaPizzasDeLaCasa_DoubleClick);
             // 
             // label1
             // 
@@ -131,7 +125,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 336);
+            this.label2.Location = new System.Drawing.Point(12, 405);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 9;
@@ -145,7 +139,7 @@
             listViewItem3,
             listViewItem4});
             this.ListaTamano.LargeImageList = this.imageList2;
-            this.ListaTamano.Location = new System.Drawing.Point(15, 352);
+            this.ListaTamano.Location = new System.Drawing.Point(15, 421);
             this.ListaTamano.MultiSelect = false;
             this.ListaTamano.Name = "ListaTamano";
             this.ListaTamano.Scrollable = false;
@@ -155,6 +149,15 @@
             this.ListaTamano.UseCompatibleStateImageBehavior = false;
             this.ListaTamano.DoubleClick += new System.EventHandler(this.ListaTamano_DoubleClick);
             // 
+            // imageList2
+            // 
+            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+            this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList2.Images.SetKeyName(0, "INDIVIDUAL.png");
+            this.imageList2.Images.SetKeyName(1, "MEDIANA.png");
+            this.imageList2.Images.SetKeyName(2, "FAMILIAR.png");
+            this.imageList2.Images.SetKeyName(3, "XL.png");
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Gray;
@@ -162,38 +165,10 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Location = new System.Drawing.Point(728, 352);
+            this.panel1.Location = new System.Drawing.Point(728, 407);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(259, 105);
             this.panel1.TabIndex = 10;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(18, 47);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 17);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "PRECIO";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(21, 64);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(212, 23);
-            this.textBox1.TabIndex = 1;
-            // 
-            // button7
-            // 
-            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(732, 464);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(255, 36);
-            this.button7.TabIndex = 11;
-            this.button7.Text = "AGREGAR";
-            this.button7.UseVisualStyleBackColor = true;
             // 
             // textBox2
             // 
@@ -213,11 +188,41 @@
             this.label4.TabIndex = 2;
             this.label4.Text = "CANTIDAD";
             // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(21, 64);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(212, 23);
+            this.textBox1.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(18, 47);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 17);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "PRECIO";
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.Blue;
+            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button7.ForeColor = System.Drawing.Color.Yellow;
+            this.button7.Location = new System.Drawing.Point(729, 519);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(125, 36);
+            this.button7.TabIndex = 11;
+            this.button7.Text = "AGREGAR";
+            this.button7.UseVisualStyleBackColor = false;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(13, 464);
+            this.label6.Location = new System.Drawing.Point(13, 533);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(179, 13);
             this.label6.TabIndex = 13;
@@ -227,26 +232,41 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(216, 464);
+            this.label7.Location = new System.Drawing.Point(216, 533);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 13);
             this.label7.TabIndex = 14;
             this.label7.Text = "label7";
             // 
-            // imageList2
+            // dataGridView1
             // 
-            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
-            this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList2.Images.SetKeyName(0, "INDIVIDUAL.png");
-            this.imageList2.Images.SetKeyName(1, "MEDIANA.png");
-            this.imageList2.Images.SetKeyName(2, "FAMILIAR.png");
-            this.imageList2.Images.SetKeyName(3, "XL.png");
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dataGridView1.Location = new System.Drawing.Point(18, 87);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(969, 314);
+            this.dataGridView1.TabIndex = 15;
+            this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.Red;
+            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button8.Location = new System.Drawing.Point(863, 519);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(125, 36);
+            this.button8.TabIndex = 16;
+            this.button8.Text = "CANCELAR";
+            this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // AddProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 662);
+            this.ClientSize = new System.Drawing.Size(1008, 567);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button7);
@@ -260,20 +280,23 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.ListaPizzasDeLaCasa);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AddProductos";
-            this.Text = "AddProductos";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.Text = "AGREGAR PRODUCTOS";
             this.Load += new System.EventHandler(this.AddProductos_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView ListaPizzasDeLaCasa;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
@@ -292,5 +315,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ImageList imageList2;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button button8;
     }
 }
