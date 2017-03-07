@@ -83,6 +83,7 @@
     <Compile Include="TomaPedidos.Designer.cs">
       <DependentUpon>TomaPedidos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Usuarios.cs" />
     <EmbeddedResource Include="AddProductos.resx">
       <DependentUpon>AddProductos.cs</DependentUpon>
     </EmbeddedResource>

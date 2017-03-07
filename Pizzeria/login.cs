@@ -23,7 +23,10 @@ namespace Pizzeria
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(user.Text=="DEMO" && pass.Text=="123")
+            Usuarios USR = new Usuarios();
+            int Found = USR.ValidarUsuario(user.Text, pass.Text);
+
+            if(Found==1)
             {
                 m_frm.panel3.Visible = true;
                 m_frm.label2.Text = "Usuario: "+user.Text;
