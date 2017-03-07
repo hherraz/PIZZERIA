@@ -12,9 +12,9 @@ using MySql.Data.MySqlClient;
 
 namespace Pizzeria
 {
-    public partial class AddProductos : Form
+    public partial class AddPizzaMenu : Form
     {
-        public AddProductos()
+        public AddPizzaMenu()
         {
             InitializeComponent();
         }
@@ -22,14 +22,21 @@ namespace Pizzeria
         conexion conX = new conexion();
 
         //// JUEGO DE VARIABLES DEL FORMULARIO
-        string pizza;
+        int pizza = 0;                                                                                 ////**** ID DE PIZZA SELECCIONADA
+        int medida = 0;                                                                                ////**** ID DE MEDIDA PIZZA SELECCIONADA
+        int masa = 0;                                                                                  ////**** ID DE MASA PIZZA SELECCIONADA
+
         int ancho = Screen.PrimaryScreen.Bounds.Width;
         int alto = Screen.PrimaryScreen.Bounds.Height;
         int PorteImagenes;
 
-        string MasaSeleccionada;
-        string PorteSeleccionada;
-        string PizzaSeleccionada;
+        int SeleccionActivaPizza = 0;
+        int SeleccionActivaPorte = 0;
+        int SeleccionActivaMasa = 0;
+
+        string MasaSeleccionada;                                                                        ////**** STRING NOMBRE MASA
+        string PorteSeleccionada;                                                                       ////**** STRING PORTE PIZZA
+        string PizzaSeleccionada;                                                                       ////**** STRING NOMBRE PIZZA
 
         public void CentrarForm()                                                                       ////**** CENTRAR FORMULARIO
         {
@@ -60,6 +67,71 @@ namespace Pizzeria
             dataGridView3.AllowUserToAddRows = false;
             dataGridView3.ColumnHeadersVisible = false;
             dataGridView3.RowHeadersVisible = false;
+        }
+        public void ActivarPedido()                                                                     ////**** ACTIVA O DESACTIVA EL BOTON PEDIDO
+        {
+            if (SeleccionActivaPizza + SeleccionActivaPorte + SeleccionActivaMasa == 3)
+            {
+                AgregarPizzaMenu.Visible = true;
+                txtpreciounitario.Text = Convert.ToString(CalcularPedido());
+                txtprecio.Text = Convert.ToString(cantidadBox.Value * Convert.ToInt32(txtpreciounitario.Text));
+            }
+            else
+            {
+                AgregarPizzaMenu.Visible = false;
+                txtpreciounitario.Clear();
+                txtprecio.Clear();
+            }
+        }
+        public int CalcularPedido()                                                                     ////**** CALCULAR PEDIDO
+        {
+            int PrecioPizza = 0;
+            int PrecioMasa = 0;
+            int PrecioPedido = 0;
+
+            #region String de Tarifa
+            string TituloTarifa="";
+            if (medida == 1)
+            {
+                TituloTarifa = "PrecioIndividual";
+            }
+            if (medida == 2)
+            {
+                TituloTarifa = "PrecioMediana";
+            }
+            if (medida == 3)
+            {
+                TituloTarifa = "PrecioFamiliar";
+            }
+            if (medida == 4)
+            {
+                TituloTarifa = "PrecioXL";
+            }
+
+            conX.Abrir();
+            string sql = "select " + TituloTarifa + " from pizzacasa where Id=" + pizza + ";";
+            MySqlCommand Precio = new MySqlCommand(sql, conX.cn);
+            PrecioPizza = Convert.ToInt32(Precio.ExecuteScalar());
+            conX.Cerrar();
+            #endregion
+
+            #region String de Masa
+            conX.Abrir();
+            string sql1 = "select PrecioMasa from masaspizza where IdMasa=" + masa + ";";
+            MySqlCommand Masa = new MySqlCommand(sql1, conX.cn);
+            Masa.Parameters.AddWithValue("?masa", masa);
+            PrecioMasa = Convert.ToInt32(Masa.ExecuteScalar());
+            conX.Cerrar();
+            #endregion
+
+            PrecioPedido = PrecioPizza + PrecioMasa;
+
+            return PrecioPedido;
+        }
+        public void EnviarPedido()                                                                      ////**** ENVIAR PEDIDO
+        {
+            Application.OpenForms.OfType<TomaPedidos>().First().GridConsumo.Rows.Add(cantidadBox.Value, PizzaSeleccionada, txtpreciounitario.Text, txtprecio.Text);
+            Close();
         }
 
         public void CargaPizzasCasa()                                                                   ////**** CARGA DATOS EN GRID PIZZAS DE LA CASA
@@ -427,11 +499,16 @@ namespace Pizzeria
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)         ////**** LANZADOR DEL CLICK EN MASAS
         {
             conX.Abrir();
-            MySqlCommand Masa = new MySqlCommand("select Item_Masa from masaspizza where IdMasa=" + dataGridView3[e.ColumnIndex, e.RowIndex].Tag.ToString() + ";", conX.cn);
-            MasaSeleccionada = Convert.ToString(Masa.ExecuteScalar());
+            MySqlCommand MasaX = new MySqlCommand("select Item_Masa from masaspizza where IdMasa=" + dataGridView3[e.ColumnIndex, e.RowIndex].Tag.ToString() + ";", conX.cn);
+            MasaSeleccionada = Convert.ToString(MasaX.ExecuteScalar());
             conX.Cerrar();
 
-            ProductoSeleccionado.Text = PizzaSeleccionada + " / " + PorteSeleccionada + " / " + MasaSeleccionada;
+            // ESTE ES EL ID DE LA MASA
+            masa = Convert.ToInt32(dataGridView3[e.ColumnIndex, e.RowIndex].Tag.ToString());
+            SeleccionActivaMasa = 1;
+
+            ProductoSeleccionado.Text = PizzaSeleccionada + "\n" + PorteSeleccionada + "\n" + MasaSeleccionada;
+            ActivarPedido();
         }
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)         ////**** LANZADOR DEL CLICK EN TAMAÑO
         {
@@ -440,8 +517,12 @@ namespace Pizzeria
             PorteSeleccionada = Convert.ToString(Porte.ExecuteScalar());
             conX.Cerrar();
 
-            ProductoSeleccionado.Text = PizzaSeleccionada + " / " + PorteSeleccionada + " / " + MasaSeleccionada;
+            // ESTE ES EL ID DE LA MEDIDA
+            medida = Convert.ToInt32(dataGridView2[e.ColumnIndex, e.RowIndex].Tag.ToString());
+            SeleccionActivaPorte = 1;
 
+            ProductoSeleccionado.Text = PizzaSeleccionada + "\n" + PorteSeleccionada + "\n" + MasaSeleccionada;
+            ActivarPedido();
         }
         private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)   ////**** LANZADOR DEL CLICK EN PIZZA DE LA CASA
         {
@@ -450,10 +531,21 @@ namespace Pizzeria
             PizzaSeleccionada = Convert.ToString(Pizzas.ExecuteScalar());
             conX.Cerrar();
 
-            ProductoSeleccionado.Text = PizzaSeleccionada + " / " + PorteSeleccionada + " / " + MasaSeleccionada;
-
             // ESTE ES EL ID DE LA PIZZA
-            pizza = dataGridView1[e.ColumnIndex, e.RowIndex].Tag.ToString();
+            pizza = Convert.ToInt32(dataGridView1[e.ColumnIndex, e.RowIndex].Tag.ToString());
+            SeleccionActivaPizza = 1;
+
+            ProductoSeleccionado.Text = PizzaSeleccionada + "\n" + PorteSeleccionada + "\n" + MasaSeleccionada;
+            ActivarPedido();
+        }
+
+        private void AgregarPizzaMenu_Click(object sender, EventArgs e)                                 ////**** ENVIAR LA PIZZA SELECCIONADA AL TOMA DE PEDIDOS
+        {
+            EnviarPedido();
+        }
+        private void cantidadBox_ValueChanged(object sender, EventArgs e)                               ////**** ACTUALIZAR EL VALOR, SI CAMBIA LA CANTIDAD
+        {
+            ActivarPedido();
         }
     }
 }

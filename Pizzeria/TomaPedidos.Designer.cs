@@ -33,6 +33,7 @@
             this.btn_cerrar = new System.Windows.Forms.Button();
             this.FooterTitle = new System.Windows.Forms.Label();
             this.PanelConsumoLocal = new System.Windows.Forms.Panel();
+            this.GridConsumo = new System.Windows.Forms.DataGridView();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
             this.btnGuardarConsumo = new System.Windows.Forms.Button();
@@ -49,18 +50,14 @@
             this.btnPagar = new System.Windows.Forms.Button();
             this.btnCambiarGarzon = new System.Windows.Forms.Button();
             this.btnCambiarMesa = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnModificar = new System.Windows.Forms.Button();
-            this.btnAgregar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.GridConsumo = new System.Windows.Forms.DataGridView();
-            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.item = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.unitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sub = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.PanelHeader = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.cerrar = new System.Windows.Forms.Button();
             this.btnDelivery = new System.Windows.Forms.Button();
             this.btnConsumoLocal = new System.Windows.Forms.Button();
@@ -126,10 +123,10 @@
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PanelFooter.SuspendLayout();
             this.PanelConsumoLocal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridConsumo)).BeginInit();
             this.panel5.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.PanelTotal.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridConsumo)).BeginInit();
             this.PanelHeader.SuspendLayout();
             this.PanelRetiro.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -181,22 +178,34 @@
             this.PanelConsumoLocal.BackgroundImage = global::Pizzeria.Properties.Resources.pizza_parallax_bg;
             this.PanelConsumoLocal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PanelConsumoLocal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PanelConsumoLocal.Controls.Add(this.GridConsumo);
             this.PanelConsumoLocal.Controls.Add(this.panel5);
             this.PanelConsumoLocal.Controls.Add(this.btnGuardarConsumo);
             this.PanelConsumoLocal.Controls.Add(this.groupBox1);
             this.PanelConsumoLocal.Controls.Add(this.PanelTotal);
             this.PanelConsumoLocal.Controls.Add(this.btnCambiarGarzon);
             this.PanelConsumoLocal.Controls.Add(this.btnCambiarMesa);
-            this.PanelConsumoLocal.Controls.Add(this.btnEliminar);
-            this.PanelConsumoLocal.Controls.Add(this.btnModificar);
-            this.PanelConsumoLocal.Controls.Add(this.btnAgregar);
             this.PanelConsumoLocal.Controls.Add(this.label4);
-            this.PanelConsumoLocal.Controls.Add(this.GridConsumo);
+            this.PanelConsumoLocal.Controls.Add(this.button2);
+            this.PanelConsumoLocal.Controls.Add(this.button3);
+            this.PanelConsumoLocal.Controls.Add(this.button7);
+            this.PanelConsumoLocal.Controls.Add(this.button4);
+            this.PanelConsumoLocal.Controls.Add(this.button5);
+            this.PanelConsumoLocal.Controls.Add(this.button6);
             this.PanelConsumoLocal.Location = new System.Drawing.Point(12, 164);
             this.PanelConsumoLocal.Name = "PanelConsumoLocal";
             this.PanelConsumoLocal.Size = new System.Drawing.Size(821, 422);
             this.PanelConsumoLocal.TabIndex = 6;
             this.PanelConsumoLocal.Visible = false;
+            // 
+            // GridConsumo
+            // 
+            this.GridConsumo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridConsumo.Location = new System.Drawing.Point(32, 104);
+            this.GridConsumo.Name = "GridConsumo";
+            this.GridConsumo.Size = new System.Drawing.Size(751, 202);
+            this.GridConsumo.TabIndex = 26;
+            this.GridConsumo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridConsumo_CellClick);
             // 
             // panel5
             // 
@@ -223,7 +232,7 @@
             this.btnGuardarConsumo.BackColor = System.Drawing.Color.Blue;
             this.btnGuardarConsumo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardarConsumo.ForeColor = System.Drawing.Color.Yellow;
-            this.btnGuardarConsumo.Location = new System.Drawing.Point(339, 359);
+            this.btnGuardarConsumo.Location = new System.Drawing.Point(339, 362);
             this.btnGuardarConsumo.Name = "btnGuardarConsumo";
             this.btnGuardarConsumo.Size = new System.Drawing.Size(167, 49);
             this.btnGuardarConsumo.TabIndex = 22;
@@ -359,40 +368,12 @@
             // btnCambiarMesa
             // 
             this.btnCambiarMesa.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnCambiarMesa.Location = new System.Drawing.Point(32, 359);
+            this.btnCambiarMesa.Location = new System.Drawing.Point(32, 363);
             this.btnCambiarMesa.Name = "btnCambiarMesa";
             this.btnCambiarMesa.Size = new System.Drawing.Size(283, 23);
             this.btnCambiarMesa.TabIndex = 16;
             this.btnCambiarMesa.Text = "CAMBIAR MESA";
             this.btnCambiarMesa.UseVisualStyleBackColor = false;
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.Location = new System.Drawing.Point(339, 311);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(129, 23);
-            this.btnEliminar.TabIndex = 8;
-            this.btnEliminar.Text = "ELIMINAR";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            // 
-            // btnModificar
-            // 
-            this.btnModificar.Location = new System.Drawing.Point(186, 311);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(129, 23);
-            this.btnModificar.TabIndex = 7;
-            this.btnModificar.Text = "MODIFICAR";
-            this.btnModificar.UseVisualStyleBackColor = true;
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Location = new System.Drawing.Point(32, 311);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(129, 23);
-            this.btnAgregar.TabIndex = 6;
-            this.btnAgregar.Text = "AGREGAR";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // label4
             // 
@@ -405,54 +386,64 @@
             this.label4.TabIndex = 5;
             this.label4.Text = "PRODUCTOS";
             // 
-            // GridConsumo
+            // button2
             // 
-            this.GridConsumo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.GridConsumo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridConsumo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cantidad,
-            this.codigo,
-            this.item,
-            this.unitario,
-            this.sub});
-            this.GridConsumo.Location = new System.Drawing.Point(32, 104);
-            this.GridConsumo.Name = "GridConsumo";
-            this.GridConsumo.Size = new System.Drawing.Size(751, 201);
-            this.GridConsumo.TabIndex = 4;
+            this.button2.Location = new System.Drawing.Point(299, 311);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(133, 22);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "ACOMPAÑAMIENTOS";
+            this.button2.UseVisualStyleBackColor = true;
             // 
-            // cantidad
+            // button3
             // 
-            this.cantidad.HeaderText = "Cantidad";
-            this.cantidad.Name = "cantidad";
-            this.cantidad.Width = 80;
+            this.button3.Location = new System.Drawing.Point(33, 311);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(133, 22);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "PIZZA DEL MENU";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // codigo
+            // button7
             // 
-            this.codigo.HeaderText = "Codigo";
-            this.codigo.Name = "codigo";
+            this.button7.Location = new System.Drawing.Point(299, 334);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(133, 22);
+            this.button7.TabIndex = 7;
+            this.button7.Text = "OTROS";
+            this.button7.UseVisualStyleBackColor = true;
             // 
-            // item
+            // button4
             // 
-            this.item.HeaderText = "Descripción";
-            this.item.Name = "item";
-            this.item.Width = 350;
+            this.button4.Location = new System.Drawing.Point(166, 311);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(133, 22);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "ARMA TU PIZZA";
+            this.button4.UseVisualStyleBackColor = true;
             // 
-            // unitario
+            // button5
             // 
-            this.unitario.HeaderText = "Unitario";
-            this.unitario.Name = "unitario";
-            this.unitario.Width = 90;
+            this.button5.Location = new System.Drawing.Point(166, 334);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(133, 22);
+            this.button5.TabIndex = 6;
+            this.button5.Text = "LIQUIDOS";
+            this.button5.UseVisualStyleBackColor = true;
             // 
-            // sub
+            // button6
             // 
-            this.sub.HeaderText = "SubTotal";
-            this.sub.Name = "sub";
-            this.sub.Width = 90;
+            this.button6.Location = new System.Drawing.Point(33, 332);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(133, 22);
+            this.button6.TabIndex = 5;
+            this.button6.Text = "POSTRES";
+            this.button6.UseVisualStyleBackColor = true;
             // 
             // PanelHeader
             // 
             this.PanelHeader.BackgroundImage = global::Pizzeria.Properties.Resources._240_F_99640866_dNj6uLcGW8pd5VyM8TO9lTzCePZYyvRR;
-            this.PanelHeader.Controls.Add(this.button1);
             this.PanelHeader.Controls.Add(this.cerrar);
             this.PanelHeader.Controls.Add(this.btnDelivery);
             this.PanelHeader.Controls.Add(this.btnConsumoLocal);
@@ -462,21 +453,6 @@
             this.PanelHeader.Name = "PanelHeader";
             this.PanelHeader.Size = new System.Drawing.Size(1702, 69);
             this.PanelHeader.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Black;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.button1.Location = new System.Drawing.Point(714, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(126, 40);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "CERRAR";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // cerrar
             // 
@@ -619,7 +595,6 @@
             this.label6.Size = new System.Drawing.Size(68, 13);
             this.label6.TabIndex = 1;
             this.label6.Text = "NOMBRE :";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label7
             // 
@@ -1152,13 +1127,13 @@
             this.PanelFooter.PerformLayout();
             this.PanelConsumoLocal.ResumeLayout(false);
             this.PanelConsumoLocal.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridConsumo)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.PanelTotal.ResumeLayout(false);
             this.PanelTotal.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridConsumo)).EndInit();
             this.PanelHeader.ResumeLayout(false);
             this.PanelRetiro.ResumeLayout(false);
             this.PanelRetiro.PerformLayout();
@@ -1196,9 +1171,6 @@
         private System.Windows.Forms.Panel PanelConsumoLocal;
         private System.Windows.Forms.TextBox Total;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnModificar;
-        private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -1206,17 +1178,11 @@
         private System.Windows.Forms.Button btnCambiarMesa;
         private System.Windows.Forms.Button btnPagar;
         private System.Windows.Forms.Panel PanelTotal;
-        public System.Windows.Forms.DataGridView GridConsumo;
         public System.Windows.Forms.Button btnGarzones;
         public System.Windows.Forms.Button btnMesas;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox ListaGarzones;
         private System.Windows.Forms.ComboBox ListaMesas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn item;
-        private System.Windows.Forms.DataGridViewTextBoxColumn unitario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sub;
         private System.Windows.Forms.Panel PanelRetiro;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label6;
@@ -1280,6 +1246,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        public System.Windows.Forms.DataGridView GridConsumo;
     }
 }

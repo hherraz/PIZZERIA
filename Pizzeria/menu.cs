@@ -18,7 +18,7 @@ namespace Pizzeria
             InitializeComponent();
         }
 
-        private void menu_Load(object sender, EventArgs e)
+        public void FormatoPantalla()
         {
             //a la izquierda
             label1.Location = new Point(10, panel1.Location.Y + 5);
@@ -45,18 +45,49 @@ namespace Pizzeria
             label1.Text = DateTime.Now.ToShortDateString();
             label3.Text = DateTime.Now.ToLongTimeString();
             timer1.Enabled = true;
+        }                                    ////*** FORMATEA LA PANTALLA
+        private void menu_Load(object sender, EventArgs e)
+        {
+            FormatoPantalla();
 
-            //cargar login
             login lg = new login(this);
             lg.ShowDialog();
             lg.Dispose();
-        }
-
+        }               ////*** LANZADOR DEL FORMULARIO
         private void timer1_Tick(object sender, EventArgs e)
         {
             label3.Text = DateTime.Now.ToLongTimeString();
-        }
+        }             ////*** ACCION DEL TIMER
+        private void cerrar_Click(object sender, EventArgs e)
+        {
+            int cerr = Program.cerrar();
 
+            if (cerr == 1)
+            {
+                Environment.Exit(0);
+            }
+        }            ////*** BOTON CERRAR
+        private void minimizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }         ////*** BOTON MINIMIZAR
+        private void btn_salir_Click(object sender, EventArgs e)
+        {
+            int cerr = Program.cerrar();
+
+            if (cerr == 1)
+            {
+                Environment.Exit(0);
+            }
+        }         ////*** BOTON SALIR
+        private void btn_tomapedido_Click(object sender, EventArgs e)
+        {
+            TomaPedidos tm = new TomaPedidos();
+            tm.ShowDialog();
+            tm.Dispose();
+        }    ////*** BOTON TOMA DE PEDIDO
+
+        #region BOTONES QUE SE MUEVEN
         private void btn_tomapedido_MouseHover(object sender, EventArgs e)
         {
             btn_tomapedido.Size = new System.Drawing.Size(91, 89);
@@ -116,37 +147,6 @@ namespace Pizzeria
         {
             btn_salir.Size = new System.Drawing.Size(81, 79);
         }
-
-        private void cerrar_Click(object sender, EventArgs e)
-        {
-            int cerr = Program.cerrar();
-
-            if (cerr == 1)
-            {
-                Environment.Exit(0);
-            }
-        }
-
-        private void minimizar_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void btn_salir_Click(object sender, EventArgs e)
-        {
-            int cerr = Program.cerrar();
-
-            if (cerr == 1)
-            {
-                Environment.Exit(0);
-            }
-        }
-
-        private void btn_tomapedido_Click(object sender, EventArgs e)
-        {
-            TomaPedidos tm = new TomaPedidos();
-            tm.ShowDialog();
-            tm.Dispose();
-        }
+        #endregion
     }
 }

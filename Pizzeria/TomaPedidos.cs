@@ -20,26 +20,47 @@ namespace Pizzeria
         public int ancho = Screen.PrimaryScreen.Bounds.Width;
         public int alto = Screen.PrimaryScreen.Bounds.Height;
 
-        private void TomaPedidos_Load(object sender, EventArgs e)
+        private void FormatearGridConsumo()
+        {
+            GridConsumo.AllowUserToAddRows = false;
+            GridConsumo.ReadOnly = true;
+
+            GridConsumo.ColumnHeadersVisible = true;
+            GridConsumo.MultiSelect = false;
+            GridConsumo.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            GridConsumo.ColumnCount = 4;
+
+            GridConsumo.Columns[0].Name = "Cantidad";
+            GridConsumo.Columns[1].Name = "Item";
+            GridConsumo.Columns[2].Name = "Unitario";
+            GridConsumo.Columns[3].Name = "SubTotal";
+
+            GridConsumo.Columns[0].Width = 100;
+            GridConsumo.Columns[1].Width = 300;
+            GridConsumo.Columns[2].Width = 100;
+            GridConsumo.Columns[3].Width = 100;
+
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            GridConsumo.Columns.Add(btn);
+            btn.Text = "Borrar";
+            btn.ToolTipText = "Borrar";
+            btn.Name = "Borrar";
+            btn.UseColumnTextForButtonValue = true;
+            btn.Width = 100;
+            btn.HeaderText = "";
+
+        }                          ////**** FORMATEAR GRIDCONSUMO
+        private void CentrarPantalla()
         {
             // tamaño de la pantalla para todos los menus
             this.Location = new Point(0, 25);
             this.Size = new Size(ancho, alto - 25);
-        }
+        }                               ////**** CENTRAR PANTALLA
 
-        private void btn_cerrar_Click(object sender, EventArgs e)
+        private void TomaPedidos_Load(object sender, EventArgs e)
         {
-            Close();
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
+            CentrarPantalla();
+            FormatearGridConsumo();
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -63,12 +84,6 @@ namespace Pizzeria
 
             FooterTitle.Text = "TOMA DE PEDIDOS / CONSUMO EN EL LOCAL";
         }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnRetiroLocal_Click(object sender, EventArgs e)
         {
             PanelRetiro.Visible = true;
@@ -84,7 +99,6 @@ namespace Pizzeria
 
             FooterTitle.Text = "TOMA DE PEDIDOS / RETIRO EN EL LOCAL";
         }
-
         private void btnDelivery_Click(object sender, EventArgs e)
         {
             PanelDelivery.Visible = true;
@@ -115,15 +129,37 @@ namespace Pizzeria
 
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void btn_cerrar_Click(object sender, EventArgs e)
         {
             Close();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            AddProductos add = new AddProductos();
+            AddPizzaMenu add = new AddPizzaMenu();
             add.ShowDialog();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            AddPizzaMenu PM = new AddPizzaMenu();
+            PM.ShowDialog();
+            PM.Dispose();
+        }
+
+        private void GridConsumo_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //SI EL CLICK ES EN UNA FILA NUEVA, O INFERIOR A LA FILA 0
+            if (e.RowIndex == GridConsumo.NewRowIndex || e.RowIndex < 0)
+            {
+                return;
+            }
+            if(e.ColumnIndex == GridConsumo.Columns["Borrar"].Index)
+            {
+                GridConsumo.Rows.RemoveAt(e.RowIndex);
+            }
+
+        }      ////**** BORRAR FILA DEL GRIDCONSUMO
     }
 }
