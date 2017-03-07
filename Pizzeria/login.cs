@@ -14,6 +14,7 @@ namespace Pizzeria
     public partial class login : Form
     {
         private menu m_frm;
+        public List<string> dtUsuarios;
 
         public login(menu frm)
         {
@@ -28,8 +29,9 @@ namespace Pizzeria
 
             if(Found==1)
             {
+                dtUsuarios=USR.DatosUsuario(user.Text);
                 m_frm.panel3.Visible = true;
-                m_frm.label2.Text = "Usuario: "+user.Text;
+                m_frm.label2.Text = "Usuario: "+ dtUsuarios[3].ToString();
                 this.Close();
                 this.Dispose();
             }
