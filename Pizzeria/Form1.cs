@@ -12,17 +12,9 @@ namespace Pizzeria
 {
     public partial class Form1 : Form
     {
-        public int contador=0;
-
         public Form1()
         {
             InitializeComponent();
-        }
-
-        private void button10_Click(object sender, EventArgs e)
-        {
-
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -34,10 +26,24 @@ namespace Pizzeria
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            timer1.Enabled = false;
-            this.Hide();
-            this.Close();
-            this.Dispose();
+            if (progressBar1.Value == 0)
+            {
+                conexion conX = new conexion();
+                conX.Abrir();
+                conX.Cerrar();
+            }
+
+            if (progressBar1.Value < 100)
+            {
+                progressBar1.Value = progressBar1.Value + 20;
+            }
+            else
+            {
+                timer1.Enabled = false;
+                this.Hide();
+                this.Close();
+                this.Dispose();
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

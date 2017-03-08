@@ -30,25 +30,21 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.button10 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(55, 378);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 23);
-            this.button10.TabIndex = 18;
-            this.button10.Text = "abrir menu";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.UseWaitCursor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // timer1
             // 
-            this.timer1.Interval = 5000;
+            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(136, 241);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(253, 23);
+            this.progressBar1.TabIndex = 0;
             // 
             // Form1
             // 
@@ -58,7 +54,7 @@
             this.BackgroundImage = global::Pizzeria.Properties.Resources.splash_fin21;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(531, 268);
-            this.Controls.Add(this.button10);
+            this.Controls.Add(this.progressBar1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -74,8 +70,8 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 
