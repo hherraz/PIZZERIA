@@ -32,6 +32,10 @@ namespace Pizzeria
                 dtUsuarios=USR.DatosUsuario(user.Text);
                 m_frm.panel3.Visible = true;
                 m_frm.label2.Text = "Usuario: "+ dtUsuarios[3].ToString();
+
+                //llamada del procedimiento almacenado
+                USR.log(user.Text);
+
                 this.Close();
                 this.Dispose();
             }
@@ -54,5 +58,7 @@ namespace Pizzeria
             }
 
         }
+
+
     }
 }

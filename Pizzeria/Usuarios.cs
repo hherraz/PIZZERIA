@@ -64,6 +64,31 @@ namespace Pizzeria
             }
         }
 
+        public void log(string user)
+        {
+            try
+            {
+                conX.Abrir(); 
+                MySqlCommand cmd = new MySqlCommand("LogUsuario", conX.cn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("UserX", user);
+
+                int res = cmd.ExecuteNonQuery();
+
+                if (res == 1)
+                {
+                    Console.WriteLine("LOG OK");
+                }
+                else
+                {
+                    Console.WriteLine("PROBLEMA CON EL LOG");
+                }
+                conX.Cerrar();
+            }catch(Exception EX)
+            {
+                Console.WriteLine(EX.Message);
+            }
+        }
 
     }
 }
