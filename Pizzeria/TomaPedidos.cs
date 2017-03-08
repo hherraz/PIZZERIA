@@ -56,12 +56,11 @@ namespace Pizzeria
             this.Location = new Point(0, 25);
             this.Size = new Size(ancho, alto - 25);
         }                               ////**** CENTRAR PANTALLA
-
         private void TomaPedidos_Load(object sender, EventArgs e)
         {
             CentrarPantalla();
             FormatearGridConsumo();
-        }
+        }    ////**** LANZADOR DEL FORMULARIO
 
         private void button9_Click(object sender, EventArgs e)
         {
@@ -161,5 +160,27 @@ namespace Pizzeria
             }
 
         }      ////**** BORRAR FILA DEL GRIDCONSUMO
+
+        public void ActualizarSuma()
+        {
+            int sumatoria = 0;
+
+            foreach (DataGridViewRow row in GridConsumo.Rows)
+            {
+                sumatoria += Convert.ToInt32(row.Cells["SubTotal"].Value);
+            }
+
+            Total.Text = Convert.ToString(sumatoria);
+        }
+
+        private void TomaPedidos_Activated(object sender, EventArgs e)
+        {
+            ActualizarSuma();
+        }
+
+        private void GridConsumo_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            ActualizarSuma();
+        }
     }
 }

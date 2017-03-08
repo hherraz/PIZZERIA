@@ -206,6 +206,7 @@
             this.GridConsumo.Size = new System.Drawing.Size(751, 202);
             this.GridConsumo.TabIndex = 26;
             this.GridConsumo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridConsumo_CellClick);
+            this.GridConsumo.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.GridConsumo_RowsRemoved);
             // 
             // panel5
             // 
@@ -1122,6 +1123,7 @@
             this.Name = "TomaPedidos";
             this.Text = "TomaPedidos";
             this.TransparencyKey = System.Drawing.SystemColors.ActiveBorder;
+            this.Activated += new System.EventHandler(this.TomaPedidos_Activated);
             this.Load += new System.EventHandler(this.TomaPedidos_Load);
             this.PanelFooter.ResumeLayout(false);
             this.PanelFooter.PerformLayout();
