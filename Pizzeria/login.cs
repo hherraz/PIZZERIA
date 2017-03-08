@@ -54,5 +54,9 @@ namespace Pizzeria
             }
 
         }
+
+        //public void GuardarLog()
+        //{
+        //}
     }
 }
