@@ -83,37 +83,34 @@ namespace Pizzeria
         public void GenerarMesas()
         {
             conX.Abrir();
-            string sql = "SELECT mesas.idMesa, CONCAT( mesas.Nombre_Mesa, ' / ', statusmesas.nombre ) AS Detalle FROM mesas, statusmesas WHERE mesas.Status_Mesa = statusmesas.switch";
-            DataSet ds = new DataSet();
-            MySqlCommand cmd = new MySqlCommand(sql, conX.cn);
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM mesas", conX.cn);
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-            DataTable dt = new DataTable("mesas");
+            DataTable dt = new DataTable();
             da.Fill(dt);
 
-            //ListaMesas.ValueMember = "mesas";
-           // ListaMesas.DisplayMember = "Nombre_Mesa";
-            //ListaMesas.DataSource = dt;  // hasta aqui vienen los datos
-
-
-                
-            try
-            {
-                ListaMesas.DataSource = ds;
-                ListaMesas.DisplayMember = "Nombre_Mesa";
-                ListaMesas.ValueMember = "mesas";
-
-
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
+            ListaMesas.ValueMember = "IdMesa";
+            ListaMesas.DisplayMember = "Nombre_Mesa";
+            ListaMesas.DataSource = dt;
 
             conX.Cerrar();
+            CargarStatusMesas();
         }
 
-        
+        public void CargarStatusMesas()
+        {
+            conX.Abrir();
+            MySqlCommand cmd = new MySqlCommand("SELECT Status_Mesa FROM mesas Where Nombre_Mesa="+ ListaMesas.SelectedValue.ToString() + ";", conX.cn);
+            string MesaStatus = Convert.ToString(cmd.ExecuteScalar());
+            if (MesaStatus == "True")
+            {
+                status.Text = "ABIERTA";
+            }
+            else
+            {
+                status.Text = "CERRADA";
+            }
+            conX.Cerrar();
+        }
 
         private void button9_Click(object sender, EventArgs e)
         {
@@ -312,5 +309,10 @@ namespace Pizzeria
             }
         }                                                            ////**** MARCA EL NUMERO DE FOLIO USADO
         #endregion
+
+        private void ListaMesas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarStatusMesas();
+        }
     }
 }
