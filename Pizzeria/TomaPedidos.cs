@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,9 +18,37 @@ namespace Pizzeria
             InitializeComponent();
         }
 
+        #region VARIABLES
         public int ancho = Screen.PrimaryScreen.Bounds.Width;
         public int alto = Screen.PrimaryScreen.Bounds.Height;
+        conexion conX = new conexion();
+        #endregion
 
+        #region FORMATO GENERAL DEL FORMULARIO
+        private void CentrarPantalla()
+        {
+            // tamaño de la pantalla para todos los menus
+            this.Location = new Point(0, 25);
+            this.Size = new Size(ancho, alto - 25);
+        }                               ////**** CENTRAR PANTALLA
+        private void TomaPedidos_Load(object sender, EventArgs e)
+        {
+            CentrarPantalla();          //formateo de la pantalla
+
+            #region gridconsumo
+            FormatearGridConsumo();     //formateo del GridConsumo
+            GenerarFolio();             //genera el folio para los pedidos
+            GenerarMesas();             //carga el listado de mesas
+            #endregion
+
+        }    ////**** LANZADOR DEL FORMULARIO
+        private void btn_cerrar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }    ////**** BOTON CERRAR FOOTER
+        #endregion
+
+        #region OPERACIONES EN GRIDCONSUMO
         private void FormatearGridConsumo()
         {
             GridConsumo.AllowUserToAddRows = false;
@@ -49,25 +78,29 @@ namespace Pizzeria
             btn.Width = 100;
             btn.HeaderText = "";
 
-        }                          ////**** FORMATEAR GRIDCONSUMO
-        private void CentrarPantalla()
+        }                                  ////**** FORMATEAR GRIDCONSUMO
+
+        public void GenerarMesas()
         {
-            // tamaño de la pantalla para todos los menus
-            this.Location = new Point(0, 25);
-            this.Size = new Size(ancho, alto - 25);
-        }                               ////**** CENTRAR PANTALLA
-        private void TomaPedidos_Load(object sender, EventArgs e)
-        {
-            CentrarPantalla();
-            FormatearGridConsumo();
-        }    ////**** LANZADOR DEL FORMULARIO
+            conX.Abrir();
+            string sql = "SELECT mesas.idMesa, CONCAT( mesas.Nombre_Mesa, ' / ', statusmesas.nombre ) AS Detalle FROM mesas, statusmesas WHERE mesas.Status_Mesa = statusmesas.switch";
+            MySqlCommand cmd = new MySqlCommand(sql, conX.cn);
+            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            ListaMesas.ValueMember = "IdMesa";
+            ListaMesas.DisplayMember = "Detalle";
+            ListaMesas.DataSource = dt;
+
+            conX.Cerrar();
+        }
 
         private void button9_Click(object sender, EventArgs e)
         {
             MessageBox.Show("CONFIRMAR LA FORMA DE PAGO EN OTRO FORMULARIO");
             MessageBox.Show("DESEA CERRAR LA MESA?");
-        }
-
+        }               ////**** BOTON PAGAR
         private void button1_Click(object sender, EventArgs e)
         {
             PanelConsumoLocal.Visible = true;
@@ -81,8 +114,10 @@ namespace Pizzeria
             PanelRetiro.Visible = false;
             PanelDelivery.Visible = false;
 
+            GenerarFolio();
+
             FooterTitle.Text = "TOMA DE PEDIDOS / CONSUMO EN EL LOCAL";
-        }
+        }               ////**** BOTON CONSUMO
         private void btnRetiroLocal_Click(object sender, EventArgs e)
         {
             PanelRetiro.Visible = true;
@@ -96,8 +131,10 @@ namespace Pizzeria
             PanelConsumoLocal.Visible = false;
             PanelDelivery.Visible = false;
 
+            GenerarFolio();
+
             FooterTitle.Text = "TOMA DE PEDIDOS / RETIRO EN EL LOCAL";
-        }
+        }        ////**** BOTON RETIRO
         private void btnDelivery_Click(object sender, EventArgs e)
         {
             PanelDelivery.Visible = true;
@@ -111,9 +148,10 @@ namespace Pizzeria
             PanelRetiro.Visible = false;
             PanelConsumoLocal.Visible = false;
 
-            FooterTitle.Text = "TOMA DE PEDIDOS / PEDIDO TELEFONICO";
-        }
+            GenerarFolio();
 
+            FooterTitle.Text = "TOMA DE PEDIDOS / PEDIDO TELEFONICO";
+        }           ////**** BOTON DELIVERY
         private void cerrar_Click(object sender, EventArgs e)
         {
             PanelConsumoLocal.Visible = false;
@@ -124,21 +162,10 @@ namespace Pizzeria
             btnRetiroLocal.BackColor = Color.Silver;
             btnDelivery.BackColor = Color.Silver;
 
+            GenerarFolio();
+
             FooterTitle.Text = "TOMA DE PEDIDOS";
-
-        }
-
-        private void btn_cerrar_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            AddPizzaMenu add = new AddPizzaMenu();
-            add.ShowDialog();
-        }
-
+        }                ////**** BOTON CERRAR OPCIONES
         private void button3_Click(object sender, EventArgs e)
         {
 
@@ -159,7 +186,31 @@ namespace Pizzeria
                 GridConsumo.Rows.RemoveAt(e.RowIndex);
             }
 
-        }      ////**** BORRAR FILA DEL GRIDCONSUMO
+        }               ////**** BORRAR FILA DEL GRIDCONSUMO
+        public void GridConsumo_ProductosMySql()                                                        ////**** GUARDA LOS DATOS DEL GRID EN LA BASE DE DATOS
+        {
+            conX.Abrir();
+            foreach (DataGridViewRow row in GridConsumo.Rows)
+            {
+                MySqlCommand GridConsumoMySql = new MySqlCommand("insert into prod_pedidos (N_Pedido, Cantidad, Item, Unitario, Subtotal) values (@N_pedido, @cantidad, @item, @unitario, @subtotal);", conX.cn);
+                GridConsumoMySql.Parameters.AddWithValue("@N_pedido", Convert.ToInt32(label20.Text) + 1);           //N_pedido
+                GridConsumoMySql.Parameters.AddWithValue("@cantidad", Convert.ToInt32(row.Cells[0].Value));     //cantidad
+                GridConsumoMySql.Parameters.AddWithValue("@item", Convert.ToString(row.Cells[1].Value));        //item
+                GridConsumoMySql.Parameters.AddWithValue("@unitario", Convert.ToInt32(row.Cells[2].Value));     //Unitario
+                GridConsumoMySql.Parameters.AddWithValue("@subtotal", Convert.ToInt32(row.Cells[3].Value));     //subtotal
+                GridConsumoMySql.ExecuteNonQuery();
+            }
+            conX.Cerrar();
+        }
+        private void btnGuardarConsumo_Click(object sender, EventArgs e)
+        {
+            GenerarFolio();
+            GridConsumo_ProductosMySql();
+            GridConsumo.Rows.Clear();
+
+            NumeroPedido_Usado();
+
+        }                             ////**** BOTON PARA GUARDAR LOS DATOS DEL GRIDCONSUMO EN BASE DE DATOS
 
         public void ActualizarSuma()
         {
@@ -171,16 +222,76 @@ namespace Pizzeria
             }
 
             Total.Text = Convert.ToString(sumatoria);
-        }
-
+        }                                                                 ////**** CALCULA EL TOTAL A PAGAR
         private void TomaPedidos_Activated(object sender, EventArgs e)
         {
             ActualizarSuma();
-        }
-
+        }                               ////**** ACTUALIZA SUMA
         private void GridConsumo_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
             ActualizarSuma();
-        }
+        }      ////**** ACTUALIZA SUMA
+
+        private void GenerarFolio()
+        {
+            try
+            {
+                conX.Abrir();
+                MySqlCommand cmd = new MySqlCommand("SELECT MAX(N_Pedido) FROM folios_pedidos WHERE (Usado = 1)", conX.cn);
+                int UltimoFolio = Convert.ToInt32(cmd.ExecuteScalar());
+                Console.WriteLine("SE HA RESCATADO EL ULTIMO FOLIO USADO: " + UltimoFolio);
+                label20.Text = Convert.ToString(UltimoFolio);
+                conX.Cerrar();
+
+                conX.Abrir();
+                MySqlCommand cmd1 = new MySqlCommand("Borrar_Folios_Fantasmas", conX.cn);
+                cmd1.CommandType = System.Data.CommandType.StoredProcedure;
+                int res = cmd1.ExecuteNonQuery();
+
+                if (res == 1)
+                {
+                    Console.WriteLine("BORRADOS LOS FOLIOS FANTASMAS");
+                }
+                else
+                {
+                    Console.WriteLine("PROBLEMA CON EL BORRADO DE LOS FOLIOS FANTASMAS");
+                }
+                conX.Cerrar();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }                                                                  ////**** GENERA EL NUMERO DE FOLIO Y BORRA LOS FANTASMAS
+        private void NumeroPedido_Usado()
+        {
+            try
+            {
+                conX.Abrir();
+                int nuevofolio = Convert.ToInt32(label20.Text) + 1;
+                MySqlCommand cmd = new MySqlCommand("Nuevo_Folio_Pedido", conX.cn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("NUEVO", nuevofolio);
+                int res = cmd.ExecuteNonQuery();
+
+                if (res == 1)
+                {
+                    Console.WriteLine("INSERTADO EL NUEVO FOLIO");
+                }
+                else
+                {
+                    Console.WriteLine("ERROR AL INSERTAR EL NUEVO FOLIO");
+                }
+                conX.Cerrar();
+
+                GenerarFolio();
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine("Error en INSERT del SQL de Folios - NumeroPedido_usado");
+                Console.WriteLine(ex.Message);
+            }
+        }                                                            ////**** MARCA EL NUMERO DE FOLIO USADO
+        #endregion
     }
 }

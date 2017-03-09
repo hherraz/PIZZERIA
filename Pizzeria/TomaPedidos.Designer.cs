@@ -58,6 +58,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.PanelHeader = new System.Windows.Forms.Panel();
+            this.label20 = new System.Windows.Forms.Label();
             this.cerrar = new System.Windows.Forms.Button();
             this.btnDelivery = new System.Windows.Forms.Button();
             this.btnConsumoLocal = new System.Windows.Forms.Button();
@@ -239,14 +240,15 @@
             this.btnGuardarConsumo.TabIndex = 22;
             this.btnGuardarConsumo.Text = "GUARDAR";
             this.btnGuardarConsumo.UseVisualStyleBackColor = false;
+            this.btnGuardarConsumo.Click += new System.EventHandler(this.btnGuardarConsumo_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.ListaMesas);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.ListaGarzones);
             this.groupBox1.Controls.Add(this.btnMesas);
-            this.groupBox1.Controls.Add(this.ListaMesas);
             this.groupBox1.Controls.Add(this.btnGarzones);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(75, 32);
@@ -286,9 +288,9 @@
             // ListaMesas
             // 
             this.ListaMesas.FormattingEnabled = true;
-            this.ListaMesas.Location = new System.Drawing.Point(102, 18);
+            this.ListaMesas.Location = new System.Drawing.Point(6, 28);
             this.ListaMesas.Name = "ListaMesas";
-            this.ListaMesas.Size = new System.Drawing.Size(67, 21);
+            this.ListaMesas.Size = new System.Drawing.Size(280, 21);
             this.ListaMesas.TabIndex = 19;
             // 
             // btnGarzones
@@ -445,6 +447,7 @@
             // PanelHeader
             // 
             this.PanelHeader.BackgroundImage = global::Pizzeria.Properties.Resources._240_F_99640866_dNj6uLcGW8pd5VyM8TO9lTzCePZYyvRR;
+            this.PanelHeader.Controls.Add(this.label20);
             this.PanelHeader.Controls.Add(this.cerrar);
             this.PanelHeader.Controls.Add(this.btnDelivery);
             this.PanelHeader.Controls.Add(this.btnConsumoLocal);
@@ -454,6 +457,17 @@
             this.PanelHeader.Name = "PanelHeader";
             this.PanelHeader.Size = new System.Drawing.Size(1702, 69);
             this.PanelHeader.TabIndex = 0;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.BackColor = System.Drawing.Color.White;
+            this.label20.ForeColor = System.Drawing.Color.Black;
+            this.label20.Location = new System.Drawing.Point(756, 24);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(41, 13);
+            this.label20.TabIndex = 6;
+            this.label20.Text = "label20";
             // 
             // cerrar
             // 
@@ -1137,6 +1151,7 @@
             this.PanelTotal.ResumeLayout(false);
             this.PanelTotal.PerformLayout();
             this.PanelHeader.ResumeLayout(false);
+            this.PanelHeader.PerformLayout();
             this.PanelRetiro.ResumeLayout(false);
             this.PanelRetiro.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -1255,5 +1270,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         public System.Windows.Forms.DataGridView GridConsumo;
+        private System.Windows.Forms.Label label20;
     }
 }
