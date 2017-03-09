@@ -38,10 +38,10 @@
             this.label18 = new System.Windows.Forms.Label();
             this.btnGuardarConsumo = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ListaMesas = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.ListaGarzones = new System.Windows.Forms.ComboBox();
             this.btnMesas = new System.Windows.Forms.Button();
-            this.ListaMesas = new System.Windows.Forms.ComboBox();
             this.btnGarzones = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.PanelTotal = new System.Windows.Forms.Panel();
@@ -148,9 +148,9 @@
             this.PanelFooter.Controls.Add(this.btn_cerrar);
             this.PanelFooter.Controls.Add(this.FooterTitle);
             this.PanelFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PanelFooter.Location = new System.Drawing.Point(0, 1009);
+            this.PanelFooter.Location = new System.Drawing.Point(0, 753);
             this.PanelFooter.Name = "PanelFooter";
-            this.PanelFooter.Size = new System.Drawing.Size(1702, 27);
+            this.PanelFooter.Size = new System.Drawing.Size(1378, 27);
             this.PanelFooter.TabIndex = 0;
             // 
             // btn_cerrar
@@ -251,18 +251,26 @@
             this.groupBox1.Controls.Add(this.btnMesas);
             this.groupBox1.Controls.Add(this.btnGarzones);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(75, 32);
+            this.groupBox1.Location = new System.Drawing.Point(36, 32);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(664, 55);
+            this.groupBox1.Size = new System.Drawing.Size(703, 55);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
+            // 
+            // ListaMesas
+            // 
+            this.ListaMesas.FormattingEnabled = true;
+            this.ListaMesas.Location = new System.Drawing.Point(65, 22);
+            this.ListaMesas.Name = "ListaMesas";
+            this.ListaMesas.Size = new System.Drawing.Size(163, 21);
+            this.ListaMesas.TabIndex = 19;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(45, 22);
+            this.label2.Location = new System.Drawing.Point(6, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 13);
             this.label2.TabIndex = 1;
@@ -271,27 +279,19 @@
             // ListaGarzones
             // 
             this.ListaGarzones.FormattingEnabled = true;
-            this.ListaGarzones.Location = new System.Drawing.Point(367, 18);
+            this.ListaGarzones.Location = new System.Drawing.Point(369, 18);
             this.ListaGarzones.Name = "ListaGarzones";
             this.ListaGarzones.Size = new System.Drawing.Size(170, 21);
             this.ListaGarzones.TabIndex = 20;
             // 
             // btnMesas
             // 
-            this.btnMesas.Location = new System.Drawing.Point(175, 17);
+            this.btnMesas.Location = new System.Drawing.Point(234, 19);
             this.btnMesas.Name = "btnMesas";
             this.btnMesas.Size = new System.Drawing.Size(52, 23);
             this.btnMesas.TabIndex = 0;
             this.btnMesas.Text = "MESAS";
             this.btnMesas.UseVisualStyleBackColor = true;
-            // 
-            // ListaMesas
-            // 
-            this.ListaMesas.FormattingEnabled = true;
-            this.ListaMesas.Location = new System.Drawing.Point(6, 28);
-            this.ListaMesas.Name = "ListaMesas";
-            this.ListaMesas.Size = new System.Drawing.Size(280, 21);
-            this.ListaMesas.TabIndex = 19;
             // 
             // btnGarzones
             // 
@@ -455,7 +455,7 @@
             this.PanelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelHeader.Location = new System.Drawing.Point(0, 0);
             this.PanelHeader.Name = "PanelHeader";
-            this.PanelHeader.Size = new System.Drawing.Size(1702, 69);
+            this.PanelHeader.Size = new System.Drawing.Size(1378, 69);
             this.PanelHeader.TabIndex = 0;
             // 
             // label20
@@ -1127,7 +1127,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1702, 1036);
+            this.ClientSize = new System.Drawing.Size(1378, 780);
             this.Controls.Add(this.PanelDelivery);
             this.Controls.Add(this.PanelRetiro);
             this.Controls.Add(this.PanelConsumoLocal);

@@ -84,17 +84,36 @@ namespace Pizzeria
         {
             conX.Abrir();
             string sql = "SELECT mesas.idMesa, CONCAT( mesas.Nombre_Mesa, ' / ', statusmesas.nombre ) AS Detalle FROM mesas, statusmesas WHERE mesas.Status_Mesa = statusmesas.switch";
+            DataSet ds = new DataSet();
             MySqlCommand cmd = new MySqlCommand(sql, conX.cn);
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
+            DataTable dt = new DataTable("mesas");
             da.Fill(dt);
 
-            ListaMesas.ValueMember = "IdMesa";
-            ListaMesas.DisplayMember = "Detalle";
-            ListaMesas.DataSource = dt;
+            //ListaMesas.ValueMember = "mesas";
+           // ListaMesas.DisplayMember = "Nombre_Mesa";
+            //ListaMesas.DataSource = dt;  // hasta aqui vienen los datos
+
+
+                
+            try
+            {
+                ListaMesas.DataSource = ds;
+                ListaMesas.DisplayMember = "Nombre_Mesa";
+                ListaMesas.ValueMember = "mesas";
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
 
             conX.Cerrar();
         }
+
+        
 
         private void button9_Click(object sender, EventArgs e)
         {
