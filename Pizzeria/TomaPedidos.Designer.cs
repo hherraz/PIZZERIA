@@ -122,6 +122,7 @@
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.status = new System.Windows.Forms.Label();
             this.PanelFooter.SuspendLayout();
             this.PanelConsumoLocal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridConsumo)).BeginInit();
@@ -245,6 +246,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.status);
             this.groupBox1.Controls.Add(this.ListaMesas);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.ListaGarzones);
@@ -278,7 +280,7 @@
             // 
             // btnMesas
             // 
-            this.btnMesas.Location = new System.Drawing.Point(175, 17);
+            this.btnMesas.Location = new System.Drawing.Point(164, 17);
             this.btnMesas.Name = "btnMesas";
             this.btnMesas.Size = new System.Drawing.Size(52, 23);
             this.btnMesas.TabIndex = 0;
@@ -288,10 +290,11 @@
             // ListaMesas
             // 
             this.ListaMesas.FormattingEnabled = true;
-            this.ListaMesas.Location = new System.Drawing.Point(6, 28);
+            this.ListaMesas.Location = new System.Drawing.Point(102, 17);
             this.ListaMesas.Name = "ListaMesas";
-            this.ListaMesas.Size = new System.Drawing.Size(280, 21);
+            this.ListaMesas.Size = new System.Drawing.Size(56, 21);
             this.ListaMesas.TabIndex = 19;
+            this.ListaMesas.SelectedIndexChanged += new System.EventHandler(this.ListaMesas_SelectedIndexChanged);
             // 
             // btnGarzones
             // 
@@ -1121,6 +1124,15 @@
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             this.dataGridViewTextBoxColumn10.Width = 90;
             // 
+            // status
+            // 
+            this.status.AutoSize = true;
+            this.status.Location = new System.Drawing.Point(220, 22);
+            this.status.Name = "status";
+            this.status.Size = new System.Drawing.Size(35, 13);
+            this.status.TabIndex = 21;
+            this.status.Text = "status";
+            // 
             // TomaPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1271,5 +1283,6 @@
         private System.Windows.Forms.Button button6;
         public System.Windows.Forms.DataGridView GridConsumo;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label status;
     }
 }
