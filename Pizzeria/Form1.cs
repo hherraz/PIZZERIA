@@ -39,10 +39,10 @@ namespace Pizzeria
             }
             else
             {
+                timer1.Stop();
                 timer1.Enabled = false;
-                this.Hide();
-                this.Close();
-                this.Dispose();
+                Hide();
+                Close();
             }
         }
 

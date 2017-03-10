@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Pizzeria
 {
-    public partial class TomaPedidos : Form
+    public partial class ConsumoLocal : Form
     {
-        public TomaPedidos()
+        public ConsumoLocal()
         {
             InitializeComponent();
         }
@@ -31,21 +31,18 @@ namespace Pizzeria
             this.Location = new Point(0, 25);
             this.Size = new Size(ancho, alto - 25);
         }                               ////**** CENTRAR PANTALLA
-        private void TomaPedidos_Load(object sender, EventArgs e)
+        private void ConsumoLocal_Load(object sender, EventArgs e)
         {
             CentrarPantalla();          //formateo de la pantalla
-
-            #region gridconsumo
             FormatearGridConsumo();     //formateo del GridConsumo
             GenerarFolio();             //genera el folio para los pedidos
             GenerarMesas();             //carga el listado de mesas
-            #endregion
 
         }    ////**** LANZADOR DEL FORMULARIO
         private void btn_cerrar_Click(object sender, EventArgs e)
         {
             Close();
-        }    ////**** BOTON CERRAR FOOTER
+        }    ////**** BOTON TOPE DERECHO
         #endregion
 
         #region OPERACIONES EN GRIDCONSUMO
@@ -79,7 +76,6 @@ namespace Pizzeria
             btn.HeaderText = "";
 
         }                                  ////**** FORMATEAR GRIDCONSUMO
-
         public void GenerarMesas()
         {
             conX.Abrir();
@@ -95,7 +91,6 @@ namespace Pizzeria
             conX.Cerrar();
             CargarStatusMesas();
         }
-
         public void CargarStatusMesas()
         {
             conX.Abrir();
@@ -111,86 +106,18 @@ namespace Pizzeria
             }
             conX.Cerrar();
         }
-
-        private void button9_Click(object sender, EventArgs e)
+        private void btn_pagar_Click(object sender, EventArgs e)
         {
             MessageBox.Show("CONFIRMAR LA FORMA DE PAGO EN OTRO FORMULARIO");
             MessageBox.Show("DESEA CERRAR LA MESA?");
         }               ////**** BOTON PAGAR
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ConsumoLocal consumo = new ConsumoLocal();
-            consumo.ShowDialog();
-            consumo.Size = new Size(821, 422);
-            consumo.Location = new Point((ancho-PanelConsumoLocal.Width)/2, (alto-PanelConsumoLocal.Height)/2);
-
-            btnConsumoLocal.BackColor=Color.Gray;
-            btnRetiroLocal.BackColor = Color.Silver;
-            btnDelivery.BackColor = Color.Silver;
-
-            PanelRetiro.Visible = false;
-            PanelDelivery.Visible = false;
-
-            GenerarFolio();
-
-            FooterTitle.Text = "TOMA DE PEDIDOS / CONSUMO EN EL LOCAL";
-        }               ////**** BOTON CONSUMO
-        private void btnRetiroLocal_Click(object sender, EventArgs e)
-        {
-            PanelRetiro.Visible = true;
-            PanelRetiro.Size = new Size(821, 422);
-            PanelRetiro.Location = new Point((ancho - PanelRetiro.Width) / 2, (alto - PanelRetiro.Height) / 2);
-
-            btnConsumoLocal.BackColor = Color.Silver;
-            btnRetiroLocal.BackColor = Color.Gray;
-            btnDelivery.BackColor = Color.Silver;
-
-            PanelConsumoLocal.Visible = false;
-            PanelDelivery.Visible = false;
-
-            GenerarFolio();
-
-            FooterTitle.Text = "TOMA DE PEDIDOS / RETIRO EN EL LOCAL";
-        }        ////**** BOTON RETIRO
-        private void btnDelivery_Click(object sender, EventArgs e)
-        {
-            PanelDelivery.Visible = true;
-            PanelDelivery.Size = new Size(821, 511);
-            PanelDelivery.Location = new Point((ancho - PanelDelivery.Width) / 2, (alto - PanelDelivery.Height) / 2);
-
-            btnConsumoLocal.BackColor = Color.Silver;
-            btnRetiroLocal.BackColor = Color.Silver;
-            btnDelivery.BackColor = Color.Gray;
-
-            PanelRetiro.Visible = false;
-            PanelConsumoLocal.Visible = false;
-
-            GenerarFolio();
-
-            FooterTitle.Text = "TOMA DE PEDIDOS / PEDIDO TELEFONICO";
-        }           ////**** BOTON DELIVERY
-        private void cerrar_Click(object sender, EventArgs e)
-        {
-            PanelConsumoLocal.Visible = false;
-            PanelRetiro.Visible = false;
-            PanelDelivery.Visible = false;
-
-            btnConsumoLocal.BackColor = Color.Silver;
-            btnRetiroLocal.BackColor = Color.Silver;
-            btnDelivery.BackColor = Color.Silver;
-
-            GenerarFolio();
-
-            FooterTitle.Text = "TOMA DE PEDIDOS";
-        }                ////**** BOTON CERRAR OPCIONES
-        private void button3_Click(object sender, EventArgs e)
+        private void AddPizzaMenu_Click(object sender, EventArgs e)
         {
 
             AddPizzaMenu PM = new AddPizzaMenu();
             PM.ShowDialog();
             PM.Dispose();
         }
-
         private void GridConsumo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //SI EL CLICK ES EN UNA FILA NUEVA, O INFERIOR A LA FILA 0
@@ -228,7 +155,6 @@ namespace Pizzeria
             NumeroPedido_Usado();
 
         }                             ////**** BOTON PARA GUARDAR LOS DATOS DEL GRIDCONSUMO EN BASE DE DATOS
-
         public void ActualizarSuma()
         {
             int sumatoria = 0;
@@ -240,7 +166,7 @@ namespace Pizzeria
 
             Total.Text = Convert.ToString(sumatoria);
         }                                                                 ////**** CALCULA EL TOTAL A PAGAR
-        private void TomaPedidos_Activated(object sender, EventArgs e)
+        private void ConsumoLocal_Activated(object sender, EventArgs e)
         {
             ActualizarSuma();
         }                               ////**** ACTUALIZA SUMA
@@ -248,7 +174,6 @@ namespace Pizzeria
         {
             ActualizarSuma();
         }      ////**** ACTUALIZA SUMA
-
         private void GenerarFolio()
         {
             try
@@ -310,7 +235,6 @@ namespace Pizzeria
             }
         }                                                            ////**** MARCA EL NUMERO DE FOLIO USADO
         #endregion
-
         private void ListaMesas_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarStatusMesas();

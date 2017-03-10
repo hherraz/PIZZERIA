@@ -13,11 +13,16 @@ namespace Pizzeria
 {
     public partial class menu : Form
     {
+        #region VARIABLES
+        public int ancho = Screen.PrimaryScreen.Bounds.Width;
+        public int alto = Screen.PrimaryScreen.Bounds.Height;
+        conexion conX = new conexion();
+        #endregion
+
         public menu()
         {
             InitializeComponent();
         }
-
         public void FormatoPantalla()
         {
             //a la izquierda
@@ -82,9 +87,8 @@ namespace Pizzeria
         }         ////*** BOTON SALIR
         private void btn_tomapedido_Click(object sender, EventArgs e)
         {
-            TomaPedidos tm = new TomaPedidos();
-            tm.ShowDialog();
-            tm.Dispose();
+            PanelTomaPedidos.Visible = true;
+            PanelTomaPedidos.Location = new Point((ancho - PanelTomaPedidos.Width) / 2, (panel2.Location.Y - PanelTomaPedidos.Height+5));
         }    ////*** BOTON TOMA DE PEDIDO
 
         #region BOTONES QUE SE MUEVEN
@@ -148,5 +152,19 @@ namespace Pizzeria
             btn_salir.Size = new System.Drawing.Size(81, 79);
         }
         #endregion
+
+        private void btnConsumoLocal_Click(object sender, EventArgs e)
+        {
+            ConsumoLocal consumo = new ConsumoLocal();
+            consumo.ShowDialog(this);
+            consumo.TopLevel = true;
+            consumo.Size = new Size(821, 422);
+            consumo.Location = new Point((ancho - consumo.Width) / 2, (alto - consumo.Height) / 2);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            PanelTomaPedidos.Visible = false;
+        }
     }
 }

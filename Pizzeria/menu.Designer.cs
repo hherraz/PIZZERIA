@@ -48,6 +48,11 @@
             this.cerrar = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.PanelTomaPedidos = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnDelivery = new System.Windows.Forms.Button();
+            this.btnConsumoLocal = new System.Windows.Forms.Button();
+            this.btnRetiroLocal = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -59,6 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btn_delivery)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_tomapedido)).BeginInit();
             this.panel4.SuspendLayout();
+            this.PanelTomaPedidos.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -274,6 +280,69 @@
             this.panel4.Size = new System.Drawing.Size(800, 37);
             this.panel4.TabIndex = 5;
             // 
+            // PanelTomaPedidos
+            // 
+            this.PanelTomaPedidos.BackColor = System.Drawing.Color.Transparent;
+            this.PanelTomaPedidos.BackgroundImage = global::Pizzeria.Properties.Resources._240_F_99640866_dNj6uLcGW8pd5VyM8TO9lTzCePZYyvRR;
+            this.PanelTomaPedidos.Controls.Add(this.button1);
+            this.PanelTomaPedidos.Controls.Add(this.btnDelivery);
+            this.PanelTomaPedidos.Controls.Add(this.btnConsumoLocal);
+            this.PanelTomaPedidos.Controls.Add(this.btnRetiroLocal);
+            this.PanelTomaPedidos.Location = new System.Drawing.Point(28, 398);
+            this.PanelTomaPedidos.Name = "PanelTomaPedidos";
+            this.PanelTomaPedidos.Size = new System.Drawing.Size(727, 53);
+            this.PanelTomaPedidos.TabIndex = 6;
+            this.PanelTomaPedidos.Visible = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Black;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.button1.Location = new System.Drawing.Point(586, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(126, 40);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "CANCELAR";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnDelivery
+            // 
+            this.btnDelivery.BackColor = System.Drawing.Color.Silver;
+            this.btnDelivery.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelivery.Location = new System.Drawing.Point(395, 6);
+            this.btnDelivery.Name = "btnDelivery";
+            this.btnDelivery.Size = new System.Drawing.Size(186, 40);
+            this.btnDelivery.TabIndex = 8;
+            this.btnDelivery.Text = "PEDIDO TELEFONICO";
+            this.btnDelivery.UseVisualStyleBackColor = false;
+            // 
+            // btnConsumoLocal
+            // 
+            this.btnConsumoLocal.BackColor = System.Drawing.Color.Silver;
+            this.btnConsumoLocal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConsumoLocal.Location = new System.Drawing.Point(17, 6);
+            this.btnConsumoLocal.Name = "btnConsumoLocal";
+            this.btnConsumoLocal.Size = new System.Drawing.Size(186, 40);
+            this.btnConsumoLocal.TabIndex = 6;
+            this.btnConsumoLocal.Text = "CONSUMO EN EL LOCAL";
+            this.btnConsumoLocal.UseVisualStyleBackColor = false;
+            this.btnConsumoLocal.Click += new System.EventHandler(this.btnConsumoLocal_Click);
+            // 
+            // btnRetiroLocal
+            // 
+            this.btnRetiroLocal.BackColor = System.Drawing.Color.Silver;
+            this.btnRetiroLocal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRetiroLocal.Location = new System.Drawing.Point(206, 6);
+            this.btnRetiroLocal.Name = "btnRetiroLocal";
+            this.btnRetiroLocal.Size = new System.Drawing.Size(186, 40);
+            this.btnRetiroLocal.TabIndex = 7;
+            this.btnRetiroLocal.Text = "RETIRO EN EL LOCAL";
+            this.btnRetiroLocal.UseVisualStyleBackColor = false;
+            // 
             // menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -282,6 +351,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.PanelTomaPedidos);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -305,6 +375,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btn_delivery)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_tomapedido)).EndInit();
             this.panel4.ResumeLayout(false);
+            this.PanelTomaPedidos.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -329,5 +400,10 @@
         private System.Windows.Forms.Button cerrar;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Panel PanelTomaPedidos;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDelivery;
+        private System.Windows.Forms.Button btnConsumoLocal;
+        private System.Windows.Forms.Button btnRetiroLocal;
     }
 }
