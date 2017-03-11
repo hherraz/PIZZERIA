@@ -302,10 +302,15 @@ namespace Pizzeria
                 try
                 {
                     string sql = "SELECT Cantidad, Item, Unitario, Subtotal FROM prod_pedidos WHERE N_Pedido=" + numPedido + ";";
-                    MySqlDataAdapter adapt = new MySqlDataAdapter(sql,conX.cn);
+                    MySqlDataAdapter adapt = new MySqlDataAdapter(sql, conX.cn);
                     DataSet ds = new DataSet();
                     adapt.Fill(ds);
-                    GridConsumo.DataSource = ds.Tables[0];
+                    DataTable dt = ds.Tables[0];
+                    foreach(DataRow row in dt.Rows)
+                    {
+                        GridConsumo.Rows.Add(row["Cantidad"].ToString(),row["Item"].ToString(),row["Unitario"].ToString(),row["Subtotal"].ToString());
+                    }
+
                 }
                 catch (MySqlException EX)
                 {
