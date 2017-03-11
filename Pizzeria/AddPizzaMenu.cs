@@ -68,6 +68,15 @@ namespace Pizzeria
             dataGridView3.ColumnHeadersVisible = false;
             dataGridView3.RowHeadersVisible = false;
         }
+        private void AddProductos_Load(object sender, EventArgs e)                                      ////**** LANZADOR DEL FORMULARIO AL ABRIR
+        {
+            CentrarForm();
+            FormatoGrid();
+            CargaPizzasCasa();
+            CargaMedidaPizzas();
+            CargaMasasPizzas();
+        }
+
         public void ActivarPedido()                                                                     ////**** ACTIVA O DESACTIVA EL BOTON PEDIDO
         {
             if (SeleccionActivaPizza + SeleccionActivaPorte + SeleccionActivaMasa == 3)
@@ -166,7 +175,6 @@ namespace Pizzeria
             int TotalCeldasGeneradas = TotalFilas * TotalColumnas;
 
             #endregion
-
             #region DIAGRAMA COLUMNAS Y FILAS EN EL DATAGRID
 
             // VARIABLES PARA CORRER DENTRO DE LAS FILAS Y COLUMNAS UNA VEZ DENTRO DEL WHILE
@@ -189,21 +197,15 @@ namespace Pizzeria
             }
 
             #endregion
-
             #region CONEXION A LA BASE DE DATOS Y POBLADO DE DATOS
-
-            // CONECTANDO DATOS DESDE MYSQL
-            MySqlCommand cm = new MySqlCommand("select * from pizzacasa;", conX.cn);
+            MySqlCommand cm = new MySqlCommand("select * from pizzacasa;", conX.cn);                                // CONECTANDO DATOS DESDE MYSQL
             try
             {
                 conX.Abrir();
                 MySqlDataReader dr = cm.ExecuteReader();
-
-                //LISTOS PARA POBLAR EL IMAGELIST Y EL LISTVIEW
-                while (dr.Read())
+                while (dr.Read())                                                                                   //LISTOS PARA POBLAR EL IMAGELIST Y EL LISTVIEW
                 {
-                    // SETEO EL BORDE DE LA CELDA
-                    dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.None;
+                    dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.None;                               // SETEO EL BORDE DE LA CELDA
 
                     // EMPAQUETAMOS IMAGEN YA CON EL TAMANO QUE QUEREMOS 80X80 Y LA AGREGAMOS A LA FILA DEL DATAGRID
                     Font fuente = new Font("Verdana", 8);                                                           //PREDETERMINO LA FUENTE Y EL TAMANO DEL TEXTO A GENERAR
@@ -215,11 +217,8 @@ namespace Pizzeria
                     dataGridView1.Rows[NumeroFila].Cells[NumeroColumna].Value = image;                              //AGREGO LA IMAGEN MODIFICADA A LA FILA DEL GRIDVIEW
                     g.Dispose();                                                                                    //BOTO LA INFO DEL GDI+
 
-                    // TOOLTIP GUARDA EL NOMBRE DEL ITEM
-                    dataGridView1.Rows[NumeroFila].Cells[NumeroColumna].ToolTipText = dr["Item"].ToString();
-
-                    // TAG GUARDA EL CODIGO DEL PRODUCTO
-                    dataGridView1.Rows[NumeroFila].Cells[NumeroColumna].Tag = dr["Id"].ToString();
+                    dataGridView1.Rows[NumeroFila].Cells[NumeroColumna].ToolTipText = dr["Item"].ToString();        // TOOLTIP GUARDA EL NOMBRE DEL ITEM
+                    dataGridView1.Rows[NumeroFila].Cells[NumeroColumna].Tag = dr["Id"].ToString();                  // TAG GUARDA EL CODIGO DEL PRODUCTO
 
                     // INDICAMOS SI SEGUIMOS AGREGANDO COLUMNAS O SALTAMOS A OTRA FILA
                     if (NumeroColumna == TotalColumnas - 1)
@@ -251,7 +250,6 @@ namespace Pizzeria
                 MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK);
                 Application.ExitThread();
             }
-
             #endregion
         }
         public void CargaMedidaPizzas()                                                                 ////**** CARGA DATOS EN GRID MEDIDA DE LAS PIZZAS
@@ -483,23 +481,9 @@ namespace Pizzeria
             #endregion
         }
 
-        public static Image resizeImage(Image imgToResize, Size size)                                   ////**** CAMBIA EL TAMANO DE LA IMAGEN
+        private void cantidadBox_ValueChanged(object sender, EventArgs e)                               ////**** ACTUALIZAR EL VALOR, SI CAMBIA LA CANTIDAD
         {
-            return (Image)(new Bitmap(imgToResize, size));
-        }
-
-        private void AddProductos_Load(object sender, EventArgs e)                                      ////**** LANZADOR DEL FORMULARIO AL ABRIR
-        {
-            CentrarForm();
-            FormatoGrid();
-            CargaPizzasCasa();
-            CargaMedidaPizzas();
-            CargaMasasPizzas();
-        }
-
-        private void btnCerrar_Click(object sender, EventArgs e)                                        ////**** BOTON CERRAR
-        {
-            Close();
+            ActivarPedido();
         }
 
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)         ////**** LANZADOR DEL CLICK EN MASAS
@@ -549,9 +533,14 @@ namespace Pizzeria
         {
             EnviarPedido();
         }
-        private void cantidadBox_ValueChanged(object sender, EventArgs e)                               ////**** ACTUALIZAR EL VALOR, SI CAMBIA LA CANTIDAD
+        private void btnCerrar_Click(object sender, EventArgs e)                                        ////**** BOTON CERRAR
         {
-            ActivarPedido();
+            Close();
+        }
+
+        public static Image resizeImage(Image imgToResize, Size size)                                   ////**** CAMBIA EL TAMANO DE LA IMAGEN
+        {
+            return (Image)(new Bitmap(imgToResize, size));
         }
     }
 }

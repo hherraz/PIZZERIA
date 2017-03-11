@@ -38,6 +38,7 @@ namespace Pizzeria
             FormatearGridConsumo();     //formateo del GridConsumo
             GenerarFolio();             //genera el folio para los pedidos
             GenerarMesas();             //carga el listado de mesas
+
         }   ////**** LANZADOR DEL FORMULARIO
         private void btn_cerrar_Click(object sender, EventArgs e)
         {
@@ -48,6 +49,7 @@ namespace Pizzeria
         #region OPERACIONES EN GRIDCONSUMO
         private void FormatearGridConsumo()
         {
+            GridConsumo.AutoGenerateColumns = false;
             GridConsumo.AllowUserToAddRows = false;
             GridConsumo.ReadOnly = true;
 
@@ -245,9 +247,10 @@ namespace Pizzeria
         }
         public void CargarStatusMesas()
         {
+            Console.WriteLine("############### CARGA STATUS DE MESA");
+            conX.Abrir();
             try
             {
-                conX.Abrir();
                 MySqlCommand cmd = new MySqlCommand("SELECT Status_Mesa FROM mesas Where Nombre_Mesa=" + ListaMesas.SelectedValue.ToString() + ";", conX.cn);
                 string MesaStatus = Convert.ToString(cmd.ExecuteScalar());
                 if (MesaStatus == "True")
@@ -258,16 +261,59 @@ namespace Pizzeria
                 {
                     status.Text = "CERRADA";
                 }
-                conX.Cerrar();
             }
             catch (MySqlException ex)
             {
                 Console.WriteLine(ex.Message);
+                conX.Cerrar();
             }
+            conX.Cerrar();
         }
+
+        public int UbicaNumeroPedido()
+        {
+            Console.WriteLine("############### UBICAR NUMERO DE PEDIDO CUANDO MESA EXISTE");
+            int n_pedido=0;
+            conX.Abrir();
+            try
+            {
+                string sql = "SELECT N_Pedido FROM pedidos WHERE Id_Mesa=" + ListaMesas.SelectedValue.ToString() + ";";
+                MySqlCommand cmd = new MySqlCommand(sql, conX.cn);
+                n_pedido = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch(MySqlException EX)
+            {
+                Console.WriteLine(EX.Message);
+                conX.Cerrar();
+            }
+            conX.Cerrar();
+            return n_pedido;
+        }                                                               //SI LA MESA ESTA ABIERTA - UBICA EL NUMERO DE PEDIDO
+        
         private void ListaMesas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CargarStatusMesas();
+            CargarStatusMesas();                                                                        //IDENTIFICA SI LA MESA ESTA ABIERTA O CERRADA
+
+            Console.WriteLine("############### CUANDO CAMBIA EL INDICE DE MESAS");
+            if (status.Text == "ABIERTA")
+            {
+                int numPedido = UbicaNumeroPedido();
+                conX.Abrir();
+                try
+                {
+                    string sql = "SELECT Cantidad, Item, Unitario, Subtotal FROM prod_pedidos WHERE N_Pedido=" + numPedido + ";";
+                    MySqlDataAdapter adapt = new MySqlDataAdapter(sql,conX.cn);
+                    DataSet ds = new DataSet();
+                    adapt.Fill(ds);
+                    GridConsumo.DataSource = ds.Tables[0];
+                }
+                catch (MySqlException EX)
+                {
+                    Console.WriteLine(EX.Message);
+                    conX.Cerrar();
+                }
+                conX.Cerrar();
+            }
         }
         #endregion
     }

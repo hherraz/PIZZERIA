@@ -40,8 +40,6 @@
             this.ListaMesas = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.ListaGarzones = new System.Windows.Forms.ComboBox();
-            this.btnMesas = new System.Windows.Forms.Button();
-            this.btnGarzones = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.PanelTotal = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
@@ -101,7 +99,6 @@
             // 
             this.panel5.BackColor = System.Drawing.Color.Black;
             this.panel5.Controls.Add(this.btn_cerrar);
-            this.panel5.Controls.Add(this.label20);
             this.panel5.Controls.Add(this.label18);
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
@@ -126,7 +123,7 @@
             this.label20.AutoSize = true;
             this.label20.BackColor = System.Drawing.Color.White;
             this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(706, 6);
+            this.label20.Location = new System.Drawing.Point(692, 22);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(41, 13);
             this.label20.TabIndex = 6;
@@ -160,22 +157,21 @@
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.status);
+            this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.ListaMesas);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.ListaGarzones);
-            this.groupBox1.Controls.Add(this.btnMesas);
-            this.groupBox1.Controls.Add(this.btnGarzones);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(75, 32);
+            this.groupBox1.Location = new System.Drawing.Point(32, 32);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(664, 55);
+            this.groupBox1.Size = new System.Drawing.Size(751, 55);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             // 
             // status
             // 
             this.status.AutoSize = true;
-            this.status.Location = new System.Drawing.Point(220, 22);
+            this.status.Location = new System.Drawing.Point(164, 22);
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(35, 13);
             this.status.TabIndex = 21;
@@ -204,35 +200,17 @@
             // ListaGarzones
             // 
             this.ListaGarzones.FormattingEnabled = true;
-            this.ListaGarzones.Location = new System.Drawing.Point(367, 18);
+            this.ListaGarzones.Location = new System.Drawing.Point(338, 18);
             this.ListaGarzones.Name = "ListaGarzones";
             this.ListaGarzones.Size = new System.Drawing.Size(170, 21);
             this.ListaGarzones.TabIndex = 20;
-            // 
-            // btnMesas
-            // 
-            this.btnMesas.Location = new System.Drawing.Point(164, 17);
-            this.btnMesas.Name = "btnMesas";
-            this.btnMesas.Size = new System.Drawing.Size(52, 23);
-            this.btnMesas.TabIndex = 0;
-            this.btnMesas.Text = "MESAS";
-            this.btnMesas.UseVisualStyleBackColor = true;
-            // 
-            // btnGarzones
-            // 
-            this.btnGarzones.Location = new System.Drawing.Point(545, 17);
-            this.btnGarzones.Name = "btnGarzones";
-            this.btnGarzones.Size = new System.Drawing.Size(89, 23);
-            this.btnGarzones.TabIndex = 2;
-            this.btnGarzones.Text = "GARZONES";
-            this.btnGarzones.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(292, 22);
+            this.label3.Location = new System.Drawing.Point(263, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 13);
             this.label3.TabIndex = 3;
@@ -408,8 +386,6 @@
         private System.Windows.Forms.Button btnCambiarMesa;
         private System.Windows.Forms.Button btnPagar;
         private System.Windows.Forms.Panel PanelTotal;
-        public System.Windows.Forms.Button btnGarzones;
-        public System.Windows.Forms.Button btnMesas;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox ListaGarzones;
         private System.Windows.Forms.ComboBox ListaMesas;
