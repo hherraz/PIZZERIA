@@ -46,13 +46,13 @@
             this.btn_tomapedido = new System.Windows.Forms.PictureBox();
             this.minimizar = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.cerrar = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.PanelTomaPedidos = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.btnDelivery = new System.Windows.Forms.Button();
             this.btnConsumoLocal = new System.Windows.Forms.Button();
             this.btnRetiroLocal = new System.Windows.Forms.Button();
-            this.cerrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -264,6 +264,22 @@
             this.panel4.Size = new System.Drawing.Size(800, 37);
             this.panel4.TabIndex = 5;
             // 
+            // cerrar
+            // 
+            this.cerrar.BackColor = System.Drawing.Color.Black;
+            this.cerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cerrar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cerrar.ForeColor = System.Drawing.Color.White;
+            this.cerrar.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.cerrar.Location = new System.Drawing.Point(761, 5);
+            this.cerrar.Name = "cerrar";
+            this.cerrar.Size = new System.Drawing.Size(36, 29);
+            this.cerrar.TabIndex = 4;
+            this.cerrar.Text = "X";
+            this.toolTip1.SetToolTip(this.cerrar, "SALIR");
+            this.cerrar.UseVisualStyleBackColor = false;
+            this.cerrar.Click += new System.EventHandler(this.cerrar_Click);
+            // 
             // PanelTomaPedidos
             // 
             this.PanelTomaPedidos.BackColor = System.Drawing.Color.Transparent;
@@ -326,22 +342,6 @@
             this.btnRetiroLocal.TabIndex = 7;
             this.btnRetiroLocal.Text = "RETIRO EN EL LOCAL";
             this.btnRetiroLocal.UseVisualStyleBackColor = false;
-            // 
-            // cerrar
-            // 
-            this.cerrar.BackColor = System.Drawing.Color.Black;
-            this.cerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cerrar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cerrar.ForeColor = System.Drawing.Color.White;
-            this.cerrar.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.cerrar.Location = new System.Drawing.Point(761, 5);
-            this.cerrar.Name = "cerrar";
-            this.cerrar.Size = new System.Drawing.Size(36, 29);
-            this.cerrar.TabIndex = 4;
-            this.cerrar.Text = "X";
-            this.toolTip1.SetToolTip(this.cerrar, "SALIR");
-            this.cerrar.UseVisualStyleBackColor = false;
-            this.cerrar.Click += new System.EventHandler(this.cerrar_Click);
             // 
             // menu
             // 

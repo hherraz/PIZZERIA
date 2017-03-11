@@ -156,7 +156,7 @@ namespace Pizzeria
         private void btnConsumoLocal_Click(object sender, EventArgs e)
         {
             ConsumoLocal consumo = new ConsumoLocal();
-            consumo.Show();
+            consumo.ShowDialog(this);
         }   ////*** BOTON ABRIR CONSUMO EN EL LOCAL
 
         private void button1_Click(object sender, EventArgs e)
