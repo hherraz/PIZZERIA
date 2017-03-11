@@ -191,11 +191,19 @@ namespace Pizzeria
         }
         private void btnGuardarConsumo_Click(object sender, EventArgs e)
         {
-            GenerarFolio();
+            if (status.Text == "ABIERTA")
+            {
+                label20.Text = Convert.ToString(Convert.ToInt32(label1.Text)-1);
+            }
+            else
+            {
+                GenerarFolio();
+            }
             GridConsumo_ProductosMySql();
             GridConsumo.Rows.Clear();
-
             NumeroPedido_Usado();
+            ListaMesas.Enabled = true;
+            Close();
 
         }                             ////**** BOTON PARA GUARDAR LOS DATOS DEL GRIDCONSUMO EN BASE DE DATOS
         public void ActualizarSuma()
@@ -297,6 +305,7 @@ namespace Pizzeria
             Console.WriteLine("############### CUANDO CAMBIA EL INDICE DE MESAS");
             if (status.Text == "ABIERTA")
             {
+                ListaMesas.Enabled = false;
                 int numPedido = UbicaNumeroPedido();
                 conX.Abrir();
                 try
@@ -311,7 +320,7 @@ namespace Pizzeria
                     {
                         GridConsumo.Rows.Add(row["Cantidad"].ToString(),row["Item"].ToString(),row["Unitario"].ToString(),row["Subtotal"].ToString());
                     }
-                    label20.Text = numPedido.ToString();
+                    label1.Text = numPedido.ToString();
                 }
                 catch (MySqlException EX)
                 {
@@ -329,8 +338,8 @@ namespace Pizzeria
             Console.WriteLine("############################## BORRAR PEDIDO TEMPORAL ##########################");
             try
             {
-                MySqlCommand cmd = new MySqlCommand("delete from prod_pedidos where n_pedido=?pedido;");
-                cmd.Parameters.AddWithValue("?pedido", label20.Text);
+                MySqlCommand cmd = new MySqlCommand("delete from prod_pedidos where n_pedido=?pedido;", conX.cn);
+                cmd.Parameters.AddWithValue("?pedido", label1.Text);
                 cmd.ExecuteNonQuery();
             }
             catch(MySqlException ex)

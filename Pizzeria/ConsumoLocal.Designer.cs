@@ -54,6 +54,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.PanelConsumoLocal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridConsumo)).BeginInit();
             this.panel5.SuspendLayout();
@@ -123,7 +124,7 @@
             this.label20.AutoSize = true;
             this.label20.BackColor = System.Drawing.Color.White;
             this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(692, 22);
+            this.label20.Location = new System.Drawing.Point(638, 21);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(41, 13);
             this.label20.TabIndex = 6;
@@ -156,6 +157,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.status);
             this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.ListaMesas);
@@ -347,6 +349,17 @@
             this.button6.Text = "POSTRES";
             this.button6.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(685, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "label1";
+            // 
             // ConsumoLocal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -402,5 +415,6 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label status;
         private System.Windows.Forms.Button btn_cerrar;
+        private System.Windows.Forms.Label label1;
     }
 }
