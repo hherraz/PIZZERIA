@@ -301,6 +301,7 @@ namespace Pizzeria
                 conX.Abrir();
                 try
                 {
+                    Console.WriteLine("############### DESCARGA AL GRID PEDIDO DE MESA ABIERTA");
                     string sql = "SELECT Cantidad, Item, Unitario, Subtotal FROM prod_pedidos WHERE N_Pedido=" + numPedido + ";";
                     MySqlDataAdapter adapt = new MySqlDataAdapter(sql, conX.cn);
                     DataSet ds = new DataSet();
@@ -310,15 +311,34 @@ namespace Pizzeria
                     {
                         GridConsumo.Rows.Add(row["Cantidad"].ToString(),row["Item"].ToString(),row["Unitario"].ToString(),row["Subtotal"].ToString());
                     }
-
+                    label20.Text = numPedido.ToString();
                 }
                 catch (MySqlException EX)
                 {
                     Console.WriteLine(EX.Message);
                     conX.Cerrar();
                 }
+                borrarpedidotemporal();
                 conX.Cerrar();
             }
+        }
+
+        private void borrarpedidotemporal()
+        {
+            conX.Abrir();
+            Console.WriteLine("############################## BORRAR PEDIDO TEMPORAL ##########################");
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("delete from prod_pedidos where n_pedido=?pedido;");
+                cmd.Parameters.AddWithValue("?pedido", label20.Text);
+                cmd.ExecuteNonQuery();
+            }
+            catch(MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                conX.Cerrar();
+            }
+            conX.Cerrar();
         }
         #endregion
     }
