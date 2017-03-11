@@ -318,8 +318,8 @@ namespace Pizzeria
                     Console.WriteLine(EX.Message);
                     conX.Cerrar();
                 }
-                borrarpedidotemporal();
                 conX.Cerrar();
+                borrarpedidotemporal();
             }
         }
 
