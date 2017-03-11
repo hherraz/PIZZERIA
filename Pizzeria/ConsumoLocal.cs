@@ -28,8 +28,9 @@ namespace Pizzeria
         private void CentrarPantalla()
         {
             // tamaño de la pantalla para todos los menus
-            this.Location = new Point(0, 25);
-            this.Size = new Size(ancho, alto - 25);
+            this.Size = new Size(821, 422);
+            this.Location = new Point((ancho - this.Width)/2,(alto-this.Height)/2);
+            
         }                               ////**** CENTRAR PANTALLA
         private void ConsumoLocal_Load(object sender, EventArgs e)
         {
@@ -37,8 +38,7 @@ namespace Pizzeria
             FormatearGridConsumo();     //formateo del GridConsumo
             GenerarFolio();             //genera el folio para los pedidos
             GenerarMesas();             //carga el listado de mesas
-
-        }    ////**** LANZADOR DEL FORMULARIO
+        }   ////**** LANZADOR DEL FORMULARIO
         private void btn_cerrar_Click(object sender, EventArgs e)
         {
             Close();
@@ -75,47 +75,88 @@ namespace Pizzeria
             btn.Width = 100;
             btn.HeaderText = "";
 
-        }                                  ////**** FORMATEAR GRIDCONSUMO
-        public void GenerarMesas()
+        }                                                          ////**** FORMATEAR GRIDCONSUMO
+        private void GenerarFolio()
         {
-            conX.Abrir();
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM mesas", conX.cn);
-            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
+            try
+            {
+                conX.Abrir();
+                MySqlCommand cmd = new MySqlCommand("SELECT MAX(N_Pedido) FROM folios_pedidos WHERE (Usado = 1)", conX.cn);
+                int UltimoFolio = Convert.ToInt32(cmd.ExecuteScalar());
+                Console.WriteLine("SE HA RESCATADO EL ULTIMO FOLIO USADO: " + UltimoFolio);
+                label20.Text = Convert.ToString(UltimoFolio);
+                conX.Cerrar();
 
-            ListaMesas.ValueMember = "IdMesa";
-            ListaMesas.DisplayMember = "Nombre_Mesa";
-            ListaMesas.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                conX.Cerrar();
+            }
 
-            conX.Cerrar();
-            CargarStatusMesas();
-        }
-        public void CargarStatusMesas()
+            try
+            {
+                conX.Abrir();
+                MySqlCommand cmd1 = new MySqlCommand("Borrar_Folios_Fantasmas", conX.cn);
+                cmd1.CommandType = System.Data.CommandType.StoredProcedure;
+                int res = cmd1.ExecuteNonQuery();
+
+                if (res == 1)
+                {
+                    Console.WriteLine("BORRADOS LOS FOLIOS FANTASMAS");
+                }
+                else
+                {
+                    Console.WriteLine("NO HABIAN FOLIOS FANTASMAS A BORRAR");
+                }
+
+                conX.Cerrar();
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                conX.Cerrar();
+            }
+        }                                                                  ////**** GENERA EL NUMERO DE FOLIO Y BORRA LOS FANTASMAS
+        private void NumeroPedido_Usado()
         {
-            conX.Abrir();
-            MySqlCommand cmd = new MySqlCommand("SELECT Status_Mesa FROM mesas Where Nombre_Mesa="+ ListaMesas.SelectedValue.ToString() + ";", conX.cn);
-            string MesaStatus = Convert.ToString(cmd.ExecuteScalar());
-            if (MesaStatus == "True")
+            try
             {
-                status.Text = "ABIERTA";
+                conX.Abrir();
+                int nuevofolio = Convert.ToInt32(label20.Text) + 1;
+                MySqlCommand cmd = new MySqlCommand("Nuevo_Folio_Pedido", conX.cn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("NUEVO", nuevofolio);
+                int res = cmd.ExecuteNonQuery();
+
+                if (res == 1)
+                {
+                    Console.WriteLine("INSERTADO EL NUEVO FOLIO");
+                }
+                else
+                {
+                    Console.WriteLine("ERROR AL INSERTAR EL NUEVO FOLIO");
+                }
+                conX.Cerrar();
+
+                GenerarFolio();
             }
-            else
+            catch (MySqlException ex)
             {
-                status.Text = "CERRADA";
+                Console.WriteLine("Error en INSERT del SQL de Folios - NumeroPedido_usado");
+                Console.WriteLine(ex.Message);
             }
-            conX.Cerrar();
-        }
+        }                                                            ////**** MARCA EL NUMERO DE FOLIO USADO
         private void btn_pagar_Click(object sender, EventArgs e)
         {
             MessageBox.Show("CONFIRMAR LA FORMA DE PAGO EN OTRO FORMULARIO");
             MessageBox.Show("DESEA CERRAR LA MESA?");
-        }               ////**** BOTON PAGAR
+        }                                     ////**** BOTON PAGAR
+
         private void AddPizzaMenu_Click(object sender, EventArgs e)
         {
-
             AddPizzaMenu PM = new AddPizzaMenu();
-            PM.ShowDialog();
+            PM.ShowDialog(this);
             PM.Dispose();
         }
         private void GridConsumo_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -169,75 +210,65 @@ namespace Pizzeria
         private void ConsumoLocal_Activated(object sender, EventArgs e)
         {
             ActualizarSuma();
-        }                               ////**** ACTUALIZA SUMA
+        }                              ////**** ACTUALIZA SUMA
         private void GridConsumo_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
             ActualizarSuma();
         }      ////**** ACTUALIZA SUMA
-        private void GenerarFolio()
+        #endregion
+
+        #region MESAS
+        public void GenerarMesas()
+        {
+            conX.Abrir();
+            Console.WriteLine("ABRE");
+            DataTable dt = new DataTable();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("select * from mesas;", conX.cn);
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                da.Fill(dt);
+            }
+            catch (MySqlException EX)
+            {
+                Console.WriteLine(EX.Message);
+                conX.Cerrar();
+            }
+            conX.Cerrar();
+            Console.WriteLine("CIERRA");
+
+            ListaMesas.ValueMember = "IdMesa";
+            ListaMesas.DisplayMember = "Nombre_Mesa";
+            ListaMesas.DataSource = dt;
+
+            CargarStatusMesas();
+        }
+        public void CargarStatusMesas()
         {
             try
             {
                 conX.Abrir();
-                MySqlCommand cmd = new MySqlCommand("SELECT MAX(N_Pedido) FROM folios_pedidos WHERE (Usado = 1)", conX.cn);
-                int UltimoFolio = Convert.ToInt32(cmd.ExecuteScalar());
-                Console.WriteLine("SE HA RESCATADO EL ULTIMO FOLIO USADO: " + UltimoFolio);
-                label20.Text = Convert.ToString(UltimoFolio);
-                conX.Cerrar();
-
-                conX.Abrir();
-                MySqlCommand cmd1 = new MySqlCommand("Borrar_Folios_Fantasmas", conX.cn);
-                cmd1.CommandType = System.Data.CommandType.StoredProcedure;
-                int res = cmd1.ExecuteNonQuery();
-
-                if (res == 1)
+                MySqlCommand cmd = new MySqlCommand("SELECT Status_Mesa FROM mesas Where Nombre_Mesa=" + ListaMesas.SelectedValue.ToString() + ";", conX.cn);
+                string MesaStatus = Convert.ToString(cmd.ExecuteScalar());
+                if (MesaStatus == "True")
                 {
-                    Console.WriteLine("BORRADOS LOS FOLIOS FANTASMAS");
+                    status.Text = "ABIERTA";
                 }
                 else
                 {
-                    Console.WriteLine("PROBLEMA CON EL BORRADO DE LOS FOLIOS FANTASMAS");
+                    status.Text = "CERRADA";
                 }
                 conX.Cerrar();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }                                                                  ////**** GENERA EL NUMERO DE FOLIO Y BORRA LOS FANTASMAS
-        private void NumeroPedido_Usado()
-        {
-            try
-            {
-                conX.Abrir();
-                int nuevofolio = Convert.ToInt32(label20.Text) + 1;
-                MySqlCommand cmd = new MySqlCommand("Nuevo_Folio_Pedido", conX.cn);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("NUEVO", nuevofolio);
-                int res = cmd.ExecuteNonQuery();
-
-                if (res == 1)
-                {
-                    Console.WriteLine("INSERTADO EL NUEVO FOLIO");
-                }
-                else
-                {
-                    Console.WriteLine("ERROR AL INSERTAR EL NUEVO FOLIO");
-                }
-                conX.Cerrar();
-
-                GenerarFolio();
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine("Error en INSERT del SQL de Folios - NumeroPedido_usado");
                 Console.WriteLine(ex.Message);
             }
-        }                                                            ////**** MARCA EL NUMERO DE FOLIO USADO
-        #endregion
+        }
         private void ListaMesas_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarStatusMesas();
         }
+        #endregion
     }
 }

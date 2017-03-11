@@ -23,6 +23,7 @@ namespace Pizzeria
         {
             InitializeComponent();
         }
+
         public void FormatoPantalla()
         {
             //a la izquierda
@@ -38,9 +39,9 @@ namespace Pizzeria
 
             //minimizar y cerrar a la derecha
             Int32 derecha1 = (this.Width - minimizar.Width - 10);
-            minimizar.Location = new Point(derecha1 - 40, minimizar.Location.Y);
-            cerrar.Location = new Point(derecha1, minimizar.Location.Y);
-
+            minimizar.Location = new Point(derecha1, minimizar.Location.Y);
+            //cerrar.Location = new Point(derecha1, minimizar.Location.Y);
+            cerrar.Visible = false;
 
             //CENTRAL PANEL3
             Int32 anchopanel3 = (this.Width - panel3.Width) / 2;
@@ -54,10 +55,9 @@ namespace Pizzeria
         private void menu_Load(object sender, EventArgs e)
         {
             FormatoPantalla();
+            panel3.Visible = true;
+            label2.Text = DatosCompartidos.Instance().Usuario;
 
-            login lg = new login(this);
-            lg.ShowDialog();
-            lg.Dispose();
         }               ////*** LANZADOR DEL FORMULARIO
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -156,11 +156,8 @@ namespace Pizzeria
         private void btnConsumoLocal_Click(object sender, EventArgs e)
         {
             ConsumoLocal consumo = new ConsumoLocal();
-            consumo.ShowDialog(this);
-            consumo.TopLevel = true;
-            consumo.Size = new Size(821, 422);
-            consumo.Location = new Point((ancho - consumo.Width) / 2, (alto - consumo.Height) / 2);
-        }
+            consumo.Show();
+        }   ////*** BOTON ABRIR CONSUMO EN EL LOCAL
 
         private void button1_Click(object sender, EventArgs e)
         {

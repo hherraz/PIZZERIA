@@ -45,7 +45,6 @@
             this.btn_delivery = new System.Windows.Forms.PictureBox();
             this.btn_tomapedido = new System.Windows.Forms.PictureBox();
             this.minimizar = new System.Windows.Forms.Button();
-            this.cerrar = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.PanelTomaPedidos = new System.Windows.Forms.Panel();
@@ -53,6 +52,7 @@
             this.btnDelivery = new System.Windows.Forms.Button();
             this.btnConsumoLocal = new System.Windows.Forms.Button();
             this.btnRetiroLocal = new System.Windows.Forms.Button();
+            this.cerrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -253,22 +253,6 @@
             this.minimizar.UseVisualStyleBackColor = false;
             this.minimizar.Click += new System.EventHandler(this.minimizar_Click);
             // 
-            // cerrar
-            // 
-            this.cerrar.BackColor = System.Drawing.Color.Black;
-            this.cerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cerrar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cerrar.ForeColor = System.Drawing.Color.White;
-            this.cerrar.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.cerrar.Location = new System.Drawing.Point(761, 5);
-            this.cerrar.Name = "cerrar";
-            this.cerrar.Size = new System.Drawing.Size(36, 29);
-            this.cerrar.TabIndex = 4;
-            this.cerrar.Text = "X";
-            this.toolTip1.SetToolTip(this.cerrar, "SALIR");
-            this.cerrar.UseVisualStyleBackColor = false;
-            this.cerrar.Click += new System.EventHandler(this.cerrar_Click);
-            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.Transparent;
@@ -288,7 +272,7 @@
             this.PanelTomaPedidos.Controls.Add(this.btnDelivery);
             this.PanelTomaPedidos.Controls.Add(this.btnConsumoLocal);
             this.PanelTomaPedidos.Controls.Add(this.btnRetiroLocal);
-            this.PanelTomaPedidos.Location = new System.Drawing.Point(28, 398);
+            this.PanelTomaPedidos.Location = new System.Drawing.Point(0, 0);
             this.PanelTomaPedidos.Name = "PanelTomaPedidos";
             this.PanelTomaPedidos.Size = new System.Drawing.Size(727, 53);
             this.PanelTomaPedidos.TabIndex = 6;
@@ -343,6 +327,22 @@
             this.btnRetiroLocal.Text = "RETIRO EN EL LOCAL";
             this.btnRetiroLocal.UseVisualStyleBackColor = false;
             // 
+            // cerrar
+            // 
+            this.cerrar.BackColor = System.Drawing.Color.Black;
+            this.cerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cerrar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cerrar.ForeColor = System.Drawing.Color.White;
+            this.cerrar.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.cerrar.Location = new System.Drawing.Point(761, 5);
+            this.cerrar.Name = "cerrar";
+            this.cerrar.Size = new System.Drawing.Size(36, 29);
+            this.cerrar.TabIndex = 4;
+            this.cerrar.Text = "X";
+            this.toolTip1.SetToolTip(this.cerrar, "SALIR");
+            this.cerrar.UseVisualStyleBackColor = false;
+            this.cerrar.Click += new System.EventHandler(this.cerrar_Click);
+            // 
             // menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -387,17 +387,13 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox btn_salir;
         private System.Windows.Forms.PictureBox btn_administrar;
         private System.Windows.Forms.PictureBox btn_cierrecaja;
         private System.Windows.Forms.PictureBox btn_productos;
         private System.Windows.Forms.PictureBox btn_delivery;
         private System.Windows.Forms.PictureBox btn_tomapedido;
-        public System.Windows.Forms.Panel panel3;
-        public System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button minimizar;
-        private System.Windows.Forms.Button cerrar;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Panel PanelTomaPedidos;
@@ -405,5 +401,9 @@
         private System.Windows.Forms.Button btnDelivery;
         private System.Windows.Forms.Button btnConsumoLocal;
         private System.Windows.Forms.Button btnRetiroLocal;
+        public System.Windows.Forms.Panel panel2;
+        public System.Windows.Forms.Panel panel3;
+        public System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button cerrar;
     }
 }

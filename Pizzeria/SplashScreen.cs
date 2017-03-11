@@ -10,15 +10,16 @@ using System.Windows.Forms;
 
 namespace Pizzeria
 {
-    public partial class Form1 : Form
+    public partial class SplashScreen : Form
     {
-        public Form1()
+        public SplashScreen()
         {
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Console.WriteLine("INICIO DEL TIMER");
             timer1.Enabled = true;
             BackColor = Color.Gray;
             TransparencyKey = Color.Gray;
@@ -39,18 +40,12 @@ namespace Pizzeria
             }
             else
             {
+                Console.WriteLine("100% DE CARGA DE LA BARRA DE PROGRESO");
                 timer1.Stop();
                 timer1.Enabled = false;
-                Hide();
-                Close();
+                this.Close();
+                this.Dispose();
             }
-        }
-
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            menu mnu = new menu();
-            mnu.ShowDialog();
-            mnu.Dispose();
         }
     }
 }

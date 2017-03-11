@@ -11,12 +11,23 @@ namespace Pizzeria
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        /// 
+
+        public static List<string> dtUsuarios;
+        public static Label lbl_titulo;
+
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            login log = new login();
+            log.ShowDialog();
+            if (log.DialogResult == DialogResult.OK)
+            {
+                Application.Run(new menu());
+            }
         }
 
         public static int cerrar()

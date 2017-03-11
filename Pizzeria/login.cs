@@ -13,15 +13,10 @@ namespace Pizzeria
 {
     public partial class login : Form
     {
-        private menu m_frm;
-        public List<string> dtUsuarios;
-
-        public login(menu frm)
+        public login()
         {
             InitializeComponent();
-            m_frm = frm;
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             Usuarios USR = new Usuarios();
@@ -29,15 +24,19 @@ namespace Pizzeria
 
             if(Found==1)
             {
-                dtUsuarios=USR.DatosUsuario(user.Text);
-                m_frm.panel3.Visible = true;
-                m_frm.label2.Text = "Usuario: "+ dtUsuarios[3].ToString();
+                Console.WriteLine("USUARIO LOGEADO CORRECTAMENTE");
+                DatosCompartidos.Instance().dtUsuarios= USR.DatosUsuario(user.Text);
+                DatosCompartidos.Instance().Usuario= "Usuario: " + DatosCompartidos.Instance().dtUsuarios[3].ToString();
+
+                //Program.dtUsuarios=USR.DatosUsuario(user.Text);
+                //Program.lbl_titulo.Text = "Usuario: " + Program.dtUsuarios[3].ToString();
 
                 //llamada del procedimiento almacenado
                 USR.log(user.Text);
-
                 this.Close();
                 this.Dispose();
+                this.DialogResult = DialogResult.OK;
+
             }
             else
             {
@@ -46,7 +45,6 @@ namespace Pizzeria
                 pass.Clear();
             }
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
 
@@ -59,6 +57,10 @@ namespace Pizzeria
 
         }
 
-
+        private void login_Load(object sender, EventArgs e)
+        {
+            SplashScreen sp = new SplashScreen();
+            sp.ShowDialog();
+        }
     }
 }

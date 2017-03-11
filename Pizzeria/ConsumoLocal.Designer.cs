@@ -31,6 +31,8 @@
             this.PanelConsumoLocal = new System.Windows.Forms.Panel();
             this.GridConsumo = new System.Windows.Forms.DataGridView();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.btn_cerrar = new System.Windows.Forms.Button();
+            this.label20 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.btnGuardarConsumo = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -54,8 +56,6 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.label20 = new System.Windows.Forms.Label();
-            this.btn_cerrar = new System.Windows.Forms.Button();
             this.PanelConsumoLocal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridConsumo)).BeginInit();
             this.panel5.SuspendLayout();
@@ -86,7 +86,6 @@
             this.PanelConsumoLocal.Name = "PanelConsumoLocal";
             this.PanelConsumoLocal.Size = new System.Drawing.Size(821, 422);
             this.PanelConsumoLocal.TabIndex = 6;
-            this.PanelConsumoLocal.Visible = false;
             // 
             // GridConsumo
             // 
@@ -108,6 +107,30 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(820, 27);
             this.panel5.TabIndex = 25;
+            // 
+            // btn_cerrar
+            // 
+            this.btn_cerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_cerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_cerrar.ForeColor = System.Drawing.Color.White;
+            this.btn_cerrar.Location = new System.Drawing.Point(786, 2);
+            this.btn_cerrar.Name = "btn_cerrar";
+            this.btn_cerrar.Size = new System.Drawing.Size(29, 23);
+            this.btn_cerrar.TabIndex = 7;
+            this.btn_cerrar.Text = "X";
+            this.btn_cerrar.UseVisualStyleBackColor = true;
+            this.btn_cerrar.Click += new System.EventHandler(this.btn_cerrar_Click);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.BackColor = System.Drawing.Color.White;
+            this.label20.ForeColor = System.Drawing.Color.Black;
+            this.label20.Location = new System.Drawing.Point(706, 6);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(41, 13);
+            this.label20.TabIndex = 6;
+            this.label20.Text = "label20";
             // 
             // label18
             // 
@@ -346,41 +369,18 @@
             this.button6.Text = "POSTRES";
             this.button6.UseVisualStyleBackColor = true;
             // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.BackColor = System.Drawing.Color.White;
-            this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(706, 6);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(41, 13);
-            this.label20.TabIndex = 6;
-            this.label20.Text = "label20";
-            // 
-            // btn_cerrar
-            // 
-            this.btn_cerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_cerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_cerrar.ForeColor = System.Drawing.Color.White;
-            this.btn_cerrar.Location = new System.Drawing.Point(786, 2);
-            this.btn_cerrar.Name = "btn_cerrar";
-            this.btn_cerrar.Size = new System.Drawing.Size(29, 23);
-            this.btn_cerrar.TabIndex = 7;
-            this.btn_cerrar.Text = "X";
-            this.btn_cerrar.UseVisualStyleBackColor = true;
-            this.btn_cerrar.Click += new System.EventHandler(this.btn_cerrar_Click);
-            // 
             // ConsumoLocal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(820, 428);
+            this.ClientSize = new System.Drawing.Size(820, 424);
             this.Controls.Add(this.PanelConsumoLocal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ConsumoLocal";
             this.Text = "TomaPedidos";
+            this.TopMost = true;
             this.TransparencyKey = System.Drawing.SystemColors.ActiveBorder;
             this.Activated += new System.EventHandler(this.ConsumoLocal_Activated);
             this.Load += new System.EventHandler(this.ConsumoLocal_Load);

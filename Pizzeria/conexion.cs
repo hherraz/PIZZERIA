@@ -16,7 +16,7 @@ namespace Pizzeria
             try
             {
                 cn.Open();
-                Console.WriteLine("Conexión Existosa! ");
+                Console.WriteLine("********** Conexión Existosa! ");
             }
             catch (Exception ex)
             {
@@ -30,7 +30,7 @@ namespace Pizzeria
             try
             {
                 cn.Close();
-                Console.WriteLine("DES-Conexión Existosa! ");
+                Console.WriteLine("********** DES-Conexión Existosa! ");
             }
             catch (Exception ex)
             {
