@@ -73,6 +73,9 @@
     </Compile>
     <Compile Include="conexion.cs" />
     <Compile Include="DatosCompartidos.cs" />
+    <Compile Include="Garzones.cs" />
+    <Compile Include="Mesas.cs" />
+    <Compile Include="NumerosPedido.cs" />
     <Compile Include="SplashScreen.cs">
       <SubType>Form</SubType>
     </Compile>

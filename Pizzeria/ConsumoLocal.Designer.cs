@@ -32,11 +32,12 @@
             this.GridConsumo = new System.Windows.Forms.DataGridView();
             this.panel5 = new System.Windows.Forms.Panel();
             this.btn_cerrar = new System.Windows.Forms.Button();
-            this.label20 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.btnGuardarConsumo = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.status = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.ListaMesas = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.ListaGarzones = new System.Windows.Forms.ComboBox();
@@ -54,7 +55,6 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.PanelConsumoLocal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridConsumo)).BeginInit();
             this.panel5.SuspendLayout();
@@ -93,7 +93,7 @@
             this.GridConsumo.Name = "GridConsumo";
             this.GridConsumo.Size = new System.Drawing.Size(751, 202);
             this.GridConsumo.TabIndex = 26;
-            this.GridConsumo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridConsumo_CellClick);
+            this.GridConsumo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridConsumo_BorrarFila);
             this.GridConsumo.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.GridConsumo_RowsRemoved);
             // 
             // panel5
@@ -119,17 +119,6 @@
             this.btn_cerrar.UseVisualStyleBackColor = true;
             this.btn_cerrar.Click += new System.EventHandler(this.btn_cerrar_Click);
             // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.BackColor = System.Drawing.Color.White;
-            this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(638, 21);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(41, 13);
-            this.label20.TabIndex = 6;
-            this.label20.Text = "label20";
-            // 
             // label18
             // 
             this.label18.AutoSize = true;
@@ -152,6 +141,7 @@
             this.btnGuardarConsumo.TabIndex = 22;
             this.btnGuardarConsumo.Text = "GUARDAR";
             this.btnGuardarConsumo.UseVisualStyleBackColor = false;
+            this.btnGuardarConsumo.Visible = false;
             this.btnGuardarConsumo.Click += new System.EventHandler(this.btnGuardarConsumo_Click);
             // 
             // groupBox1
@@ -170,23 +160,45 @@
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(685, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "label1";
+            // 
             // status
             // 
             this.status.AutoSize = true;
-            this.status.Location = new System.Drawing.Point(164, 22);
+            this.status.Location = new System.Drawing.Point(232, 22);
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(35, 13);
             this.status.TabIndex = 21;
             this.status.Text = "status";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.BackColor = System.Drawing.Color.White;
+            this.label20.ForeColor = System.Drawing.Color.Black;
+            this.label20.Location = new System.Drawing.Point(638, 21);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(41, 13);
+            this.label20.TabIndex = 6;
+            this.label20.Text = "label20";
             // 
             // ListaMesas
             // 
             this.ListaMesas.FormattingEnabled = true;
             this.ListaMesas.Location = new System.Drawing.Point(102, 17);
             this.ListaMesas.Name = "ListaMesas";
-            this.ListaMesas.Size = new System.Drawing.Size(56, 21);
+            this.ListaMesas.Size = new System.Drawing.Size(122, 21);
             this.ListaMesas.TabIndex = 19;
-            this.ListaMesas.SelectedIndexChanged += new System.EventHandler(this.ListaMesas_SelectedIndexChanged);
+            this.ListaMesas.DropDownClosed += new System.EventHandler(this.ListaMesas_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -202,9 +214,9 @@
             // ListaGarzones
             // 
             this.ListaGarzones.FormattingEnabled = true;
-            this.ListaGarzones.Location = new System.Drawing.Point(338, 18);
+            this.ListaGarzones.Location = new System.Drawing.Point(426, 18);
             this.ListaGarzones.Name = "ListaGarzones";
-            this.ListaGarzones.Size = new System.Drawing.Size(170, 21);
+            this.ListaGarzones.Size = new System.Drawing.Size(150, 21);
             this.ListaGarzones.TabIndex = 20;
             // 
             // label3
@@ -212,7 +224,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(263, 22);
+            this.label3.Location = new System.Drawing.Point(351, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 13);
             this.label3.TabIndex = 3;
@@ -244,6 +256,7 @@
             // 
             // Total
             // 
+            this.Total.Enabled = false;
             this.Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Total.Location = new System.Drawing.Point(74, 12);
             this.Total.Name = "Total";
@@ -348,17 +361,6 @@
             this.button6.TabIndex = 5;
             this.button6.Text = "POSTRES";
             this.button6.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(685, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 22;
-            this.label1.Text = "label1";
             // 
             // ConsumoLocal
             // 

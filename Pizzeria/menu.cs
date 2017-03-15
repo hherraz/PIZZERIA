@@ -13,17 +13,21 @@ namespace Pizzeria
 {
     public partial class menu : Form
     {
-        #region VARIABLES
-        public int ancho = Screen.PrimaryScreen.Bounds.Width;
-        public int alto = Screen.PrimaryScreen.Bounds.Height;
-        conexion conX = new conexion();
-        #endregion
-
         public menu()
         {
             InitializeComponent();
         }
 
+        #region VARIABLES
+        public int ancho = Screen.PrimaryScreen.Bounds.Width;
+        public int alto = Screen.PrimaryScreen.Bounds.Height;
+        #endregion
+
+        #region INSTANCIAS
+        conexion conX = new conexion();
+        #endregion
+
+        #region FORMATEO DEL FORMULARIO
         public void FormatoPantalla()
         {
             //a la izquierda
@@ -52,6 +56,8 @@ namespace Pizzeria
             label3.Text = DateTime.Now.ToLongTimeString();
             timer1.Enabled = true;
         }                                    ////*** FORMATEA LA PANTALLA
+        #endregion
+
         private void menu_Load(object sender, EventArgs e)
         {
             FormatoPantalla();
@@ -59,10 +65,15 @@ namespace Pizzeria
             label2.Text = DatosCompartidos.Instance().Usuario;
 
         }               ////*** LANZADOR DEL FORMULARIO
+
+        #region EVENTOS
         private void timer1_Tick(object sender, EventArgs e)
         {
             label3.Text = DateTime.Now.ToLongTimeString();
         }             ////*** ACCION DEL TIMER
+        #endregion
+
+        #region BOTONES DEL FORMULARIO
         private void cerrar_Click(object sender, EventArgs e)
         {
             int cerr = Program.cerrar();
@@ -90,6 +101,19 @@ namespace Pizzeria
             PanelTomaPedidos.Visible = true;
             PanelTomaPedidos.Location = new Point((ancho - PanelTomaPedidos.Width) / 2, (panel2.Location.Y - PanelTomaPedidos.Height+5));
         }    ////*** BOTON TOMA DE PEDIDO
+        private void button1_Click(object sender, EventArgs e)
+        {
+            PanelTomaPedidos.Visible = false;
+        }           ////*** HACE INVISIBLE LOS BOTONES DE ACCION
+        #endregion
+
+        #region BOTONES DE ACCION
+        private void btnConsumoLocal_Click(object sender, EventArgs e)
+        {
+            ConsumoLocal consumo = new ConsumoLocal();
+            consumo.ShowDialog(this);
+        }   ////*** BOTON ABRIR CONSUMO EN EL LOCAL
+        #endregion
 
         #region BOTONES QUE SE MUEVEN
         private void btn_tomapedido_MouseHover(object sender, EventArgs e)
@@ -153,15 +177,6 @@ namespace Pizzeria
         }
         #endregion
 
-        private void btnConsumoLocal_Click(object sender, EventArgs e)
-        {
-            ConsumoLocal consumo = new ConsumoLocal();
-            consumo.ShowDialog(this);
-        }   ////*** BOTON ABRIR CONSUMO EN EL LOCAL
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            PanelTomaPedidos.Visible = false;
-        }
     }
 }
