@@ -94,13 +94,9 @@ namespace Pizzeria
         #region BOTONES GENERALES DEL FORMULARIO
         private void btn_cerrar_Click(object sender, EventArgs e)
         {
-            if(GridConsumo.RowCount != 0)
+            if (GridConsumo.RowCount != 0)
             {
-                DialogResult res = MessageBox.Show("Desea Cancelar el Pedido?", "Salir", MessageBoxButtons.YesNo);
-                if (res == DialogResult.No)
-                {
-                    Guardar();
-                }
+                Guardar();
             }
             Close();
         }                                    ////**** BOTON TOPE DERECHO

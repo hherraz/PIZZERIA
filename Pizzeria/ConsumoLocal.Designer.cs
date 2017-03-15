@@ -170,15 +170,15 @@
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 22;
             this.label1.Text = "label1";
+            this.label1.Visible = false;
             // 
             // status
             // 
             this.status.AutoSize = true;
             this.status.Location = new System.Drawing.Point(232, 22);
             this.status.Name = "status";
-            this.status.Size = new System.Drawing.Size(35, 13);
+            this.status.Size = new System.Drawing.Size(0, 13);
             this.status.TabIndex = 21;
-            this.status.Text = "status";
             // 
             // label20
             // 
@@ -190,6 +190,7 @@
             this.label20.Size = new System.Drawing.Size(41, 13);
             this.label20.TabIndex = 6;
             this.label20.Text = "label20";
+            this.label20.Visible = false;
             // 
             // ListaMesas
             // 
