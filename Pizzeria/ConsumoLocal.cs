@@ -44,7 +44,7 @@ namespace Pizzeria
             ListaMesas.DataSource = mesX.TraerMesas();
 
             //carga status de la mesa
-            status.Text = mesX.StatusMesas(Convert.ToInt32(ListaMesas.SelectedValue.ToString()));
+            //status.Text = mesX.StatusMesas(Convert.ToInt32(ListaMesas.SelectedValue.ToString()));
 
             //carga garzones
             ListaGarzones.ValueMember = "IdGarzon";
