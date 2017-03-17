@@ -113,6 +113,11 @@ namespace Pizzeria
             ConsumoLocal consumo = new ConsumoLocal();
             consumo.ShowDialog(this);
         }   ////*** BOTON ABRIR CONSUMO EN EL LOCAL
+        private void btnRetiroLocal_Click(object sender, EventArgs e)
+        {
+            RetiroLocal retiro = new RetiroLocal();
+            retiro.ShowDialog(this);
+        }    ////*** BOTON ABRIR RETIRO EN EL LOCAL
         #endregion
 
         #region BOTONES QUE SE MUEVEN
@@ -175,6 +180,7 @@ namespace Pizzeria
         {
             btn_salir.Size = new System.Drawing.Size(81, 79);
         }
+
         #endregion
 
 

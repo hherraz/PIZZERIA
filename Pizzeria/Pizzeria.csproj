@@ -72,6 +72,12 @@
       <DependentUpon>AddPizzaMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="conexion.cs" />
+    <Compile Include="RetiroLocal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RetiroLocal.Designer.cs">
+      <DependentUpon>RetiroLocal.cs</DependentUpon>
+    </Compile>
     <Compile Include="DatosCompartidos.cs" />
     <Compile Include="Garzones.cs" />
     <Compile Include="Mesas.cs" />
@@ -111,6 +117,9 @@
     <Compile Include="Usuarios.cs" />
     <EmbeddedResource Include="AddPizzaMenu.resx">
       <DependentUpon>AddPizzaMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RetiroLocal.resx">
+      <DependentUpon>RetiroLocal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>

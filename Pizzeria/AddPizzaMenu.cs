@@ -139,8 +139,23 @@ namespace Pizzeria
         }
         public void EnviarPedido()                                                                      ////**** ENVIAR PEDIDO
         {
-            Application.OpenForms.OfType<ConsumoLocal>().First().GridConsumo.Rows.Add(cantidadBox.Value, PizzaSeleccionada, txtpreciounitario.Text, txtprecio.Text);
-            Close();
+            if (DatosCompartidos.Instance().NombreFormularioActivo == "ConsumoLocal")
+            {
+                Application.OpenForms.OfType<ConsumoLocal>().First().GridConsumo.Rows.Add(cantidadBox.Value, PizzaSeleccionada, txtpreciounitario.Text, txtprecio.Text);
+                Close();
+            }
+
+            if (DatosCompartidos.Instance().NombreFormularioActivo == "RetiroLocal")
+            {
+                Application.OpenForms.OfType<RetiroLocal>().First().GridRetiro.Rows.Add(cantidadBox.Value, PizzaSeleccionada, txtpreciounitario.Text, txtprecio.Text);
+                Close();
+            }
+
+            if (DatosCompartidos.Instance().NombreFormularioActivo == "Delivery")
+            {
+                //Application.OpenForms.OfType<Delivery>().First().GridDelivery.Rows.Add(cantidadBox.Value, PizzaSeleccionada, txtpreciounitario.Text, txtprecio.Text);
+                //Close();
+            }
         }
 
         public void CargaPizzasCasa()                                                                   ////**** CARGA DATOS EN GRID PIZZAS DE LA CASA

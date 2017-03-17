@@ -342,6 +342,7 @@
             this.btnRetiroLocal.TabIndex = 7;
             this.btnRetiroLocal.Text = "RETIRO EN EL LOCAL";
             this.btnRetiroLocal.UseVisualStyleBackColor = false;
+            this.btnRetiroLocal.Click += new System.EventHandler(this.btnRetiroLocal_Click);
             // 
             // menu
             // 

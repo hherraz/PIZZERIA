@@ -28,6 +28,9 @@ namespace Pizzeria
 
         private void ConsumoLocal_Load(object sender, EventArgs e)
         {
+            //Guardo Nombre del Formulari Activo
+            DatosCompartidos.Instance().NombreFormularioActivo = "ConsumoLocal";
+
             //formateo de la pantalla
             CentrarPantalla();
 

@@ -28,5 +28,7 @@ namespace Pizzeria
 
         public List<string> dtUsuarios { get; set; }
 
+        public string NombreFormularioActivo { get; set; }
+
     }
 }
