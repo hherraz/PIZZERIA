@@ -18,6 +18,8 @@ namespace Pizzeria
             InitializeComponent();
         }
 
+        int switchModificar=0; //switch de 2 pasos para boton modificar
+
         #region INSTANCIAS
         conexion conX = new conexion();
         NumerosPedido NumX = new NumerosPedido();
@@ -51,27 +53,27 @@ namespace Pizzeria
         }                                                               ////**** CENTRAR PANTALLA
         private void FormatearGridConsumo()
         {
-            GridRetiro.AutoGenerateColumns = false;
-            GridRetiro.AllowUserToAddRows = false;
-            GridRetiro.ReadOnly = true;
+            GridDelivery.AutoGenerateColumns = false;
+            GridDelivery.AllowUserToAddRows = false;
+            GridDelivery.ReadOnly = true;
 
-            GridRetiro.ColumnHeadersVisible = true;
-            GridRetiro.MultiSelect = false;
-            GridRetiro.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            GridRetiro.ColumnCount = 4;
+            GridDelivery.ColumnHeadersVisible = true;
+            GridDelivery.MultiSelect = false;
+            GridDelivery.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            GridDelivery.ColumnCount = 4;
 
-            GridRetiro.Columns[0].Name = "Cantidad";
-            GridRetiro.Columns[1].Name = "Item";
-            GridRetiro.Columns[2].Name = "Unitario";
-            GridRetiro.Columns[3].Name = "SubTotal";
+            GridDelivery.Columns[0].Name = "Cantidad";
+            GridDelivery.Columns[1].Name = "Item";
+            GridDelivery.Columns[2].Name = "Unitario";
+            GridDelivery.Columns[3].Name = "SubTotal";
 
-            GridRetiro.Columns[0].Width = 100;
-            GridRetiro.Columns[1].Width = 300;
-            GridRetiro.Columns[2].Width = 100;
-            GridRetiro.Columns[3].Width = 100;
+            GridDelivery.Columns[0].Width = 100;
+            GridDelivery.Columns[1].Width = 300;
+            GridDelivery.Columns[2].Width = 100;
+            GridDelivery.Columns[3].Width = 100;
 
             DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            GridRetiro.Columns.Add(btn);
+            GridDelivery.Columns.Add(btn);
             btn.Text = "Borrar";
             btn.ToolTipText = "Borrar";
             btn.Name = "Borrar";
@@ -84,7 +86,7 @@ namespace Pizzeria
         #region BOTONES GENERALES DEL FORMULARIO
         private void btn_cerrar_Click(object sender, EventArgs e)
         {
-            if (GridRetiro.RowCount != 0)
+            if (GridDelivery.RowCount != 0)
             {
                 Guardar();
             }
@@ -130,7 +132,7 @@ namespace Pizzeria
         #region OPERACIONES EN GRIDCONSUMO
         public void Guardar()
         {
-            if(txtNombre.TextLength!=0 && txtTelefono.TextLength != 0)
+            if(txtNombre.TextLength!=0 && txtDireccion.TextLength!=0 && txtTelefono.TextLength != 0)
             {
                 if (status.Text == "ABIERTA")
                 {
@@ -145,8 +147,12 @@ namespace Pizzeria
                 AgregarPedidoMySql();
                 //AGREGA A LA TABLA DETALLE DE PEDIDOS
                 AgregaDetallePedidoMySql();
+
+                //SU NUMERO DE PEDIDO ES
+                MessageBox.Show("Su numero de pedido es el: " + label20.Text);
+
                 //LIMPIA EL GRID
-                GridRetiro.Rows.Clear();
+                GridDelivery.Rows.Clear();
                 //MARCA EL NUMERO DE PEDIDO Y TRAE EL PROXIMO
                 NumX.MarcarUltimoNumero(Convert.ToInt32(label20.Text));
                 label20.Text = Convert.ToString(NumX.GenerarNumero());
@@ -154,15 +160,20 @@ namespace Pizzeria
 
                 txtNombre.BackColor = Color.White;
                 txtTelefono.BackColor = Color.White;
-
+                txtDireccion.BackColor = Color.White;
             }
             else
             {
-                MessageBox.Show("ERROR, DEBE INGRESAR UN NOMBRE O UN TELEFONO VALIDO.");
+                MessageBox.Show("ERROR, FALTAN DATOS PARA COMPLETAR EL PEDIDO.");
                 if (txtNombre.TextLength == 0)
                 {
                     txtNombre.BackColor = Color.Red;
                     txtNombre.Focus();
+                }
+                if (txtDireccion.TextLength == 0)
+                {
+                    txtDireccion.BackColor = Color.Red;
+                    txtDireccion.Focus();
                 }
                 if (txtTelefono.TextLength == 0)
                 {
@@ -174,7 +185,7 @@ namespace Pizzeria
         public void AgregaDetallePedidoMySql()                                                          ////**** GUARDA LOS DATOS DEL GRID EN DETALLE PRODUCTOS
         {
             conX.Abrir();
-            foreach (DataGridViewRow row in GridRetiro.Rows)
+            foreach (DataGridViewRow row in GridDelivery.Rows)
             {
                 MySqlCommand GridConsumoMySql = new MySqlCommand("insert into prod_pedidos (N_Pedido, Cantidad, Item, Unitario, Subtotal) values (@N_pedido, @cantidad, @item, @unitario, @subtotal);", conX.cn);
                 GridConsumoMySql.Parameters.AddWithValue("@N_pedido", Convert.ToInt32(label20.Text) + 1);       //N_pedido
@@ -195,9 +206,9 @@ namespace Pizzeria
                 DateTime theDate = DateTime.Now;
                 theDate.ToString("yyyy-MM-dd H:mm:ss");
 
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO pedidos (N_Pedido, Tipo_Pedido, Id_Mesa, Id_Garzon, Total_Pedido, Fecha_Pedido, PAGADO, NombreRetiro, TelefonoRetiro) VALUES (@N_Pedido, @Tipo_Pedido, @Id_Mesa, @Id_Garzon, @Total_Pedido, @Fecha_Pedido, @PAGADO, @NombreRetiro, @TelefonoRetiro)", conX.cn);
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO pedidos (N_Pedido, Tipo_Pedido, Id_Mesa, Id_Garzon, Total_Pedido, Fecha_Pedido, PAGADO, NombreRetiro, TelefonoRetiro, IdClienteDelivery, FormaPago, Vuelto) VALUES (@N_Pedido, @Tipo_Pedido, @Id_Mesa, @Id_Garzon, @Total_Pedido, @Fecha_Pedido, @PAGADO, @NombreRetiro, @TelefonoRetiro, @idcliente, @formapago, @vuelto )", conX.cn);
                 cmd.Parameters.AddWithValue("@N_Pedido", Convert.ToInt32(label20.Text) + 1);
-                cmd.Parameters.AddWithValue("@Tipo_Pedido", "Retiro");
+                cmd.Parameters.AddWithValue("@Tipo_Pedido", "delivery");
                 cmd.Parameters.AddWithValue("@Id_Mesa", 2);
                 cmd.Parameters.AddWithValue("@Id_Garzon", 2);
                 cmd.Parameters.AddWithValue("@Total_Pedido", Convert.ToInt32(Total.Text));
@@ -205,6 +216,13 @@ namespace Pizzeria
                 cmd.Parameters.AddWithValue("@PAGADO", 0);
                 cmd.Parameters.AddWithValue("@NombreRetiro", txtNombre.Text);
                 cmd.Parameters.AddWithValue("@TelefonoRetiro", txtTelefono.Text);
+                cmd.Parameters.AddWithValue("@idcliente", IDCLIENTE.Text);
+                cmd.Parameters.AddWithValue("@formapago", FormaPago.Text);
+                cmd.Parameters.AddWithValue("@vuelto", txtVuelto.Text);
+
+
+
+
                 cmd.ExecuteNonQuery();
             }
             catch (MySqlException ex)
@@ -219,7 +237,7 @@ namespace Pizzeria
         {
             int sumatoria = 0;
 
-            foreach (DataGridViewRow row in GridRetiro.Rows)
+            foreach (DataGridViewRow row in GridDelivery.Rows)
             {
                 sumatoria += Convert.ToInt32(row.Cells["SubTotal"].Value);
             }
@@ -228,7 +246,7 @@ namespace Pizzeria
         }                                                                 ////**** CALCULA EL TOTAL A PAGAR
         #endregion
 
-        #region TELEFONO CLIENTE
+        #region BOTONES CLIENTE
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             txtNombre.Clear();
@@ -240,6 +258,7 @@ namespace Pizzeria
 
             if (cliente.Count != 0)
             {
+                IDCLIENTE.Text = cliente[0].ToString();
                 txtNombre.Text = cliente[1].ToString();
                 txtDireccion.Text = cliente[2].ToString();
                 txtReferencia.Text = cliente[3].ToString();
@@ -253,9 +272,7 @@ namespace Pizzeria
                 txtDireccion.Enabled = true;
                 txtReferencia.Enabled = true;
             }
-        }
-        #endregion
-
+        }                                     ////**** BOTON BUSCAR
         private void deliveryAgregar_Click(object sender, EventArgs e)
         {
             if (txtNombre.TextLength == 0)
@@ -282,14 +299,75 @@ namespace Pizzeria
                     txtNombre.Enabled = false;
                     txtDireccion.Enabled = false;
                     txtReferencia.Enabled = false;
-                    btnBuscar_Click(null,null);
+                    btnBuscar_Click(null, null);
                 }
                 else
                 {
                     MessageBox.Show("ERROR - No se ingreso Cliente");
                 }
             }
-        }
+        }                               ////**** BOTON AGREGAR
+        private void deliveryModificar_Click(object sender, EventArgs e)
+        {
+            if (switchModificar == 0)
+            {
+                txtNombre.Enabled = true;
+                txtDireccion.Enabled = true;
+                txtReferencia.Enabled = true;
+                txtTelefono.Enabled = true;
+
+                btnBuscar.Enabled = false;
+                deliveryAgregar.Enabled = false;
+                deliveryBorrar.Enabled = false;
+                deliveryModificar.Text = "LISTO";
+                switchModificar = 1;
+            }
+            else
+            {
+                if (txtNombre.TextLength == 0)
+                {
+                    MessageBox.Show("EL CAMPO NOMBRE ESTA VACIO\nCORRIJALO.");
+                }
+                else if (txtDireccion.TextLength == 0)
+                {
+                    MessageBox.Show("EL CAMPO DIRECCION ESTA VACIO\nCORRIJALO.");
+                }
+                else if (txtTelefono.TextLength == 0)
+                {
+                    MessageBox.Show("EL CAMPO TELEFONO ESTA VACIO\nCORRIJALO.");
+                }
+                else
+                {
+                    if (txtReferencia.TextLength == 0)
+                    {
+                        txtReferencia.Text = "-";
+                    }
+                    if (cd.ModificarCliente(txtNombre.Text, txtDireccion.Text, txtReferencia.Text, txtTelefono.Text, Convert.ToInt32(IDCLIENTE.Text)) == 1)
+                    {
+                        MessageBox.Show("Cliente Modificado con Exito");
+                        txtNombre.Enabled = false;
+                        txtDireccion.Enabled = false;
+                        txtReferencia.Enabled = false;
+
+                        btnBuscar.Enabled = true;
+                        deliveryAgregar.Enabled = true;
+                        deliveryBorrar.Enabled = true;
+                        deliveryModificar.Text = "MODIFICAR";
+                        switchModificar = 0;
+
+                        btnBuscar_Click(null, null);
+                    }
+                    else
+                    {
+                        MessageBox.Show("ERROR - No se Modifico Cliente");
+                    }
+                }
+            }
+        }                             ////**** BOTON MODIFICAR
+        #endregion
+
+
+
     }
 }
 

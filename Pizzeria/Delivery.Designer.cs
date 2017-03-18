@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.PanelConsumoLocal = new System.Windows.Forms.Panel();
+            this.IDCLIENTE = new System.Windows.Forms.TextBox();
             this.status = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label17 = new System.Windows.Forms.Label();
@@ -48,7 +49,7 @@
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.GridRetiro = new System.Windows.Forms.DataGridView();
+            this.GridDelivery = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.btn_cerrar = new System.Windows.Forms.Button();
@@ -69,7 +70,7 @@
             this.PanelConsumoLocal.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridRetiro)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridDelivery)).BeginInit();
             this.panel5.SuspendLayout();
             this.PanelTotal.SuspendLayout();
             this.SuspendLayout();
@@ -79,6 +80,7 @@
             this.PanelConsumoLocal.BackgroundImage = global::Pizzeria.Properties.Resources.pizza;
             this.PanelConsumoLocal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.PanelConsumoLocal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PanelConsumoLocal.Controls.Add(this.IDCLIENTE);
             this.PanelConsumoLocal.Controls.Add(this.status);
             this.PanelConsumoLocal.Controls.Add(this.panel1);
             this.PanelConsumoLocal.Controls.Add(this.deliveryBorrar);
@@ -86,7 +88,7 @@
             this.PanelConsumoLocal.Controls.Add(this.deliveryAgregar);
             this.PanelConsumoLocal.Controls.Add(this.btnBuscar);
             this.PanelConsumoLocal.Controls.Add(this.groupBox3);
-            this.PanelConsumoLocal.Controls.Add(this.GridRetiro);
+            this.PanelConsumoLocal.Controls.Add(this.GridDelivery);
             this.PanelConsumoLocal.Controls.Add(this.label1);
             this.PanelConsumoLocal.Controls.Add(this.panel5);
             this.PanelConsumoLocal.Controls.Add(this.label20);
@@ -103,6 +105,14 @@
             this.PanelConsumoLocal.Name = "PanelConsumoLocal";
             this.PanelConsumoLocal.Size = new System.Drawing.Size(821, 550);
             this.PanelConsumoLocal.TabIndex = 6;
+            // 
+            // IDCLIENTE
+            // 
+            this.IDCLIENTE.Location = new System.Drawing.Point(620, 505);
+            this.IDCLIENTE.Name = "IDCLIENTE";
+            this.IDCLIENTE.Size = new System.Drawing.Size(63, 20);
+            this.IDCLIENTE.TabIndex = 34;
+            this.IDCLIENTE.Visible = false;
             // 
             // status
             // 
@@ -178,6 +188,7 @@
             this.deliveryModificar.TabIndex = 30;
             this.deliveryModificar.Text = "MODIFICAR";
             this.deliveryModificar.UseVisualStyleBackColor = true;
+            this.deliveryModificar.Click += new System.EventHandler(this.deliveryModificar_Click);
             // 
             // deliveryAgregar
             // 
@@ -302,15 +313,15 @@
             this.label11.TabIndex = 3;
             this.label11.Text = "TELEFONO :";
             // 
-            // GridRetiro
+            // GridDelivery
             // 
-            this.GridRetiro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridRetiro.Location = new System.Drawing.Point(32, 198);
-            this.GridRetiro.Name = "GridRetiro";
-            this.GridRetiro.Size = new System.Drawing.Size(751, 202);
-            this.GridRetiro.TabIndex = 26;
-            this.GridRetiro.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridRetiro_BorrarFila);
-            this.GridRetiro.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.GridRetiro_RowsRemoved);
+            this.GridDelivery.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridDelivery.Location = new System.Drawing.Point(32, 198);
+            this.GridDelivery.Name = "GridDelivery";
+            this.GridDelivery.Size = new System.Drawing.Size(751, 202);
+            this.GridDelivery.TabIndex = 26;
+            this.GridDelivery.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridRetiro_BorrarFila);
+            this.GridDelivery.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.GridRetiro_RowsRemoved);
             // 
             // label1
             // 
@@ -517,7 +528,7 @@
             this.panel1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridRetiro)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridDelivery)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.PanelTotal.ResumeLayout(false);
@@ -542,7 +553,7 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
-        public System.Windows.Forms.DataGridView GridRetiro;
+        public System.Windows.Forms.DataGridView GridDelivery;
         private System.Windows.Forms.Button btn_cerrar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label20;
@@ -565,5 +576,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox FormaPago;
         private System.Windows.Forms.Label status;
+        private System.Windows.Forms.TextBox IDCLIENTE;
     }
 }

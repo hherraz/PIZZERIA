@@ -56,5 +56,23 @@ namespace Pizzeria
             conX.Cerrar();
             return 1;
         }
+
+        public int ModificarCliente(string nombres, string direccion, string referencia, string telefono, int idcliente)
+        {
+            conX.Abrir();
+            try
+            {
+                string sql = "UPDATE clientes_delivery SET DL_Nombre='" + nombres + "', DL_Direccion='" + direccion + "', DL_Referencia='" + referencia + "',DL_Telefono='" + telefono + "' WHERE idCliente = " + idcliente + ";";
+                MySqlCommand cmd = new MySqlCommand(sql, conX.cn);
+                cmd.ExecuteScalar();
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return 0;
+            }
+            conX.Cerrar();
+            return 1;
+        }
     }
 }

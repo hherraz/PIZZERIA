@@ -75,6 +75,10 @@ namespace Pizzeria
             CargaPizzasCasa();
             CargaMedidaPizzas();
             CargaMasasPizzas();
+
+            dataGridView1.ClearSelection();
+            dataGridView2.ClearSelection();
+            dataGridView3.ClearSelection();
         }
 
         public void ActivarPedido()                                                                     ////**** ACTIVA O DESACTIVA EL BOTON PEDIDO
@@ -153,8 +157,8 @@ namespace Pizzeria
 
             if (DatosCompartidos.Instance().NombreFormularioActivo == "Delivery")
             {
-                //Application.OpenForms.OfType<Delivery>().First().GridDelivery.Rows.Add(cantidadBox.Value, PizzaSeleccionada, txtpreciounitario.Text, txtprecio.Text);
-                //Close();
+                Application.OpenForms.OfType<Delivery>().First().GridDelivery.Rows.Add(cantidadBox.Value, PizzaSeleccionada, txtpreciounitario.Text, txtprecio.Text);
+                Close();
             }
         }
 
