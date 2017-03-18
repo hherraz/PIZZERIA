@@ -68,6 +68,7 @@
             this.PanelConsumoLocal.Controls.Add(this.GridRetiro);
             this.PanelConsumoLocal.Controls.Add(this.panel5);
             this.PanelConsumoLocal.Controls.Add(this.btnGuardarConsumo);
+            this.PanelConsumoLocal.Controls.Add(this.status);
             this.PanelConsumoLocal.Controls.Add(this.groupBox1);
             this.PanelConsumoLocal.Controls.Add(this.PanelTotal);
             this.PanelConsumoLocal.Controls.Add(this.label4);
@@ -146,7 +147,6 @@
             this.groupBox1.Controls.Add(this.txtTelefono);
             this.groupBox1.Controls.Add(this.txtNombre);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.status);
             this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label3);
@@ -163,6 +163,7 @@
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(157, 23);
             this.txtTelefono.TabIndex = 24;
+            this.txtTelefono.TextChanged += new System.EventHandler(this.txtTelefono_TextChanged);
             // 
             // txtNombre
             // 
@@ -171,6 +172,7 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(210, 23);
             this.txtNombre.TabIndex = 23;
+            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             // 
             // label1
             // 
@@ -187,7 +189,7 @@
             // status
             // 
             this.status.AutoSize = true;
-            this.status.Location = new System.Drawing.Point(232, 22);
+            this.status.Location = new System.Drawing.Point(43, 363);
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(0, 13);
             this.status.TabIndex = 21;

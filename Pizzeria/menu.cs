@@ -118,6 +118,11 @@ namespace Pizzeria
             RetiroLocal retiro = new RetiroLocal();
             retiro.ShowDialog(this);
         }    ////*** BOTON ABRIR RETIRO EN EL LOCAL
+        private void btnDelivery_Click(object sender, EventArgs e)
+        {
+            Delivery delivery = new Delivery();
+            delivery.ShowDialog(this);
+        }       ////*** BOTON ABRIR DELIVERY
         #endregion
 
         #region BOTONES QUE SE MUEVEN
@@ -180,6 +185,7 @@ namespace Pizzeria
         {
             btn_salir.Size = new System.Drawing.Size(81, 79);
         }
+
 
         #endregion
 

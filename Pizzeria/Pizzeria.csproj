@@ -71,7 +71,14 @@
     <Compile Include="AddPizzaMenu.Designer.cs">
       <DependentUpon>AddPizzaMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClientesDelivery.cs" />
     <Compile Include="conexion.cs" />
+    <Compile Include="Delivery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Delivery.Designer.cs">
+      <DependentUpon>Delivery.cs</DependentUpon>
+    </Compile>
     <Compile Include="RetiroLocal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,15 +115,12 @@
     <Compile Include="ConsumoLocal.Designer.cs">
       <DependentUpon>ConsumoLocal.cs</DependentUpon>
     </Compile>
-    <Compile Include="TomaPedidos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TomaPedidos.Designer.cs">
-      <DependentUpon>TomaPedidos.cs</DependentUpon>
-    </Compile>
     <Compile Include="Usuarios.cs" />
     <EmbeddedResource Include="AddPizzaMenu.resx">
       <DependentUpon>AddPizzaMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Delivery.resx">
+      <DependentUpon>Delivery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RetiroLocal.resx">
       <DependentUpon>RetiroLocal.cs</DependentUpon>
@@ -142,9 +146,6 @@
     </Compile>
     <EmbeddedResource Include="ConsumoLocal.resx">
       <DependentUpon>ConsumoLocal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TomaPedidos.resx">
-      <DependentUpon>TomaPedidos.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -218,6 +219,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pizza.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

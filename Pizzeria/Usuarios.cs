@@ -34,10 +34,9 @@ namespace Pizzeria
         public List<string> DatosUsuario(string user)
         {
             List<string> dtUsuario = new List<string>();
-
+            conX.Abrir();
             try
             {
-                conX.Abrir();
                 MySqlCommand cmd = new MySqlCommand("SELECT * FROM USUARIOS WHERE user = ?usuario", conX.cn);
                 cmd.Parameters.AddWithValue("?usuario", user);
                 using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -54,14 +53,14 @@ namespace Pizzeria
                         dtUsuario.Add(reader.GetString(reader.GetOrdinal("Nivel")));            //7
                     }
                 }
-                conX.Cerrar();
-                return dtUsuario;
             }
             catch (Exception Ex)
             {
                 Console.Write("Sin nombre de usuario: " + Ex);
                 return null;
             }
+            conX.Cerrar();
+            return dtUsuario;
         }
 
         public void log(string user)

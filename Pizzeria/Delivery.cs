@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Pizzeria
 {
-    public partial class RetiroLocal : Form
+    public partial class Delivery : Form
     {
-        public RetiroLocal()
+        public Delivery()
         {
             InitializeComponent();
         }
@@ -21,12 +21,15 @@ namespace Pizzeria
         #region INSTANCIAS
         conexion conX = new conexion();
         NumerosPedido NumX = new NumerosPedido();
+        ClientesDelivery cd = new ClientesDelivery();
         #endregion
 
-        private void RetiroLocal_Load(object sender, EventArgs e)
+        private void Delivery_Load(object sender, EventArgs e)
         {
+            txtTelefono.Focus();
+
             //Guardo Nombre del Formulari Activo
-            DatosCompartidos.Instance().NombreFormularioActivo = "RetiroLocal";
+            DatosCompartidos.Instance().NombreFormularioActivo = "Delivery";
 
             //formateo de la pantalla
             CentrarPantalla();
@@ -43,7 +46,7 @@ namespace Pizzeria
         #region FORMATEO DE LA PANTALLA
         private void CentrarPantalla()
         {
-            this.Size = new Size(821, 422);
+            this.Size = new Size(820, 550);
             this.Location = new Point((Screen.PrimaryScreen.Bounds.Width - this.Width) / 2, (Screen.PrimaryScreen.Bounds.Height - this.Height) / 2);
         }                                                               ////**** CENTRAR PANTALLA
         private void FormatearGridConsumo()
@@ -110,11 +113,10 @@ namespace Pizzeria
         #endregion
 
         #region EVENTOS
-        private void RetiroLocal_Activated(object sender, EventArgs e)                                ////**** ACTUALIZA LA SUMA DEL GRID
+        private void Delivery_Activated(object sender, EventArgs e)                                ////**** ACTUALIZA LA SUMA DEL GRID
         {
             ActualizarSuma();
         }
-
         private void GridRetiro_BorrarFila(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -123,8 +125,6 @@ namespace Pizzeria
         {
             ActualizarSuma();
         }     ////**** ACTUALIZA SUMA DESPUES DE BORRAR UNA FILA
-
-
         #endregion
 
         #region OPERACIONES EN GRIDCONSUMO
@@ -228,21 +228,68 @@ namespace Pizzeria
         }                                                                 ////**** CALCULA EL TOTAL A PAGAR
         #endregion
 
-        #region HABILITAR BOTON GUARDAR
-        private void txtNombre_TextChanged(object sender, EventArgs e)
+        #region TELEFONO CLIENTE
+        private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (txtNombre.TextLength > 1 && txtTelefono.TextLength > 5)
+            txtNombre.Clear();
+            txtDireccion.Clear();
+            txtReferencia.Clear();
+
+            List<string> cliente = new List<string>();
+            cliente = cd.TraeCliente(txtTelefono.Text);
+
+            if (cliente.Count != 0)
             {
+                txtNombre.Text = cliente[1].ToString();
+                txtDireccion.Text = cliente[2].ToString();
+                txtReferencia.Text = cliente[3].ToString();
+                txtTelefono.Text = cliente[4].ToString();
                 btnGuardarConsumo.Visible = true;
             }
-        }
-        private void txtTelefono_TextChanged(object sender, EventArgs e)
-        {
-            if (txtNombre.TextLength > 1 && txtTelefono.TextLength > 5)
+            else
             {
-                btnGuardarConsumo.Visible = true;
+                MessageBox.Show("Numero no se encuentra. \nIngreselo como nuevo Cliente.");
+                txtNombre.Enabled = true;
+                txtDireccion.Enabled = true;
+                txtReferencia.Enabled = true;
             }
         }
         #endregion
+
+        private void deliveryAgregar_Click(object sender, EventArgs e)
+        {
+            if (txtNombre.TextLength == 0)
+            {
+                MessageBox.Show("EL CAMPO NOMBRE ESTA VACIO\nCORRIJALO.");
+            }
+            else if (txtDireccion.TextLength == 0)
+            {
+                MessageBox.Show("EL CAMPO DIRECCION ESTA VACIO\nCORRIJALO.");
+            }
+            else if (txtTelefono.TextLength == 0)
+            {
+                MessageBox.Show("EL CAMPO TELEFONO ESTA VACIO\nCORRIJALO.");
+            }
+            else
+            {
+                if (txtReferencia.TextLength == 0)
+                {
+                    txtReferencia.Text = "-";
+                }
+                if (cd.InsertaCliente(txtNombre.Text, txtDireccion.Text, txtReferencia.Text, txtTelefono.Text) == 1)
+                {
+                    MessageBox.Show("Cliente ingresado con Exito");
+                    txtNombre.Enabled = false;
+                    txtDireccion.Enabled = false;
+                    txtReferencia.Enabled = false;
+                    btnBuscar_Click(null,null);
+                }
+                else
+                {
+                    MessageBox.Show("ERROR - No se ingreso Cliente");
+                }
+            }
+        }
     }
 }
+

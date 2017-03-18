@@ -319,6 +319,7 @@
             this.btnDelivery.TabIndex = 8;
             this.btnDelivery.Text = "PEDIDO TELEFONICO";
             this.btnDelivery.UseVisualStyleBackColor = false;
+            this.btnDelivery.Click += new System.EventHandler(this.btnDelivery_Click);
             // 
             // btnConsumoLocal
             // 
