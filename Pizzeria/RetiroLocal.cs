@@ -107,6 +107,16 @@ namespace Pizzeria
             PM.ShowDialog(this);
             PM.Dispose();
         }
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ArmaPizza arma = new ArmaPizza();
+            arma.ShowDialog(this);
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            AddProductos prod = new AddProductos();
+            prod.ShowDialog(this);
+        }
         #endregion
 
         #region EVENTOS
@@ -176,7 +186,7 @@ namespace Pizzeria
             conX.Abrir();
             foreach (DataGridViewRow row in GridRetiro.Rows)
             {
-                MySqlCommand GridConsumoMySql = new MySqlCommand("insert into prod_pedidos (N_Pedido, Cantidad, Item, Unitario, Subtotal) values (@N_pedido, @cantidad, @item, @unitario, @subtotal);", conX.cn);
+                MySqlCommand GridConsumoMySql = new MySqlCommand("insert into prod_pedidos (N_Pedido, Cantidad, Item, Unitario, Subtotal, Cocina) values (@N_pedido, @cantidad, @item, @unitario, @subtotal, 0);", conX.cn);
                 GridConsumoMySql.Parameters.AddWithValue("@N_pedido", Convert.ToInt32(label20.Text) + 1);       //N_pedido
                 GridConsumoMySql.Parameters.AddWithValue("@cantidad", Convert.ToInt32(row.Cells[0].Value));     //cantidad
                 GridConsumoMySql.Parameters.AddWithValue("@item", Convert.ToString(row.Cells[1].Value));        //item
@@ -195,12 +205,11 @@ namespace Pizzeria
                 DateTime theDate = DateTime.Now;
                 theDate.ToString("yyyy-MM-dd H:mm:ss");
 
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO pedidos (N_Pedido, Tipo_Pedido, Id_Mesa, Id_Garzon, Total_Pedido, Fecha_Pedido, PAGADO, NombreRetiro, TelefonoRetiro) VALUES (@N_Pedido, @Tipo_Pedido, @Id_Mesa, @Id_Garzon, @Total_Pedido, @Fecha_Pedido, @PAGADO, @NombreRetiro, @TelefonoRetiro)", conX.cn);
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO pedidos (N_Pedido, Tipo_Pedido, Id_Mesa, Id_Garzon, Fecha_Pedido, PAGADO, NombreRetiro, TelefonoRetiro) VALUES (@N_Pedido, @Tipo_Pedido, @Id_Mesa, @Id_Garzon, @Fecha_Pedido, @PAGADO, @NombreRetiro, @TelefonoRetiro)", conX.cn);
                 cmd.Parameters.AddWithValue("@N_Pedido", Convert.ToInt32(label20.Text) + 1);
                 cmd.Parameters.AddWithValue("@Tipo_Pedido", "Retiro");
                 cmd.Parameters.AddWithValue("@Id_Mesa", 2);
                 cmd.Parameters.AddWithValue("@Id_Garzon", 2);
-                cmd.Parameters.AddWithValue("@Total_Pedido", Convert.ToInt32(Total.Text));
                 cmd.Parameters.AddWithValue("@Fecha_Pedido", theDate);
                 cmd.Parameters.AddWithValue("@PAGADO", 0);
                 cmd.Parameters.AddWithValue("@NombreRetiro", txtNombre.Text);
@@ -245,10 +254,6 @@ namespace Pizzeria
         }
         #endregion
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            ArmaPizza arma = new ArmaPizza();
-            arma.ShowDialog(this);
-        }
+
     }
 }

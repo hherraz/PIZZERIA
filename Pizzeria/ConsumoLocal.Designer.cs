@@ -49,12 +49,9 @@
             this.btnCambiarGarzon = new System.Windows.Forms.Button();
             this.btnCambiarMesa = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnAcomp = new System.Windows.Forms.Button();
             this.AddPizzaMenu = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btnArma = new System.Windows.Forms.Button();
             this.PanelConsumoLocal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridConsumo)).BeginInit();
             this.panel5.SuspendLayout();
@@ -75,12 +72,9 @@
             this.PanelConsumoLocal.Controls.Add(this.btnCambiarGarzon);
             this.PanelConsumoLocal.Controls.Add(this.btnCambiarMesa);
             this.PanelConsumoLocal.Controls.Add(this.label4);
-            this.PanelConsumoLocal.Controls.Add(this.button2);
+            this.PanelConsumoLocal.Controls.Add(this.btnAcomp);
             this.PanelConsumoLocal.Controls.Add(this.AddPizzaMenu);
-            this.PanelConsumoLocal.Controls.Add(this.button7);
-            this.PanelConsumoLocal.Controls.Add(this.button4);
-            this.PanelConsumoLocal.Controls.Add(this.button5);
-            this.PanelConsumoLocal.Controls.Add(this.button6);
+            this.PanelConsumoLocal.Controls.Add(this.btnArma);
             this.PanelConsumoLocal.Location = new System.Drawing.Point(0, 0);
             this.PanelConsumoLocal.Name = "PanelConsumoLocal";
             this.PanelConsumoLocal.Size = new System.Drawing.Size(821, 422);
@@ -308,61 +302,35 @@
             this.label4.TabIndex = 5;
             this.label4.Text = "PRODUCTOS";
             // 
-            // button2
+            // btnAcomp
             // 
-            this.button2.Location = new System.Drawing.Point(299, 311);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(133, 22);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "ACOMPAÑAMIENTOS";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnAcomp.Location = new System.Drawing.Point(299, 311);
+            this.btnAcomp.Name = "btnAcomp";
+            this.btnAcomp.Size = new System.Drawing.Size(133, 38);
+            this.btnAcomp.TabIndex = 4;
+            this.btnAcomp.Text = "ACOMPAÑAMIENTOS";
+            this.btnAcomp.UseVisualStyleBackColor = true;
+            this.btnAcomp.Click += new System.EventHandler(this.button2_Click);
             // 
             // AddPizzaMenu
             // 
             this.AddPizzaMenu.Location = new System.Drawing.Point(33, 311);
             this.AddPizzaMenu.Name = "AddPizzaMenu";
-            this.AddPizzaMenu.Size = new System.Drawing.Size(133, 22);
+            this.AddPizzaMenu.Size = new System.Drawing.Size(133, 38);
             this.AddPizzaMenu.TabIndex = 2;
             this.AddPizzaMenu.Text = "PIZZA DEL MENU";
             this.AddPizzaMenu.UseVisualStyleBackColor = true;
             this.AddPizzaMenu.Click += new System.EventHandler(this.AddPizzaMenu_Click);
             // 
-            // button7
+            // btnArma
             // 
-            this.button7.Location = new System.Drawing.Point(299, 334);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(133, 22);
-            this.button7.TabIndex = 7;
-            this.button7.Text = "OTROS";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(166, 311);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(133, 22);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "ARMA TU PIZZA";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(166, 334);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(133, 22);
-            this.button5.TabIndex = 6;
-            this.button5.Text = "LIQUIDOS";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(33, 332);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(133, 22);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "POSTRES";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnArma.Location = new System.Drawing.Point(166, 311);
+            this.btnArma.Name = "btnArma";
+            this.btnArma.Size = new System.Drawing.Size(133, 38);
+            this.btnArma.TabIndex = 3;
+            this.btnArma.Text = "ARMA TU PIZZA";
+            this.btnArma.UseVisualStyleBackColor = true;
+            this.btnArma.Click += new System.EventHandler(this.button4_Click);
             // 
             // ConsumoLocal
             // 
@@ -409,12 +377,9 @@
         private System.Windows.Forms.Button btnGuardarConsumo;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnAcomp;
         private System.Windows.Forms.Button AddPizzaMenu;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnArma;
         public System.Windows.Forms.DataGridView GridConsumo;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label status;
