@@ -244,5 +244,11 @@ namespace Pizzeria
             }
         }
         #endregion
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ArmaPizza arma = new ArmaPizza();
+            arma.ShowDialog(this);
+        }
     }
 }

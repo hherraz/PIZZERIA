@@ -12,9 +12,9 @@ using MySql.Data.MySqlClient;
 
 namespace Pizzeria
 {
-    public partial class AddPizzaMenu : Form
+    public partial class ArmaPizza : Form
     {
-        public AddPizzaMenu()
+        public ArmaPizza()
         {
             InitializeComponent();
         }
@@ -22,7 +22,6 @@ namespace Pizzeria
         conexion conX = new conexion();
 
         //// JUEGO DE VARIABLES DEL FORMULARIO
-        int pizza = 0;                                                                                 ////**** ID DE PIZZA SELECCIONADA
         int medida = 0;                                                                                ////**** ID DE MEDIDA PIZZA SELECCIONADA
         int masa = 0;                                                                                  ////**** ID DE MASA PIZZA SELECCIONADA
 
@@ -36,8 +35,7 @@ namespace Pizzeria
 
         string MasaSeleccionada;                                                                        ////**** STRING NOMBRE MASA
         string PorteSeleccionada;                                                                       ////**** STRING PORTE PIZZA
-        string PizzaSeleccionada;                                                                       ////**** STRING NOMBRE PIZZA
-        string ItemParaEnviar;
+        string Seleccionada;                                                                            ////**** STRING ITEMS SELECCIONADOS
 
         public void CentrarForm()                                                                       ////**** CENTRAR FORMULARIO
         {
@@ -48,7 +46,7 @@ namespace Pizzeria
         {
             PorteImagenes = 120;                //TAMANO DE LOS ICONOS
             
-            //PIZZA DE LA CASA
+            //INGREDIENTES
             dataGridView1.Rows.Clear();         //LIMPIAR FILAS
             dataGridView1.Columns.Clear();      //LIMPIAR COLUMNAS
             dataGridView1.AllowUserToAddRows = false;
@@ -68,6 +66,33 @@ namespace Pizzeria
             dataGridView3.AllowUserToAddRows = false;
             dataGridView3.ColumnHeadersVisible = false;
             dataGridView3.RowHeadersVisible = false;
+
+            //INGREDIENTES SELECCIONADOS
+            dgIngredientes.Rows.Clear();
+            dgIngredientes.Columns.Clear();
+            dgIngredientes.ColumnHeadersVisible = false;
+            dgIngredientes.RowHeadersVisible = false;
+
+            DataGridViewButtonColumn boton = new DataGridViewButtonColumn();
+            boton.Text = "Borrar";
+            boton.HeaderText = "Borrar";
+            boton.ToolTipText = "Borrar";
+            boton.Name = "Borrar";
+            boton.UseColumnTextForButtonValue = true;
+            boton.Width = 50;
+
+            dgIngredientes.Columns.Add("Ingrediente", "Ingrediente");
+            dgIngredientes.Columns.Add("Precio", "Precio");
+            dgIngredientes.Columns.Add(boton);
+
+            dgIngredientes.Columns[0].Name = "Ingrediente";
+            dgIngredientes.Columns[1].Name = "Precio";
+            dgIngredientes.Columns[2].Name = "Borrar";
+
+            dgIngredientes.Columns[0].Width = 125;
+            dgIngredientes.Columns[1].Width = 50;
+            dgIngredientes.Columns[2].Width = 55;
+
         }
         private void AddProductos_Load(object sender, EventArgs e)                                      ////**** LANZADOR DEL FORMULARIO AL ABRIR
         {
@@ -97,6 +122,7 @@ namespace Pizzeria
                 txtprecio.Clear();
             }
         }
+
         public int CalcularPedido()                                                                     ////**** CALCULAR PEDIDO
         {
             int PrecioPizza = 0;
@@ -123,10 +149,9 @@ namespace Pizzeria
             }
 
             conX.Abrir();
-            string sql = "select " + TituloTarifa + " from pizzacasa where Id=" + pizza + ";";
+            string sql = "select " + TituloTarifa + " from preciosbasepizza where IdBase=1;";
             MySqlCommand Precio = new MySqlCommand(sql, conX.cn);
             PrecioPizza = Convert.ToInt32(Precio.ExecuteScalar());
-            conX.Cerrar();
             #endregion
 
             #region String de Masa
@@ -138,27 +163,29 @@ namespace Pizzeria
             conX.Cerrar();
             #endregion
 
-            PrecioPedido = PrecioPizza + PrecioMasa;
+            PrecioPedido = PrecioPizza + PrecioMasa + ActualizarSuma();
 
             return PrecioPedido;
         }
         public void EnviarPedido()                                                                      ////**** ENVIAR PEDIDO
         {
+            Seleccionada = PorteSeleccionada + " - " + MasaSeleccionada + " " + FilaIngredientes();
+
             if (DatosCompartidos.Instance().NombreFormularioActivo == "ConsumoLocal")
             {
-                Application.OpenForms.OfType<ConsumoLocal>().First().GridConsumo.Rows.Add(cantidadBox.Value, ItemParaEnviar, txtpreciounitario.Text, txtprecio.Text);
+                Application.OpenForms.OfType<ConsumoLocal>().First().GridConsumo.Rows.Add(cantidadBox.Value, Seleccionada, txtpreciounitario.Text, txtprecio.Text);
                 Close();
             }
 
             if (DatosCompartidos.Instance().NombreFormularioActivo == "RetiroLocal")
             {
-                Application.OpenForms.OfType<RetiroLocal>().First().GridRetiro.Rows.Add(cantidadBox.Value, ItemParaEnviar, txtpreciounitario.Text, txtprecio.Text);
+                Application.OpenForms.OfType<RetiroLocal>().First().GridRetiro.Rows.Add(cantidadBox.Value, Seleccionada, txtpreciounitario.Text, txtprecio.Text);
                 Close();
             }
 
             if (DatosCompartidos.Instance().NombreFormularioActivo == "Delivery")
             {
-                Application.OpenForms.OfType<Delivery>().First().GridDelivery.Rows.Add(cantidadBox.Value, ItemParaEnviar, txtpreciounitario.Text, txtprecio.Text);
+                Application.OpenForms.OfType<Delivery>().First().GridDelivery.Rows.Add(cantidadBox.Value, Seleccionada, txtpreciounitario.Text, txtprecio.Text);
                 Close();
             }
         }
@@ -169,12 +196,12 @@ namespace Pizzeria
 
             // OBTENER EL TOTAL DE REGISTROS A MOSTRAR
             conX.Abrir();
-            MySqlCommand Contar = new MySqlCommand("select count(*) from pizzacasa;", conX.cn);
+            MySqlCommand Contar = new MySqlCommand("select count(*) from ingredientes; ", conX.cn);
             int TotalRegistros = Convert.ToInt32(Contar.ExecuteScalar());
             conX.Cerrar();
 
             //CALCULO DEL TOTAL DE COLUMNAS CON MARGENES
-            int TotalColumnas = (dataGridView1.Width - 10) / (PorteImagenes + 20);
+            int TotalColumnas = (dataGridView1.Width - 10) / (PorteImagenes + 10);
 
             //CALCULO DEL TOTAL DE FILAS
             int TotalFilas = TotalRegistros / TotalColumnas;
@@ -206,19 +233,19 @@ namespace Pizzeria
             {
                 DataGridViewImageColumn dataGridViewColumn = new DataGridViewImageColumn();
                 dataGridView1.Columns.Add(dataGridViewColumn);
-                dataGridView1.Columns[index].Width = PorteImagenes + 20;
+                dataGridView1.Columns[index].Width = PorteImagenes + 10;
             }
 
             //*** CREAR FILAS Y SETEO DEL ALTO DE CADA UNA
             for (int index = 0; index < TotalFilas; index++)
             {
                 dataGridView1.Rows.Add();
-                dataGridView1.Rows[index].Height = PorteImagenes + 20;
+                dataGridView1.Rows[index].Height = PorteImagenes + 10;
             }
 
             #endregion
             #region CONEXION A LA BASE DE DATOS Y POBLADO DE DATOS
-            MySqlCommand cm = new MySqlCommand("select * from pizzacasa;", conX.cn);                                // CONECTANDO DATOS DESDE MYSQL
+            MySqlCommand cm = new MySqlCommand("select * from ingredientes; ", conX.cn);                                // CONECTANDO DATOS DESDE MYSQL
             try
             {
                 conX.Abrir();
@@ -232,13 +259,13 @@ namespace Pizzeria
                     Image image = resizeImage(Image.FromFile(dr["RutaFoto"].ToString()), new Size(100, 100));       //RUTA DE LA IMAGEN DESDE LA BASE DATOS Y TAMANO
                     Graphics g = Graphics.FromImage(image);                                                         //LA PASAMOS A OBJETO GRAFICO
                     g.FillRectangle(Brushes.Black, new Rectangle(0, 0, this.Width, 15));                            //DIBUJO EL RECTANGULO NEGRO CON GDI+
-                    SizeF txtsize=TextRenderer.MeasureText(dr["Item"].ToString(), fuente);                           //CALCULO EL TAMANO GRAFICO DEL STRING PARA PODER CENTRAR EL TEXTO
-                    g.DrawString(dr["Item"].ToString(), fuente, Brushes.White, new PointF((image.Width-txtsize.Width)/2, 0));   //ESCRIBO SOBRE EL RECTANGULO CON GDI+
+                    SizeF txtsize=TextRenderer.MeasureText(dr["NombreIngrediente"].ToString(), fuente);                           //CALCULO EL TAMANO GRAFICO DEL STRING PARA PODER CENTRAR EL TEXTO
+                    g.DrawString(dr["NombreIngrediente"].ToString(), fuente, Brushes.White, new PointF((image.Width-txtsize.Width)/2, 0));   //ESCRIBO SOBRE EL RECTANGULO CON GDI+
                     dataGridView1.Rows[NumeroFila].Cells[NumeroColumna].Value = image;                              //AGREGO LA IMAGEN MODIFICADA A LA FILA DEL GRIDVIEW
                     g.Dispose();                                                                                    //BOTO LA INFO DEL GDI+
 
-                    dataGridView1.Rows[NumeroFila].Cells[NumeroColumna].ToolTipText = dr["Item"].ToString();        // TOOLTIP GUARDA EL NOMBRE DEL ITEM
-                    dataGridView1.Rows[NumeroFila].Cells[NumeroColumna].Tag = dr["Id"].ToString();                  // TAG GUARDA EL CODIGO DEL PRODUCTO
+                    dataGridView1.Rows[NumeroFila].Cells[NumeroColumna].ToolTipText = dr["NombreIngrediente"].ToString();        // TOOLTIP GUARDA EL NOMBRE DEL ITEM
+                    dataGridView1.Rows[NumeroFila].Cells[NumeroColumna].Tag = dr["IdIngrediente"].ToString();                  // TAG GUARDA EL CODIGO DEL PRODUCTO
 
                     // INDICAMOS SI SEGUIMOS AGREGANDO COLUMNAS O SALTAMOS A OTRA FILA
                     if (NumeroColumna == TotalColumnas - 1)
@@ -517,8 +544,7 @@ namespace Pizzeria
             masa = Convert.ToInt32(dataGridView3[e.ColumnIndex, e.RowIndex].Tag.ToString());
             SeleccionActivaMasa = 1;
 
-            ProductoSeleccionado.Text = PizzaSeleccionada + "\n" + PorteSeleccionada + "\n" + MasaSeleccionada;
-            ItemParaEnviar = PizzaSeleccionada + " - " + PorteSeleccionada + " - " + MasaSeleccionada;
+            ProductoSeleccionado.Text = PorteSeleccionada + "\n" + MasaSeleccionada;
             ActivarPedido();
         }
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)         ////**** LANZADOR DEL CLICK EN TAMAÑO
@@ -532,23 +558,29 @@ namespace Pizzeria
             medida = Convert.ToInt32(dataGridView2[e.ColumnIndex, e.RowIndex].Tag.ToString());
             SeleccionActivaPorte = 1;
 
-            ProductoSeleccionado.Text = PizzaSeleccionada + "\n" + PorteSeleccionada + "\n" + MasaSeleccionada;
-            ItemParaEnviar = PizzaSeleccionada + " - " + PorteSeleccionada + " - " + MasaSeleccionada;
+            ProductoSeleccionado.Text = PorteSeleccionada + "\n" + MasaSeleccionada;
             ActivarPedido();
         }
         private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)   ////**** LANZADOR DEL CLICK EN PIZZA DE LA CASA
         {
             conX.Abrir();
-            MySqlCommand Pizzas = new MySqlCommand("select Item from pizzacasa where Id=" + dataGridView1[e.ColumnIndex, e.RowIndex].Tag.ToString() + ";", conX.cn);
-            PizzaSeleccionada = Convert.ToString(Pizzas.ExecuteScalar());
+            try
+            {
+                MySqlCommand Pizzas = new MySqlCommand("select PrecioIngrediente from ingredientes where IdIngrediente=" + dataGridView1[e.ColumnIndex, e.RowIndex].Tag.ToString() + ";", conX.cn);
+
+                //agrega al grid de ingredientes nombre y precio
+                dgIngredientes.Rows.Add(dataGridView1[e.ColumnIndex, e.RowIndex].ToolTipText.ToString(), Convert.ToString(Pizzas.ExecuteScalar()));
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             conX.Cerrar();
 
             // ESTE ES EL ID DE LA PIZZA
-            pizza = Convert.ToInt32(dataGridView1[e.ColumnIndex, e.RowIndex].Tag.ToString());
+            //pizza = Convert.ToInt32(dataGridView1[e.ColumnIndex, e.RowIndex].Tag.ToString());
             SeleccionActivaPizza = 1;
-
-            ProductoSeleccionado.Text = PizzaSeleccionada + "\n" + PorteSeleccionada + "\n" + MasaSeleccionada;
-            ItemParaEnviar= PizzaSeleccionada + " - " + PorteSeleccionada + " - " + MasaSeleccionada;
+            ProductoSeleccionado.Text = PorteSeleccionada + "\n" + MasaSeleccionada;
             ActivarPedido();
         }
 
@@ -564,6 +596,43 @@ namespace Pizzeria
         public static Image resizeImage(Image imgToResize, Size size)                                   ////**** CAMBIA EL TAMANO DE LA IMAGEN
         {
             return (Image)(new Bitmap(imgToResize, size));
+        }
+
+        private void dgIngredientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //SI EL CLICK ES EN UNA FILA NUEVA, O INFERIOR A LA FILA 0
+            if (e.RowIndex == dgIngredientes.NewRowIndex || e.RowIndex < 0)
+            {
+                return;
+            }
+            if (e.ColumnIndex == dgIngredientes.Columns["Borrar"].Index)
+            {
+                dgIngredientes.Rows.RemoveAt(e.RowIndex);
+            }
+            ActivarPedido();
+
+        }     ////**** BORRAR INGREDIENTE
+        public int ActualizarSuma()
+        {
+            int sumatoria = 0;
+
+            foreach (DataGridViewRow row in dgIngredientes.Rows)
+            {
+                sumatoria += Convert.ToInt32(row.Cells["Precio"].Value);
+            }
+
+            return sumatoria;
+        }                                                                  ////**** SUMAR INGREDIENTES
+
+        public string FilaIngredientes()
+        {
+            string items = "(";
+            foreach(DataGridViewRow row in dgIngredientes.Rows)
+            {
+                items += row.Cells["Ingrediente"].Value + ", ";
+            }
+            items += ")";
+            return items;
         }
     }
 }

@@ -123,6 +123,12 @@ namespace Pizzeria
             PM.ShowDialog(this);
             PM.Dispose();
         }
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ArmaPizza arma = new ArmaPizza();
+            arma.ShowDialog(this);
+        }
+
         #endregion
 
         #region EVENTOS
@@ -293,5 +299,7 @@ namespace Pizzeria
             conX.Cerrar();
         }                                                                 ////**** TRAE EL PEDIDO SI MESA ABIERTA
         #endregion
+
+
     }
 }

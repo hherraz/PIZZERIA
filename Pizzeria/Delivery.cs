@@ -43,6 +43,9 @@ namespace Pizzeria
             label20.Text = Convert.ToString(NumX.GenerarNumero());
             NumX.LimpiarFoliosSinUso();
 
+            //carga el combobox forma de pago
+            FormaPagoCombo();
+
         }   ////**** LANZADOR DEL FORMULARIO
 
         #region FORMATEO DE LA PANTALLA
@@ -81,6 +84,24 @@ namespace Pizzeria
             btn.Width = 100;
             btn.HeaderText = "";
         }                                                          ////**** FORMATEAR GRIDCONSUMO
+        public void FormaPagoCombo()
+        {
+            conX.Abrir();
+            try
+            {
+                DataTable dt = new DataTable();
+                MySqlDataAdapter adapt=new MySqlDataAdapter("select * from formapago", conX.cn);
+                adapt.Fill(dt);
+                FormaPago.DataSource = dt;
+                FormaPago.ValueMember = "FormaPago";
+                FormaPago.DisplayMember = "FormaPago";
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            conX.Cerrar();
+        }
         #endregion
 
         #region BOTONES GENERALES DEL FORMULARIO
@@ -111,6 +132,11 @@ namespace Pizzeria
             AddPizzaMenu PM = new AddPizzaMenu();
             PM.ShowDialog(this);
             PM.Dispose();
+        }
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ArmaPizza arma = new ArmaPizza();
+            arma.ShowDialog(this);
         }
         #endregion
 
@@ -366,8 +392,7 @@ namespace Pizzeria
         }                             ////**** BOTON MODIFICAR
         #endregion
 
-
-
+        
     }
 }
 

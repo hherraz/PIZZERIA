@@ -13,8 +13,8 @@ namespace Pizzeria
         /// </summary>
         /// 
 
-        public static List<string> dtUsuarios;
-        public static Label lbl_titulo;
+        //public static List<string> dtUsuarios;
+        //public static Label lbl_titulo;
 
         [STAThread]
         static void Main()

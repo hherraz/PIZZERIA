@@ -34,11 +34,11 @@
             this.btn_cerrar = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.btnGuardarConsumo = new System.Windows.Forms.Button();
+            this.status = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.status = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -141,6 +141,14 @@
             this.btnGuardarConsumo.Visible = false;
             this.btnGuardarConsumo.Click += new System.EventHandler(this.btnGuardarConsumo_Click);
             // 
+            // status
+            // 
+            this.status.AutoSize = true;
+            this.status.Location = new System.Drawing.Point(43, 363);
+            this.status.Name = "status";
+            this.status.Size = new System.Drawing.Size(0, 13);
+            this.status.TabIndex = 21;
+            // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
@@ -185,14 +193,6 @@
             this.label1.TabIndex = 22;
             this.label1.Text = "label1";
             this.label1.Visible = false;
-            // 
-            // status
-            // 
-            this.status.AutoSize = true;
-            this.status.Location = new System.Drawing.Point(43, 363);
-            this.status.Name = "status";
-            this.status.Size = new System.Drawing.Size(0, 13);
-            this.status.TabIndex = 21;
             // 
             // label20
             // 
@@ -323,6 +323,7 @@
             this.button4.TabIndex = 3;
             this.button4.Text = "ARMA TU PIZZA";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
