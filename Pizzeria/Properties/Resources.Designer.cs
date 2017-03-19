@@ -63,16 +63,6 @@ namespace Pizzeria.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _240_F_99640866_dNj6uLcGW8pd5VyM8TO9lTzCePZYyvRR {
-            get {
-                object obj = ResourceManager.GetObject("240_F_99640866_dNj6uLcGW8pd5VyM8TO9lTzCePZYyvRR", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap cierre {
             get {
                 object obj = ResourceManager.GetObject("cierre", resourceCulture);
@@ -93,9 +83,9 @@ namespace Pizzeria.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap fin {
+        internal static System.Drawing.Bitmap fondo {
             get {
-                object obj = ResourceManager.GetObject("fin", resourceCulture);
+                object obj = ResourceManager.GetObject("fondo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -186,26 +176,6 @@ namespace Pizzeria.Properties {
         internal static System.Drawing.Bitmap salida {
             get {
                 object obj = ResourceManager.GetObject("salida", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap splash_fin1 {
-            get {
-                object obj = ResourceManager.GetObject("splash_fin1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap splash_fin2 {
-            get {
-                object obj = ResourceManager.GetObject("splash_fin2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

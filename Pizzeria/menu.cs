@@ -21,6 +21,7 @@ namespace Pizzeria
         #region VARIABLES
         public int ancho = Screen.PrimaryScreen.Bounds.Width;
         public int alto = Screen.PrimaryScreen.Bounds.Height;
+        int sorpresa = 0;
         #endregion
 
         #region INSTANCIAS
@@ -187,8 +188,18 @@ namespace Pizzeria
         }
 
 
+
         #endregion
 
-
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            sorpresa++;
+            if (sorpresa == 10)
+            {
+                AboutBox1 about = new AboutBox1();
+                about.ShowDialog(this);
+                sorpresa = 0;
+            }
+        }
     }
 }

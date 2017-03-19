@@ -233,7 +233,7 @@
             // PanelTotal
             // 
             this.PanelTotal.BackColor = System.Drawing.Color.White;
-            this.PanelTotal.BackgroundImage = global::Pizzeria.Properties.Resources._240_F_99640866_dNj6uLcGW8pd5VyM8TO9lTzCePZYyvRR;
+            this.PanelTotal.BackgroundImage = global::Pizzeria.Properties.Resources.fondo;
             this.PanelTotal.Controls.Add(this.label5);
             this.PanelTotal.Controls.Add(this.Total);
             this.PanelTotal.Controls.Add(this.btnPagar);

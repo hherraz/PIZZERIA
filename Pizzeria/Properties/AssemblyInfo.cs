@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Pizzeria")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("El uso de este software sin licencia o sin concentimiento escrito de sus desarrolladores sera declarado una Violacion a los Derechos de Propiedad Intelectual. Regulada por la Ley N° 17.336 sobre Propiedad Intelectual de 2/10/1970 y sus posteriores modificaciones.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Software desarrollado por Rodolfo Gallegos & Francisco Muñoz en el 2017.")]
 [assembly: AssemblyProduct("Pizzeria")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]

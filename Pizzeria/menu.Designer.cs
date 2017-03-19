@@ -79,6 +79,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // panel1
             // 
@@ -283,7 +284,7 @@
             // PanelTomaPedidos
             // 
             this.PanelTomaPedidos.BackColor = System.Drawing.Color.Transparent;
-            this.PanelTomaPedidos.BackgroundImage = global::Pizzeria.Properties.Resources._240_F_99640866_dNj6uLcGW8pd5VyM8TO9lTzCePZYyvRR;
+            this.PanelTomaPedidos.BackgroundImage = global::Pizzeria.Properties.Resources.fondo;
             this.PanelTomaPedidos.Controls.Add(this.button1);
             this.PanelTomaPedidos.Controls.Add(this.btnDelivery);
             this.PanelTomaPedidos.Controls.Add(this.btnConsumoLocal);
