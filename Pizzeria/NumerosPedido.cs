@@ -36,7 +36,7 @@ namespace Pizzeria
             conX.Abrir();
             try
             {
-                string sql = "SELECT N_Pedido FROM pedidos WHERE Id_Mesa=" + IdMesa + ";";
+                string sql = "SELECT MAX(N_Pedido) FROM pedidos WHERE Id_Mesa=" + IdMesa + ";";
                 MySqlCommand cmd = new MySqlCommand(sql, conX.cn);
                 n_pedido = Convert.ToInt32(cmd.ExecuteScalar());
             }
@@ -107,6 +107,25 @@ namespace Pizzeria
             {
                 MySqlCommand cmd = new MySqlCommand("delete from prod_pedidos where n_pedido=?pedido;", conX.cn);
                 cmd.Parameters.AddWithValue("?pedido", n_pedido);
+                cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            conX.Cerrar();
+        }
+
+        public void CerrarPedido(int n_pedido, int pagado, int totalpagado)
+        {
+            conX.Abrir();
+            Console.WriteLine("CERRAR PEDIDO");
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("UPDATE pedidos SET PAGADO=@pagado, TotalPagado=@totalpagado WHERE N_Pedido=@n_pedido;", conX.cn);
+                cmd.Parameters.AddWithValue("@pagado", pagado);
+                cmd.Parameters.AddWithValue("@totalpagado", totalpagado);
+                cmd.Parameters.AddWithValue("@pedido", n_pedido);
                 cmd.ExecuteNonQuery();
             }
             catch (MySqlException ex)

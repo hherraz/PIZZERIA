@@ -20,14 +20,18 @@ namespace Pizzeria
 
         #region INSTANCIAS
         conexion conX = new conexion();
-
         NumerosPedido NumX = new NumerosPedido();
         Garzones garX = new Garzones();
         Mesas mesX = new Mesas();
         #endregion
 
+        private int numero_de_pedido_actual;
+
         private void ConsumoLocal_Load(object sender, EventArgs e)
         {
+            //INICIO VARIABLE GLOBAL EN CERO */*/*/
+            DatosCompartidos.Instance().Pagado = 0;
+
             //Guardo Nombre del Formulari Activo
             DatosCompartidos.Instance().NombreFormularioActivo = "ConsumoLocal";
 
@@ -105,9 +109,37 @@ namespace Pizzeria
         }                                    ////**** BOTON TOPE DERECHO
         private void btn_pagar_Click(object sender, EventArgs e)
         {
+            //GUARDAR PARA OBTENER LA ULTIMA MODIFICACION
             Guardar();
-            MessageBox.Show("CONFIRMAR LA FORMA DE PAGO EN OTRO FORMULARIO");
-            MessageBox.Show("DESEA CERRAR LA MESA?");
+
+            if (ListaMesas.SelectedIndex != 0 || ListaGarzones.SelectedIndex !=0)
+            {
+                //PASAR VARIABLE DEL NUMERO DE PEDIDO AL GLOBAL
+                DatosCompartidos.Instance().PagarPedido = numero_de_pedido_actual;
+
+                //ABRIR FORMULARIO
+                Pagar pag = new Pagar();
+                pag.ShowDialog(this);
+
+                //VERIFICAR QUE SE HAYA PAGADO Y TERMINAR EL PROCESO
+                if (DatosCompartidos.Instance().Pagado == 1)
+                {
+                    //PAGADO OK
+                    mesX.CerrarMesa(Convert.ToInt32(ListaMesas.SelectedValue.ToString()));
+
+                    DatosCompartidos.Instance().PagarPedido = 0;
+                    DatosCompartidos.Instance().Pagado = 0;
+                }
+                else
+                {
+                    MessageBox.Show("PEDIDO NO PAGADO");
+                }
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("NO HA SELECCIONADO UNA MESA O GARZON VALIDO.\nSELECCIONE UNO E INTENTELO NUEVAMENTE.");
+            }
         }                                     ////**** BOTON PAGAR
         private void btnGuardarConsumo_Click(object sender, EventArgs e)
         {
@@ -163,33 +195,53 @@ namespace Pizzeria
         {
             status.Text = mesX.StatusMesas(Convert.ToInt32(ListaMesas.SelectedValue.ToString()));
 
-            if (status.Text == "CERRADA")
+            if (ListaMesas.SelectedIndex > 1)
             {
-                DialogResult res = MessageBox.Show("Desea abrir esta mesa?", "Mesas", MessageBoxButtons.YesNo);
-                if (res == DialogResult.Yes)
+                if (status.Text == "CERRADA")
                 {
-                    btnGuardarConsumo.Visible = true;
+                    DialogResult res = MessageBox.Show("Desea abrir esta mesa?", "Mesas", MessageBoxButtons.YesNo);
+                    if (res == DialogResult.Yes)
+                    {
+                        btnGuardarConsumo.Visible = true;
+                        numero_de_pedido_actual = Convert.ToInt32(label20.Text) + 1;
+                    }
+                    else
+                    {
+                        Close();
+                    }
                 }
                 else
                 {
-                    Close();
+                    btnGuardarConsumo.Visible = true;
+                
+                    //BLOQUEA BOTONES
+                    ListaMesas.Enabled = false;
+                    ListaGarzones.Enabled = false;
+
+                    //TRAE PEDIDO MESA ABIERTA
+                    TrarPedidoMesa();
+                    NumX.BorrarPedido(Convert.ToInt32(label1.Text));
+
+                    //TRAER AL GARZON
+                    int num_pedido = NumX.TraeNumeroMesaAbierta(Convert.ToInt32(ListaMesas.SelectedValue.ToString()));
+                    ListaGarzones.SelectedValue = garX.GarzonPedido(num_pedido);
+
+                    //SUMAR
+                    ActualizarSuma();
                 }
             }
-            else
+            else if(ListaMesas.SelectedIndex == 1)
             {
-                btnGuardarConsumo.Visible = true;
-                
+                MessageBox.Show("RECUERDE - ESTA VENTA REQUIERE PAGO INMEDIATO");
+                DatosCompartidos.Instance().PagoInmediato = 1;
+
+                numero_de_pedido_actual = Convert.ToInt32(label20.Text) + 1;
+
+                ListaGarzones.SelectedIndex = 1;
+
                 //BLOQUEA BOTONES
                 ListaMesas.Enabled = false;
                 ListaGarzones.Enabled = false;
-
-                //TRAE PEDIDO MESA ABIERTA
-                TrarPedidoMesa();
-                NumX.BorrarPedido(Convert.ToInt32(label1.Text));
-
-                //TRAER AL GARZON
-                int num_pedido = NumX.TraeNumeroMesaAbierta(Convert.ToInt32(ListaMesas.SelectedValue.ToString()));
-                ListaGarzones.SelectedValue = garX.GarzonPedido(num_pedido);
 
                 //SUMAR
                 ActualizarSuma();
@@ -202,7 +254,7 @@ namespace Pizzeria
         {
             if (status.Text == "ABIERTA")
             {
-                label20.Text = Convert.ToString(Convert.ToInt32(label1.Text) - 1);
+                label20.Text = Convert.ToString(Convert.ToInt32(NumX.TraeNumeroMesaAbierta(Convert.ToInt32(ListaMesas.SelectedValue.ToString())))-1);
             }
             else
             {
@@ -216,7 +268,7 @@ namespace Pizzeria
             //LIMPIA EL GRID
             GridConsumo.Rows.Clear();
             //MARCA EL NUMERO DE PEDIDO Y TRAE EL PROXIMO
-            NumX.MarcarUltimoNumero(Convert.ToInt32(label20.Text));
+            NumX.MarcarUltimoNumero(numero_de_pedido_actual-1);
             label20.Text = Convert.ToString(NumX.GenerarNumero());
             NumX.LimpiarFoliosSinUso();
 
@@ -230,7 +282,7 @@ namespace Pizzeria
             foreach (DataGridViewRow row in GridConsumo.Rows)
             {
                 MySqlCommand GridConsumoMySql = new MySqlCommand("insert into prod_pedidos (N_Pedido, Cantidad, Item, Unitario, Subtotal, Cocina) values (@N_pedido, @cantidad, @item, @unitario, @subtotal, 0);", conX.cn);
-                GridConsumoMySql.Parameters.AddWithValue("@N_pedido", Convert.ToInt32(label20.Text) + 1);       //N_pedido
+                GridConsumoMySql.Parameters.AddWithValue("@N_pedido", numero_de_pedido_actual);                 //N_pedido
                 GridConsumoMySql.Parameters.AddWithValue("@cantidad", Convert.ToInt32(row.Cells[0].Value));     //cantidad
                 GridConsumoMySql.Parameters.AddWithValue("@item", Convert.ToString(row.Cells[1].Value));        //item
                 GridConsumoMySql.Parameters.AddWithValue("@unitario", Convert.ToInt32(row.Cells[2].Value));     //Unitario
@@ -249,7 +301,7 @@ namespace Pizzeria
                 theDate.ToString("yyyy-MM-dd H:mm:ss");
 
                 MySqlCommand cmd = new MySqlCommand("INSERT INTO pedidos (N_Pedido, Tipo_Pedido, Id_Mesa, Id_Garzon, Fecha_Pedido, PAGADO) VALUES (@N_Pedido, @Tipo_Pedido, @Id_Mesa, @Id_Garzon, @Fecha_Pedido, @PAGADO)", conX.cn);
-                cmd.Parameters.AddWithValue("@N_Pedido", Convert.ToInt32(label20.Text) + 1);
+                cmd.Parameters.AddWithValue("@N_Pedido", numero_de_pedido_actual);
                 cmd.Parameters.AddWithValue("@Tipo_Pedido", "Consumo");
                 cmd.Parameters.AddWithValue("@Id_Mesa", Convert.ToInt32(ListaMesas.SelectedValue.ToString()));
                 cmd.Parameters.AddWithValue("@Id_Garzon", Convert.ToInt32(ListaGarzones.SelectedValue.ToString()));
@@ -280,6 +332,7 @@ namespace Pizzeria
         public void TrarPedidoMesa()
         {
             int numPedido = NumX.TraeNumeroMesaAbierta(Convert.ToInt32(ListaMesas.SelectedValue.ToString()));
+            numero_de_pedido_actual = numPedido;
             conX.Abrir();
             try
             {
@@ -294,6 +347,7 @@ namespace Pizzeria
                     GridConsumo.Rows.Add(row["Cantidad"].ToString(), row["Item"].ToString(), row["Unitario"].ToString(), row["Subtotal"].ToString());
                 }
                 label1.Text = numPedido.ToString();
+                //label20.Text = label1.Text;
             }
             catch (MySqlException EX)
             {

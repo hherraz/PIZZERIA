@@ -164,7 +164,6 @@
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 22;
             this.label1.Text = "label1";
-            this.label1.Visible = false;
             // 
             // status
             // 
@@ -184,7 +183,6 @@
             this.label20.Size = new System.Drawing.Size(41, 13);
             this.label20.TabIndex = 6;
             this.label20.Text = "label20";
-            this.label20.Visible = false;
             // 
             // ListaMesas
             // 

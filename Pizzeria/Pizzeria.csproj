@@ -119,6 +119,12 @@
     <Compile Include="Delivery.Designer.cs">
       <DependentUpon>Delivery.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pagar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pagar.Designer.cs">
+      <DependentUpon>Pagar.cs</DependentUpon>
+    </Compile>
     <Compile Include="RetiroLocal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Delivery.resx">
       <DependentUpon>Delivery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pagar.resx">
+      <DependentUpon>Pagar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RetiroLocal.resx">
       <DependentUpon>RetiroLocal.cs</DependentUpon>
@@ -276,6 +285,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pizza.ico" />
+    <None Include="Resources\IMG_1467.jpg" />
     <None Include="Resources\gray-background.jpg" />
     <None Include="Resources\Wallp.png" />
     <None Include="Resources\FONDO2.jpg" />

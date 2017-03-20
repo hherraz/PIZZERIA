@@ -30,5 +30,9 @@ namespace Pizzeria
 
         public string NombreFormularioActivo { get; set; }
 
+        public int PagarPedido { get; set; }
+        public int Pagado { get; set; }
+        public int PagoInmediato { get; set; }
+
     }
 }

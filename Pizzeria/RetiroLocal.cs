@@ -20,6 +20,7 @@ namespace Pizzeria
 
         #region INSTANCIAS
         conexion conX = new conexion();
+        Mesas mesX = new Mesas();
         NumerosPedido NumX = new NumerosPedido();
         #endregion
 
@@ -89,9 +90,37 @@ namespace Pizzeria
         }                                    ////**** BOTON TOPE DERECHO
         private void btn_pagar_Click(object sender, EventArgs e)
         {
+            //GUARDAR PARA OBTENER LA ULTIMA MODIFICACION
             Guardar();
-            MessageBox.Show("CONFIRMAR LA FORMA DE PAGO EN OTRO FORMULARIO");
-            MessageBox.Show("DESEA CERRAR LA MESA?");
+            if (GridRetiro.RowCount >0)
+            {
+                //PASAR VARIABLE DEL NUMERO DE PEDIDO AL GLOBAL
+                DatosCompartidos.Instance().PagarPedido = Convert.ToInt32(label20.Text);
+
+                //ABRIR FORMULARIO
+                Pagar pag = new Pagar();
+                pag.ShowDialog(this);
+
+                //VERIFICAR QUE SE HAYA PAGADO Y TERMINAR EL PROCESO
+                if (DatosCompartidos.Instance().Pagado == 1)
+                {
+                    //PAGADO OK
+                    mesX.CerrarMesa(2);
+
+                    DatosCompartidos.Instance().PagarPedido = 0;
+                    DatosCompartidos.Instance().Pagado = 0;
+                }
+                else
+                {
+                    MessageBox.Show("PEDIDO NO PAGADO");
+                }
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("NO HAY PRODUCTOS PARA REALIZAR PAGO.\nINGRESE ALGUNOS E INTENTE NUEVAMENTE.");
+            }
+
         }                                     ////**** BOTON PAGAR
         private void btnGuardarConsumo_Click(object sender, EventArgs e)
         {

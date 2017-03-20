@@ -24,6 +24,7 @@ namespace Pizzeria
         conexion conX = new conexion();
         NumerosPedido NumX = new NumerosPedido();
         ClientesDelivery cd = new ClientesDelivery();
+        Mesas mesX = new Mesas();
         #endregion
 
         private void Delivery_Load(object sender, EventArgs e)
@@ -115,9 +116,38 @@ namespace Pizzeria
         }                                    ////**** BOTON TOPE DERECHO
         private void btn_pagar_Click(object sender, EventArgs e)
         {
+            //GUARDAR PARA OBTENER LA ULTIMA MODIFICACION
             Guardar();
-            MessageBox.Show("CONFIRMAR LA FORMA DE PAGO EN OTRO FORMULARIO");
-            MessageBox.Show("DESEA CERRAR LA MESA?");
+
+            if (GridDelivery.RowCount > 0)
+            {
+                //PASAR VARIABLE DEL NUMERO DE PEDIDO AL GLOBAL
+                DatosCompartidos.Instance().PagarPedido = Convert.ToInt32(label20.Text);
+
+                //ABRIR FORMULARIO
+                Pagar pag = new Pagar();
+                pag.ShowDialog(this);
+
+                //VERIFICAR QUE SE HAYA PAGADO Y TERMINAR EL PROCESO
+                if (DatosCompartidos.Instance().Pagado == 1)
+                {
+                    //PAGADO OK
+                    mesX.CerrarMesa(2);
+
+                    DatosCompartidos.Instance().PagarPedido = 0;
+                    DatosCompartidos.Instance().Pagado = 0;
+                }
+                else
+                {
+                    MessageBox.Show("PEDIDO NO PAGADO");
+                }
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("NO HAY PRODUCTOS PARA REALIZAR EL PAGO.\nAGREGUE ALGUNOS Y CONTINUE CON EL PAGO.");
+            }
+
         }                                     ////**** BOTON PAGAR
         private void btnGuardarConsumo_Click(object sender, EventArgs e)
         {
@@ -180,7 +210,7 @@ namespace Pizzeria
                 AgregaDetallePedidoMySql();
 
                 //SU NUMERO DE PEDIDO ES
-                MessageBox.Show("Su numero de pedido es el: " + label20.Text);
+                MessageBox.Show("Su numero de pedido es el: " + (Convert.ToInt32(label20.Text)+1));
 
                 //LIMPIA EL GRID
                 GridDelivery.Rows.Clear();
@@ -195,7 +225,7 @@ namespace Pizzeria
             }
             else
             {
-                MessageBox.Show("ERROR, FALTAN DATOS PARA COMPLETAR EL PEDIDO.");
+                MessageBox.Show("ERROR, FALTAN DATOS DEL SOLICITANTE PARA COMPLETAR EL PEDIDO.\nCOMPLETE LOS DATOS EN ROJO Y CONTINUE.");
                 if (txtNombre.TextLength == 0)
                 {
                     txtNombre.BackColor = Color.Red;
@@ -232,6 +262,11 @@ namespace Pizzeria
         {
             conX.Abrir();
             Console.WriteLine("AGREGAR PEDIDO");
+            if (txtVuelto.TextLength == 0)
+            {
+                txtVuelto.Text = "0";
+            }
+
             try
             {
                 DateTime theDate = DateTime.Now;
@@ -239,7 +274,7 @@ namespace Pizzeria
 
                 MySqlCommand cmd = new MySqlCommand("INSERT INTO pedidos (N_Pedido, Tipo_Pedido, Id_Mesa, Id_Garzon, Fecha_Pedido, PAGADO, NombreRetiro, TelefonoRetiro, IdClienteDelivery, FormaPago, Vuelto) VALUES (@N_Pedido, @Tipo_Pedido, @Id_Mesa, @Id_Garzon, @Fecha_Pedido, @PAGADO, @NombreRetiro, @TelefonoRetiro, @idcliente, @formapago, @vuelto )", conX.cn);
                 cmd.Parameters.AddWithValue("@N_Pedido", Convert.ToInt32(label20.Text) + 1);
-                cmd.Parameters.AddWithValue("@Tipo_Pedido", "delivery");
+                cmd.Parameters.AddWithValue("@Tipo_Pedido", "DELIVERY");
                 cmd.Parameters.AddWithValue("@Id_Mesa", 2);
                 cmd.Parameters.AddWithValue("@Id_Garzon", 2);
                 cmd.Parameters.AddWithValue("@Fecha_Pedido", theDate);
@@ -247,8 +282,8 @@ namespace Pizzeria
                 cmd.Parameters.AddWithValue("@NombreRetiro", txtNombre.Text);
                 cmd.Parameters.AddWithValue("@TelefonoRetiro", txtTelefono.Text);
                 cmd.Parameters.AddWithValue("@idcliente", IDCLIENTE.Text);
-                cmd.Parameters.AddWithValue("@formapago", FormaPago.Text);
-                cmd.Parameters.AddWithValue("@vuelto", txtVuelto.Text);
+                cmd.Parameters.AddWithValue("@formapago", FormaPago.SelectedValue.ToString());
+                cmd.Parameters.AddWithValue("@vuelto", Convert.ToInt32(txtVuelto.Text));
 
 
 
