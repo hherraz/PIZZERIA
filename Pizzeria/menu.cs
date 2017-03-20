@@ -201,5 +201,11 @@ namespace Pizzeria
                 sorpresa = 0;
             }
         }
+
+        private void btn_delivery_Click(object sender, EventArgs e)
+        {
+            DetalleRetiro det = new DetalleRetiro();
+            det.ShowDialog(this);
+        }
     }
 }

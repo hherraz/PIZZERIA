@@ -222,6 +222,7 @@
             this.btn_delivery.TabIndex = 1;
             this.btn_delivery.TabStop = false;
             this.toolTip1.SetToolTip(this.btn_delivery, "ESTADO PEDIDOS / DELIVERY");
+            this.btn_delivery.Click += new System.EventHandler(this.btn_delivery_Click);
             this.btn_delivery.MouseLeave += new System.EventHandler(this.btn_delivery_MouseLeave);
             this.btn_delivery.MouseHover += new System.EventHandler(this.btn_delivery_MouseHover);
             // 

@@ -119,6 +119,12 @@
     <Compile Include="Delivery.Designer.cs">
       <DependentUpon>Delivery.cs</DependentUpon>
     </Compile>
+    <Compile Include="DetalleRetiro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetalleRetiro.Designer.cs">
+      <DependentUpon>DetalleRetiro.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pagar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,6 +182,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Delivery.resx">
       <DependentUpon>Delivery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetalleRetiro.resx">
+      <DependentUpon>DetalleRetiro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pagar.resx">
       <DependentUpon>Pagar.cs</DependentUpon>
