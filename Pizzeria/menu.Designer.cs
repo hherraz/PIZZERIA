@@ -209,6 +209,7 @@
             this.btn_productos.TabIndex = 2;
             this.btn_productos.TabStop = false;
             this.toolTip1.SetToolTip(this.btn_productos, "MANAGER DE PRODUCTOS");
+            this.btn_productos.Click += new System.EventHandler(this.btn_productos_Click);
             this.btn_productos.MouseLeave += new System.EventHandler(this.btn_productos_MouseLeave);
             this.btn_productos.MouseHover += new System.EventHandler(this.btn_productos_MouseHover);
             // 

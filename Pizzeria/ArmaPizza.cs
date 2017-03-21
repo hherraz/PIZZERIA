@@ -98,7 +98,7 @@ namespace Pizzeria
         {
             CentrarForm();
             FormatoGrid();
-            CargaPizzasCasa();
+            CargaIngredientes();
             CargaMedidaPizzas();
             CargaMasasPizzas();
 
@@ -190,7 +190,7 @@ namespace Pizzeria
             }
         }
 
-        public void CargaPizzasCasa()                                                                   ////**** CARGA DATOS EN GRID PIZZAS DE LA CASA
+        public void CargaIngredientes()                                                                 ////**** CARGA DATOS EN GRID LOS INGREDIENTES
         {
             #region CALCULO DE TOTAL DE REGISTROS / TOTALES DE COLUMNAS, FILAS, ETC
 
@@ -253,10 +253,17 @@ namespace Pizzeria
                 while (dr.Read())                                                                                   //LISTOS PARA POBLAR EL IMAGELIST Y EL LISTVIEW
                 {
                     dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.None;                               // SETEO EL BORDE DE LA CELDA
-
-                    // EMPAQUETAMOS IMAGEN YA CON EL TAMANO QUE QUEREMOS 80X80 Y LA AGREGAMOS A LA FILA DEL DATAGRID
                     Font fuente = new Font("Verdana", 8);                                                           //PREDETERMINO LA FUENTE Y EL TAMANO DEL TEXTO A GENERAR
-                    Image image = resizeImage(Image.FromFile(dr["RutaFoto"].ToString()), new Size(100, 100));       //RUTA DE LA IMAGEN DESDE LA BASE DATOS Y TAMANO
+
+
+                    /////CODIGO PARA LEER LAS FOTOS DESDE LA BASE DATOS
+                    byte[] imgArr = (byte[])dr["Imagen"];
+                    imgArr = (byte[])dr["Imagen"];
+                    MemoryStream stream = new MemoryStream(imgArr);
+                    Image image = resizeImage(Image.FromStream(stream), new Size(100, 100));
+                    /////CODIGO PARA LEER LAS FOTOS DESDE LA BASE DATOS
+
+
                     Graphics g = Graphics.FromImage(image);                                                         //LA PASAMOS A OBJETO GRAFICO
                     g.FillRectangle(Brushes.Black, new Rectangle(0, 0, this.Width, 15));                            //DIBUJO EL RECTANGULO NEGRO CON GDI+
                     SizeF txtsize=TextRenderer.MeasureText(dr["NombreIngrediente"].ToString(), fuente);                           //CALCULO EL TAMANO GRAFICO DEL STRING PARA PODER CENTRAR EL TEXTO

@@ -207,5 +207,11 @@ namespace Pizzeria
             DetalleRetiro det = new DetalleRetiro();
             det.ShowDialog(this);
         }
+
+        private void btn_productos_Click(object sender, EventArgs e)
+        {
+            MantenimientoProductos man = new MantenimientoProductos();
+            man.ShowDialog(this);
+        }
     }
 }

@@ -85,6 +85,7 @@
             // btnRetiro
             // 
             this.btnRetiro.BackColor = System.Drawing.Color.Aqua;
+            this.btnRetiro.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRetiro.Location = new System.Drawing.Point(30, 52);
             this.btnRetiro.Name = "btnRetiro";
             this.btnRetiro.Size = new System.Drawing.Size(358, 34);
@@ -96,6 +97,7 @@
             // btnDelivery
             // 
             this.btnDelivery.BackColor = System.Drawing.Color.Aqua;
+            this.btnDelivery.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelivery.Location = new System.Drawing.Point(394, 52);
             this.btnDelivery.Name = "btnDelivery";
             this.btnDelivery.Size = new System.Drawing.Size(358, 34);
@@ -151,6 +153,8 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Black;
+            this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(27, 394);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 13);
@@ -160,6 +164,8 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Black;
+            this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(414, 394);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 13);
@@ -169,6 +175,8 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Black;
+            this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(27, 420);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(66, 13);
@@ -178,6 +186,8 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Black;
+            this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(27, 446);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(75, 13);
@@ -209,6 +219,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::Pizzeria.Properties.Resources.Gray;
             this.ClientSize = new System.Drawing.Size(777, 493);
             this.Controls.Add(this.lblPedido);
             this.Controls.Add(this.button1);
