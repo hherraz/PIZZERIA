@@ -99,6 +99,12 @@
     <Compile Include="AddProductos.Designer.cs">
       <DependentUpon>AddProductos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Agregar_Productos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Agregar_Productos.Designer.cs">
+      <DependentUpon>Agregar_Productos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Agregar_Ingredientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddProductos.resx">
       <DependentUpon>AddProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Agregar_Productos.resx">
+      <DependentUpon>Agregar_Productos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Agregar_Ingredientes.resx">
       <DependentUpon>Agregar_Ingredientes.cs</DependentUpon>
@@ -313,6 +322,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pizza.ico" />
+    <None Include="Resources\EMPTY.png" />
+    <None Include="Resources\empty.bmp" />
+    <None Include="Resources\background.jpg" />
     <None Include="Resources\Gray.png" />
     <None Include="Resources\gray-background1.jpg" />
     <None Include="Resources\IMG_1467.jpg" />

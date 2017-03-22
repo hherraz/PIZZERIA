@@ -63,6 +63,36 @@ namespace Pizzeria.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap background {
+            get {
+                object obj = ResourceManager.GetObject("background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bg1 {
+            get {
+                object obj = ResourceManager.GetObject("bg1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bg2 {
+            get {
+                object obj = ResourceManager.GetObject("bg2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cierre {
             get {
                 object obj = ResourceManager.GetObject("cierre", resourceCulture);
@@ -76,6 +106,16 @@ namespace Pizzeria.Properties {
         internal static System.Drawing.Bitmap delivery {
             get {
                 object obj = ResourceManager.GetObject("delivery", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EMPTY {
+            get {
+                object obj = ResourceManager.GetObject("EMPTY", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -116,26 +156,6 @@ namespace Pizzeria.Properties {
         internal static System.Drawing.Bitmap Gray {
             get {
                 object obj = ResourceManager.GetObject("Gray", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap gray_background {
-            get {
-                object obj = ResourceManager.GetObject("gray-background", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap gray_background1 {
-            get {
-                object obj = ResourceManager.GetObject("gray-background1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

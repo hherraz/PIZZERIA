@@ -32,6 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Button();
+            this.btnProductos = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,12 +80,24 @@
             this.btnCerrar.UseVisualStyleBackColor = false;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
+            // btnProductos
+            // 
+            this.btnProductos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProductos.Location = new System.Drawing.Point(45, 109);
+            this.btnProductos.Name = "btnProductos";
+            this.btnProductos.Size = new System.Drawing.Size(317, 39);
+            this.btnProductos.TabIndex = 3;
+            this.btnProductos.Text = "PRODUCTOS";
+            this.btnProductos.UseVisualStyleBackColor = true;
+            this.btnProductos.Click += new System.EventHandler(this.btnProductos_Click);
+            // 
             // MantenimientoProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Pizzeria.Properties.Resources.IMG_1467;
             this.ClientSize = new System.Drawing.Size(407, 465);
+            this.Controls.Add(this.btnProductos);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnIngredientes);
@@ -104,5 +117,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.Button btnProductos;
     }
 }

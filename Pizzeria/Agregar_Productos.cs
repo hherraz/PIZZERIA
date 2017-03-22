@@ -13,9 +13,9 @@ using System.Windows.Forms;
 
 namespace Pizzeria
 {
-    public partial class Agregar_Ingredientes : Form
+    public partial class Agregar_Productos : Form
     {
-        public Agregar_Ingredientes()
+        public Agregar_Productos()
         {
             InitializeComponent();
         }
@@ -32,6 +32,10 @@ namespace Pizzeria
             btnCargarFoto.Visible = true;
             txtNombre.Enabled = true;
             txtPrecio.Enabled = true;
+            txtStock.Enabled = true;
+            txtMin.Enabled = true;
+            txtMax.Enabled = true;
+            Familia.Enabled = true;
 
             btnNuevo.Enabled = false;
             btnModificar.Enabled = false;
@@ -39,6 +43,10 @@ namespace Pizzeria
 
             txtNombre.Clear();
             txtPrecio.Clear();
+            txtStock.Clear();
+            txtMin.Clear();
+            txtMax.Clear();
+            Familia.SelectedIndex = -1;
             pictureBox1.Image = null;
 
         }
@@ -49,6 +57,10 @@ namespace Pizzeria
             btnCargarFoto.Visible = false;
             txtNombre.Enabled = false;
             txtPrecio.Enabled = false;
+            txtStock.Enabled = false;
+            txtMin.Enabled = false;
+            txtMax.Enabled = false;
+            Familia.Enabled = false;
 
             btnNuevo.Enabled = true;
             btnModificar.Enabled = true;
@@ -66,9 +78,13 @@ namespace Pizzeria
                         pictureBox1.Image.Save(ms, ImageFormat.Png);
                         byte[] imgArr = ms.ToArray();
 
-                        MySqlCommand cmd = new MySqlCommand("INSERT INTO ingredientes (NombreIngrediente, PrecioIngrediente, Imagen) VALUES (@txtnombre, @txtprecio, @imagen)", conX.cn);
+                        MySqlCommand cmd = new MySqlCommand("INSERT INTO productos (Item, PrecioUnitario, Stock, Stock_minimo, Stock_Maximo, Familia, Imagen) VALUES (@txtnombre, @txtprecio, @Stock, @Stock_minimo, @Stock_Maximo, @Familia, @imagen)", conX.cn);
                         cmd.Parameters.AddWithValue("@txtnombre", txtNombre.Text);
                         cmd.Parameters.AddWithValue("@txtprecio", Convert.ToInt32(txtPrecio.Text));
+                        cmd.Parameters.AddWithValue("@Stock", Convert.ToInt32(txtStock.Text));
+                        cmd.Parameters.AddWithValue("@Stock_minimo", Convert.ToInt32(txtMin.Text));
+                        cmd.Parameters.AddWithValue("@Stock_Maximo", Convert.ToInt32(txtMax.Text));
+                        cmd.Parameters.AddWithValue("@Familia", Convert.ToInt32(Familia.SelectedValue));
                         cmd.Parameters.AddWithValue("@imagen", imgArr);
                         cmd.ExecuteNonQuery();
                     }
@@ -88,9 +104,13 @@ namespace Pizzeria
                         pictureBox1.Image.Save(ms, ImageFormat.Png);
                         byte[] imgArr = ms.ToArray();
 
-                        MySqlCommand cmd = new MySqlCommand("UPDATE ingredientes SET NombreIngrediente=@txtNombre, PrecioIngrediente=@txtPrecio, Imagen=@imagen WHERE IdIngrediente=@id;", conX.cn);
+                        MySqlCommand cmd = new MySqlCommand("UPDATE productos SET Item=@txtNombre, PrecioUnitario=@txtPrecio, Stock=@Stock, Stock_minimo=@Stock_minimo, Stock_Maximo=@Stock_Maximo, Familia=@Familia, Imagen=@imagen WHERE IdProducto=@id;", conX.cn);
                         cmd.Parameters.AddWithValue("@txtnombre", txtNombre.Text);
                         cmd.Parameters.AddWithValue("@txtprecio", Convert.ToInt32(txtPrecio.Text));
+                        cmd.Parameters.AddWithValue("@Stock", Convert.ToInt32(txtStock.Text));
+                        cmd.Parameters.AddWithValue("@Stock_minimo", Convert.ToInt32(txtMin.Text));
+                        cmd.Parameters.AddWithValue("@Stock_Maximo", Convert.ToInt32(txtMax.Text));
+                        cmd.Parameters.AddWithValue("@Familia", Convert.ToInt32(Familia.SelectedValue));
                         cmd.Parameters.AddWithValue("@imagen", imgArr);
                         cmd.Parameters.AddWithValue("@id", Convert.ToInt32(IdGrid.Text));
                         cmd.ExecuteNonQuery();
@@ -104,12 +124,20 @@ namespace Pizzeria
                 sw = 0;
                 txtNombre.Clear();
                 txtPrecio.Clear();
+                txtStock.Clear();
+                txtMin.Clear();
+                txtMax.Clear();
+                Familia.SelectedIndex = -1;
                 pictureBox1.Image = null;
 
                 btnGuardar.Visible = false;
                 btnCargarFoto.Visible = false;
                 txtNombre.Enabled = false;
                 txtPrecio.Enabled = false;
+                txtStock.Enabled = false;
+                txtMin.Enabled = false;
+                txtMax.Enabled = false;
+                Familia.Enabled = false;
 
                 btnNuevo.Enabled = true;
                 btnModificar.Enabled = true;
@@ -132,6 +160,10 @@ namespace Pizzeria
 
             txtNombre.Enabled = true;
             txtPrecio.Enabled = true;
+            txtStock.Enabled = true;
+            txtMin.Enabled = true;
+            txtMax.Enabled = true;
+            Familia.Enabled = true;
         }
         private void btnBorrar_Click(object sender, EventArgs e)
         {
@@ -145,7 +177,7 @@ namespace Pizzeria
 
         private void CentrarPantalla()
         {
-            this.Size = new Size(531, 460);
+            this.Size = new Size(745, 460);
             this.Location = new Point((Screen.PrimaryScreen.Bounds.Width - this.Width) / 2, (Screen.PrimaryScreen.Bounds.Height - this.Height) / 2);
         }
 
@@ -155,21 +187,21 @@ namespace Pizzeria
             try
             {
                 DataSet ds = new DataSet();
-                MySqlDataAdapter adap = new MySqlDataAdapter("SELECT IdIngrediente, NombreIngrediente, PrecioIngrediente, Imagen FROM ingredientes;", conX.cn);
-                adap.Fill(ds, "Ingredientes");
+                MySqlDataAdapter adap = new MySqlDataAdapter("SELECT * FROM Productos;", conX.cn);
+                adap.Fill(ds, "productos");
                 int x = 0;
                 while (x < ds.Tables[0].Rows.Count)
                 {
-                    if (ds.Tables["Ingredientes"].Rows[x]["Imagen"] == DBNull.Value)
+                    if (ds.Tables["productos"].Rows[x]["Imagen"] == DBNull.Value)
                     {
-                        GridIngredientes.Rows.Add(ds.Tables["Ingredientes"].Rows[x]["IdIngrediente"].ToString(), ds.Tables["Ingredientes"].Rows[x]["NombreIngrediente"].ToString(), ds.Tables["Ingredientes"].Rows[x]["PrecioIngrediente"].ToString(), null);
+                        GridProductos.Rows.Add(ds.Tables["productos"].Rows[x]["IdProducto"].ToString(), ds.Tables["productos"].Rows[x]["Item"].ToString(), ds.Tables["productos"].Rows[x]["PrecioUnitario"].ToString(), ds.Tables["productos"].Rows[x]["Stock"].ToString(), ds.Tables["productos"].Rows[x]["Stock_minimo"].ToString(), ds.Tables["productos"].Rows[x]["Stock_Maximo"].ToString(), ds.Tables["productos"].Rows[x]["Familia"].ToString(), null);
                     }
                     else
                     {
-                        byte[] imageBuffer = (byte[])ds.Tables["Ingredientes"].Rows[x]["Imagen"];
+                        byte[] imageBuffer = (byte[])ds.Tables["productos"].Rows[x]["Imagen"];
                         System.IO.MemoryStream ms = new System.IO.MemoryStream(imageBuffer);
 
-                        GridIngredientes.Rows.Add(ds.Tables["Ingredientes"].Rows[x]["IdIngrediente"].ToString(), ds.Tables["Ingredientes"].Rows[x]["NombreIngrediente"].ToString(), ds.Tables["Ingredientes"].Rows[x]["PrecioIngrediente"].ToString(), Image.FromStream(ms));
+                        GridProductos.Rows.Add(ds.Tables["productos"].Rows[x]["IdProducto"].ToString(), ds.Tables["productos"].Rows[x]["Item"].ToString(), ds.Tables["productos"].Rows[x]["PrecioUnitario"].ToString(), ds.Tables["productos"].Rows[x]["Stock"].ToString(), ds.Tables["productos"].Rows[x]["Stock_minimo"].ToString(), ds.Tables["productos"].Rows[x]["Stock_Maximo"].ToString(), ds.Tables["productos"].Rows[x]["Familia"].ToString(), Image.FromStream(ms));
                     }
                     x++;
                 }
@@ -183,18 +215,18 @@ namespace Pizzeria
         }
         public void FormateoIngredientes()
         {
-            GridIngredientes.Columns.Clear();
-            GridIngredientes.Rows.Clear();
+            GridProductos.Columns.Clear();
+            GridProductos.Rows.Clear();
 
-            GridIngredientes.ReadOnly = true;
-            GridIngredientes.AutoGenerateColumns = false;
+            GridProductos.ReadOnly = true;
+            GridProductos.AutoGenerateColumns = false;
 
-            GridIngredientes.ColumnHeadersVisible = true;
-            GridIngredientes.RowHeadersVisible = false;
+            GridProductos.ColumnHeadersVisible = true;
+            GridProductos.RowHeadersVisible = false;
 
-            GridIngredientes.MultiSelect = false;
-            GridIngredientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            GridIngredientes.ColumnCount = 3;
+            GridProductos.MultiSelect = false;
+            GridProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            GridProductos.ColumnCount = 7;
 
             DataGridViewButtonColumn boton = new DataGridViewButtonColumn();
             boton.HeaderText = "Seleccionar";
@@ -209,22 +241,30 @@ namespace Pizzeria
             col.Tag = "Imagen";
             col.DefaultCellStyle.NullValue = imgX.resizeImage(Pizzeria.Properties.Resources.EMPTY, new Size(100, 100));
 
-            GridIngredientes.Columns[0].Name = "Id";
-            GridIngredientes.Columns[1].Name = "Nombre Ingrediente";
-            GridIngredientes.Columns[2].Name = "Precio";
-            GridIngredientes.Columns.Add(col);
-            GridIngredientes.Columns.Add(boton);
+            GridProductos.Columns[0].Name = "Id";
+            GridProductos.Columns[1].Name = "Nombre Ingrediente";
+            GridProductos.Columns[2].Name = "Precio";
+            GridProductos.Columns[3].Name = "Stock";
+            GridProductos.Columns[4].Name = "Stock\nMinimo";
+            GridProductos.Columns[5].Name = "Stock\nMaximo";
+            GridProductos.Columns[6].Name = "Familia";
+            GridProductos.Columns.Add(col);
+            GridProductos.Columns.Add(boton);
 
-            GridIngredientes.Columns[0].Width = 40;
-            GridIngredientes.Columns[1].Width = 190;
-            GridIngredientes.Columns[2].Width = 40;
-            GridIngredientes.Columns[3].Width = 120;
-            GridIngredientes.Columns[4].Width = 92;
+            GridProductos.Columns[0].Width = 40;
+            GridProductos.Columns[1].Width = 190;
+            GridProductos.Columns[2].Width = 40;
+            GridProductos.Columns[3].Width = 40;
+            GridProductos.Columns[4].Width = 40;
+            GridProductos.Columns[5].Width = 40;
+            GridProductos.Columns[6].Width = 80;
+            GridProductos.Columns[7].Width = 120;
+            GridProductos.Columns[8].Width = 92;
 
-            GridIngredientes.AllowUserToAddRows = false;
-            GridIngredientes.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            GridProductos.AllowUserToAddRows = false;
+            GridProductos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
 
-            GridIngredientes.DefaultCellStyle.Font = new Font("Arial", 9);
+            GridProductos.DefaultCellStyle.Font = new Font("Arial", 9);
 
         }
 
@@ -233,6 +273,27 @@ namespace Pizzeria
             CentrarPantalla();
             FormateoIngredientes();
             PoblarIngredientes();
+            PoblarFamilia();
+        }
+
+        public void PoblarFamilia()
+        {
+            conX.Abrir();
+            try
+            {
+                DataTable dt = new DataTable();
+                MySqlDataAdapter adapt = new MySqlDataAdapter("select * from familiasproductos;", conX.cn);
+                adapt.Fill(dt);
+                Familia.DataSource = dt;
+                Familia.ValueMember = "IdFamilia";
+                Familia.DisplayMember = "NombreFamilia";
+                Familia.SelectedIndex = -1;
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            conX.Cerrar();
         }
 
         private void btnCargarFoto_Click(object sender, EventArgs e)
@@ -259,6 +320,26 @@ namespace Pizzeria
                 MessageBox.Show("ERROR - CAMPO PRECIO VACIO.\nCORRIJALO E INTENTE DE NUEVO.");
                 return 1;
             }
+            else if (txtStock.TextLength == 0)
+            {
+                MessageBox.Show("ERROR - CAMPO STOCK VACIO.\nCORRIJALO E INTENTE DE NUEVO.");
+                return 1;
+            }
+            else if (txtMin.TextLength == 0)
+            {
+                MessageBox.Show("ERROR - CAMPO STOCK MINIMO VACIO.\nCORRIJALO E INTENTE DE NUEVO.");
+                return 1;
+            }
+            else if (txtMax.TextLength == 0)
+            {
+                MessageBox.Show("ERROR - CAMPO STOCK MAXIMO VACIO.\nCORRIJALO E INTENTE DE NUEVO.");
+                return 1;
+            }
+            else if (Familia.SelectedIndex == -1)
+            {
+                MessageBox.Show("ERROR - CAMPO FAMILIA VACIO.\nCORRIJALO E INTENTE DE NUEVO.");
+                return 1;
+            }
             else if (pictureBox1.Image==null)
             {
                 MessageBox.Show("ERROR - NO SE HA CARGADO NINGUNA IMAGEN.\nCORRIJALO E INTENTE DE NUEVO.");
@@ -272,10 +353,13 @@ namespace Pizzeria
 
         private void GridIngredientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            IdGrid.Text = Convert.ToString(GridIngredientes.CurrentRow.Cells[0].Value);
-            
-            txtNombre.Text= Convert.ToString(GridIngredientes.CurrentRow.Cells[1].Value);
-            txtPrecio.Text= Convert.ToString(GridIngredientes.CurrentRow.Cells[2].Value);
+            IdGrid.Text = Convert.ToString(GridProductos.CurrentRow.Cells[0].Value);
+            txtNombre.Text= Convert.ToString(GridProductos.CurrentRow.Cells[1].Value);
+            txtPrecio.Text= Convert.ToString(GridProductos.CurrentRow.Cells[2].Value);
+            txtStock.Text = Convert.ToString(GridProductos.CurrentRow.Cells[3].Value); ;
+            txtMin.Text = Convert.ToString(GridProductos.CurrentRow.Cells[4].Value); ;
+            txtMax.Text = Convert.ToString(GridProductos.CurrentRow.Cells[5].Value); ;
+            Familia.SelectedValue = Convert.ToString(GridProductos.CurrentRow.Cells[6].Value); ;
             pictureBox1.Image = CargarImagen(Convert.ToInt32(IdGrid.Text));
         }
 
@@ -288,8 +372,9 @@ namespace Pizzeria
                 {
                     conX.Abrir();
                     cmd.Connection = conn;
-                    cmd.CommandText = "SELECT Imagen FROM ingredientes WHERE IdIngrediente = @Id";
+                    cmd.CommandText = "SELECT Imagen FROM productos WHERE IdProducto = @Id";
                     cmd.Parameters.AddWithValue("@Id", Id);
+                    
 
                     if (cmd.ExecuteScalar() != DBNull.Value)
                     {
@@ -307,8 +392,8 @@ namespace Pizzeria
                     }
                     conX.Cerrar();
                     return img;
+                    }
                 }
             }
         }
-    }
 }

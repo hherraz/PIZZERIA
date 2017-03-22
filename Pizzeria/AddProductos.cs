@@ -197,8 +197,18 @@ namespace Pizzeria
 
                     // EMPAQUETAMOS IMAGEN YA CON EL TAMANO QUE QUEREMOS 80X80 Y LA AGREGAMOS A LA FILA DEL DATAGRID
                     Font fuente = new Font("Verdana", 8);                                                           //PREDETERMINO LA FUENTE Y EL TAMANO DEL TEXTO A GENERAR
-                    Image image = resizeImage(Image.FromFile(dr["RutaFoto"].ToString()), new Size(120, 120));       //RUTA DE LA IMAGEN DESDE LA BASE DATOS Y TAMANO
-                    Graphics g = Graphics.FromImage(image);                                                         //LA PASAMOS A OBJETO GRAFICO
+
+                    //Image image = resizeImage(Image.FromFile(dr["RutaFoto"].ToString()), new Size(120, 120));       //RUTA DE LA IMAGEN DESDE LA BASE DATOS Y TAMANO
+                    //Graphics g = Graphics.FromImage(image);                                                         //LA PASAMOS A OBJETO GRAFICO
+
+                    /////CODIGO PARA LEER LAS FOTOS DESDE LA BASE DATOS
+                    byte[] imgArr = (byte[])dr["Imagen"];
+                    imgArr = (byte[])dr["Imagen"];
+                    MemoryStream stream = new MemoryStream(imgArr);
+                    Image image = resizeImage(Image.FromStream(stream), new Size(120, 120));
+                    /////CODIGO PARA LEER LAS FOTOS DESDE LA BASE DATOS
+
+                    Graphics g = Graphics.FromImage(image);
                     g.FillRectangle(Brushes.Black, new Rectangle(0, 0, this.Width, 15));                            //DIBUJO EL RECTANGULO NEGRO CON GDI+
                     SizeF txtsize=TextRenderer.MeasureText(dr["Item"].ToString(), fuente);                           //CALCULO EL TAMANO GRAFICO DEL STRING PARA PODER CENTRAR EL TEXTO
                     g.DrawString(dr["Item"].ToString(), fuente, Brushes.White, new PointF((image.Width-txtsize.Width)/2, 0));   //ESCRIBO SOBRE EL RECTANGULO CON GDI+
@@ -309,7 +319,16 @@ namespace Pizzeria
 
                     // EMPAQUETAMOS IMAGEN YA CON EL TAMANO QUE QUEREMOS 80X80 Y LA AGREGAMOS A LA FILA DEL DATAGRID
                     Font fuente = new Font("Verdana", 8);                                                           //PREDETERMINO LA FUENTE Y EL TAMANO DEL TEXTO A GENERAR
-                    Image image = resizeImage(Image.FromFile(dr["RutaFoto"].ToString()), new Size(120, 120));       //RUTA DE LA IMAGEN DESDE LA BASE DATOS Y TAMANO
+
+                    /////CODIGO PARA LEER LAS FOTOS DESDE LA BASE DATOS
+                    byte[] imgArr = (byte[])dr["Imagen"];
+                    imgArr = (byte[])dr["Imagen"];
+                    MemoryStream stream = new MemoryStream(imgArr);
+                    Image image = resizeImage(Image.FromStream(stream), new Size(120, 120));
+                    /////CODIGO PARA LEER LAS FOTOS DESDE LA BASE DATOS
+
+                    //Image image = resizeImage(Image.FromFile(dr["RutaFoto"].ToString()), new Size(120, 120));       //RUTA DE LA IMAGEN DESDE LA BASE DATOS Y TAMANO
+
                     Graphics g = Graphics.FromImage(image);                                                         //LA PASAMOS A OBJETO GRAFICO
                     g.FillRectangle(Brushes.Black, new Rectangle(0, 0, this.Width, 15));                            //DIBUJO EL RECTANGULO NEGRO CON GDI+
                     SizeF txtsize = TextRenderer.MeasureText(dr["Item"].ToString(), fuente);                           //CALCULO EL TAMANO GRAFICO DEL STRING PARA PODER CENTRAR EL TEXTO
@@ -421,7 +440,16 @@ namespace Pizzeria
 
                     // EMPAQUETAMOS IMAGEN YA CON EL TAMANO QUE QUEREMOS 80X80 Y LA AGREGAMOS A LA FILA DEL DATAGRID
                     Font fuente = new Font("Verdana", 8);                                                           //PREDETERMINO LA FUENTE Y EL TAMANO DEL TEXTO A GENERAR
-                    Image image = resizeImage(Image.FromFile(dr["RutaFoto"].ToString()), new Size(120, 120));       //RUTA DE LA IMAGEN DESDE LA BASE DATOS Y TAMANO
+
+                    /////CODIGO PARA LEER LAS FOTOS DESDE LA BASE DATOS
+                    byte[] imgArr = (byte[])dr["Imagen"];
+                    imgArr = (byte[])dr["Imagen"];
+                    MemoryStream stream = new MemoryStream(imgArr);
+                    Image image = resizeImage(Image.FromStream(stream), new Size(120, 120));
+                    /////CODIGO PARA LEER LAS FOTOS DESDE LA BASE DATOS
+
+                    //Image image = resizeImage(Image.FromFile(dr["RutaFoto"].ToString()), new Size(120, 120));       //RUTA DE LA IMAGEN DESDE LA BASE DATOS Y TAMANO
+
                     Graphics g = Graphics.FromImage(image);                                                         //LA PASAMOS A OBJETO GRAFICO
                     g.FillRectangle(Brushes.Black, new Rectangle(0, 0, this.Width, 15));                            //DIBUJO EL RECTANGULO NEGRO CON GDI+
                     SizeF txtsize = TextRenderer.MeasureText(dr["Item"].ToString(), fuente);                           //CALCULO EL TAMANO GRAFICO DEL STRING PARA PODER CENTRAR EL TEXTO
@@ -533,7 +561,16 @@ namespace Pizzeria
 
                     // EMPAQUETAMOS IMAGEN YA CON EL TAMANO QUE QUEREMOS 80X80 Y LA AGREGAMOS A LA FILA DEL DATAGRID
                     Font fuente = new Font("Verdana", 8);                                                           //PREDETERMINO LA FUENTE Y EL TAMANO DEL TEXTO A GENERAR
-                    Image image = resizeImage(Image.FromFile(dr["RutaFoto"].ToString()), new Size(120, 120));       //RUTA DE LA IMAGEN DESDE LA BASE DATOS Y TAMANO
+
+                    /////CODIGO PARA LEER LAS FOTOS DESDE LA BASE DATOS
+                    byte[] imgArr = (byte[])dr["Imagen"];
+                    imgArr = (byte[])dr["Imagen"];
+                    MemoryStream stream = new MemoryStream(imgArr);
+                    Image image = resizeImage(Image.FromStream(stream), new Size(120, 120));
+                    /////CODIGO PARA LEER LAS FOTOS DESDE LA BASE DATOS
+
+                    //Image image = resizeImage(Image.FromFile(dr["RutaFoto"].ToString()), new Size(120, 120));       //RUTA DE LA IMAGEN DESDE LA BASE DATOS Y TAMANO
+
                     Graphics g = Graphics.FromImage(image);                                                         //LA PASAMOS A OBJETO GRAFICO
                     g.FillRectangle(Brushes.Black, new Rectangle(0, 0, this.Width, 15));                            //DIBUJO EL RECTANGULO NEGRO CON GDI+
                     SizeF txtsize = TextRenderer.MeasureText(dr["Item"].ToString(), fuente);                           //CALCULO EL TAMANO GRAFICO DEL STRING PARA PODER CENTRAR EL TEXTO
@@ -645,7 +682,16 @@ namespace Pizzeria
 
                     // EMPAQUETAMOS IMAGEN YA CON EL TAMANO QUE QUEREMOS 80X80 Y LA AGREGAMOS A LA FILA DEL DATAGRID
                     Font fuente = new Font("Verdana", 8);                                                           //PREDETERMINO LA FUENTE Y EL TAMANO DEL TEXTO A GENERAR
-                    Image image = resizeImage(Image.FromFile(dr["RutaFoto"].ToString()), new Size(120, 120));       //RUTA DE LA IMAGEN DESDE LA BASE DATOS Y TAMANO
+
+                    /////CODIGO PARA LEER LAS FOTOS DESDE LA BASE DATOS
+                    byte[] imgArr = (byte[])dr["Imagen"];
+                    imgArr = (byte[])dr["Imagen"];
+                    MemoryStream stream = new MemoryStream(imgArr);
+                    Image image = resizeImage(Image.FromStream(stream), new Size(120, 120));
+                    /////CODIGO PARA LEER LAS FOTOS DESDE LA BASE DATOS
+
+                    //Image image = resizeImage(Image.FromFile(dr["RutaFoto"].ToString()), new Size(120, 120));       //RUTA DE LA IMAGEN DESDE LA BASE DATOS Y TAMANO
+
                     Graphics g = Graphics.FromImage(image);                                                         //LA PASAMOS A OBJETO GRAFICO
                     g.FillRectangle(Brushes.Black, new Rectangle(0, 0, this.Width, 15));                            //DIBUJO EL RECTANGULO NEGRO CON GDI+
                     SizeF txtsize = TextRenderer.MeasureText(dr["Item"].ToString(), fuente);                           //CALCULO EL TAMANO GRAFICO DEL STRING PARA PODER CENTRAR EL TEXTO

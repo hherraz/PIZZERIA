@@ -38,5 +38,11 @@ namespace Pizzeria
         {
             Close();
         }
+
+        private void btnProductos_Click(object sender, EventArgs e)
+        {
+            Agregar_Productos prod = new Agregar_Productos();
+            prod.ShowDialog(this);
+        }
     }
 }
