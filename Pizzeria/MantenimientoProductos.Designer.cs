@@ -33,13 +33,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.btnProductos = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnIngredientes
             // 
             this.btnIngredientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIngredientes.Location = new System.Drawing.Point(45, 64);
+            this.btnIngredientes.Location = new System.Drawing.Point(45, 328);
             this.btnIngredientes.Name = "btnIngredientes";
             this.btnIngredientes.Size = new System.Drawing.Size(317, 39);
             this.btnIngredientes.TabIndex = 0;
@@ -91,12 +92,24 @@
             this.btnProductos.UseVisualStyleBackColor = true;
             this.btnProductos.Click += new System.EventHandler(this.btnProductos_Click);
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(45, 283);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(317, 39);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "PIZZAS DE LA CASA";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MantenimientoProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Pizzeria.Properties.Resources.IMG_1467;
             this.ClientSize = new System.Drawing.Size(407, 465);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnProductos);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.panel1);
@@ -118,5 +131,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Button btnProductos;
+        private System.Windows.Forms.Button button1;
     }
 }

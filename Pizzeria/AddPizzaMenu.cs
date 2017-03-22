@@ -20,6 +20,7 @@ namespace Pizzeria
         }
 
         conexion conX = new conexion();
+        Imagenes imgX = new Imagenes();
 
         //// JUEGO DE VARIABLES DEL FORMULARIO
         int pizza = 0;                                                                                 ////**** ID DE PIZZA SELECCIONADA
@@ -229,7 +230,24 @@ namespace Pizzeria
 
                     // EMPAQUETAMOS IMAGEN YA CON EL TAMANO QUE QUEREMOS 80X80 Y LA AGREGAMOS A LA FILA DEL DATAGRID
                     Font fuente = new Font("Verdana", 8);                                                           //PREDETERMINO LA FUENTE Y EL TAMANO DEL TEXTO A GENERAR
-                    Image image = resizeImage(Image.FromFile(dr["RutaFoto"].ToString()), new Size(100, 100));       //RUTA DE LA IMAGEN DESDE LA BASE DATOS Y TAMANO
+                    Image image;
+
+                    if (dr["Imagen"] == DBNull.Value)
+                    {
+                        image = imgX.resizeImage(Pizzeria.Properties.Resources.EMPTY, new Size (110, 110));
+                    }
+                    else
+                    {
+                    /////CODIGO PARA LEER LAS FOTOS DESDE LA BASE DATOS
+                    byte[] imgArr = (byte[])dr["Imagen"];
+                    imgArr = (byte[])dr["Imagen"];
+                    MemoryStream stream = new MemoryStream(imgArr);
+                    image = resizeImage(Image.FromStream(stream), new Size(110, 110));
+                    /////CODIGO PARA LEER LAS FOTOS DESDE LA BASE DATOS
+                    }
+
+                    //Image image = resizeImage(Image.FromFile(dr["RutaFoto"].ToString()), new Size(100, 100));       //RUTA DE LA IMAGEN DESDE LA BASE DATOS Y TAMANO
+
                     Graphics g = Graphics.FromImage(image);                                                         //LA PASAMOS A OBJETO GRAFICO
                     g.FillRectangle(Brushes.Black, new Rectangle(0, 0, this.Width, 15));                            //DIBUJO EL RECTANGULO NEGRO CON GDI+
                     SizeF txtsize=TextRenderer.MeasureText(dr["Item"].ToString(), fuente);                           //CALCULO EL TAMANO GRAFICO DEL STRING PARA PODER CENTRAR EL TEXTO
@@ -547,6 +565,8 @@ namespace Pizzeria
             pizza = Convert.ToInt32(dataGridView1[e.ColumnIndex, e.RowIndex].Tag.ToString());
             SeleccionActivaPizza = 1;
 
+            txtDesc.Text = CargarDetalle(pizza);
+
             ProductoSeleccionado.Text = PizzaSeleccionada + "\n" + PorteSeleccionada + "\n" + MasaSeleccionada;
             ItemParaEnviar= PizzaSeleccionada + " - " + PorteSeleccionada + " - " + MasaSeleccionada;
             ActivarPedido();
@@ -565,5 +585,24 @@ namespace Pizzeria
         {
             return (Image)(new Bitmap(imgToResize, size));
         }
+
+        public string CargarDetalle(int Id)
+        {
+            using (MySqlConnection conn = conX.cn)
+            {
+                string detalle;
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+                    conX.Abrir();
+                    cmd.Connection = conn;
+                    cmd.CommandText = "SELECT Detalle FROM pizzacasa WHERE id = @Id";
+                    cmd.Parameters.AddWithValue("@Id", Id);
+                    detalle = Convert.ToString(cmd.ExecuteScalar());
+                    conX.Cerrar();
+                    return detalle;
+                }
+            }
+        }
+
     }
 }

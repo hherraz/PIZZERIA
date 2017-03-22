@@ -44,5 +44,11 @@ namespace Pizzeria
             Agregar_Productos prod = new Agregar_Productos();
             prod.ShowDialog(this);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Agregar_PizzasCasa casa = new Agregar_PizzasCasa();
+            casa.ShowDialog(this);
+        }
     }
 }

@@ -260,7 +260,7 @@ namespace Pizzeria
                     byte[] imgArr = (byte[])dr["Imagen"];
                     imgArr = (byte[])dr["Imagen"];
                     MemoryStream stream = new MemoryStream(imgArr);
-                    Image image = resizeImage(Image.FromStream(stream), new Size(100, 100));
+                    Image image = resizeImage(Image.FromStream(stream), new Size(120, 120));
                     /////CODIGO PARA LEER LAS FOTOS DESDE LA BASE DATOS
 
 

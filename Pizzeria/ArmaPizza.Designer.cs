@@ -32,6 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dgIngredientes = new System.Windows.Forms.DataGridView();
             this.txtprecio = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cantidadBox = new System.Windows.Forms.NumericUpDown();
@@ -48,14 +49,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dgIngredientes = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgIngredientes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cantidadBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgIngredientes)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -64,7 +64,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(180, 196);
+            this.label1.Location = new System.Drawing.Point(151, 196);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(214, 17);
             this.label1.TabIndex = 1;
@@ -97,6 +97,23 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(273, 399);
             this.panel1.TabIndex = 10;
+            // 
+            // dgIngredientes
+            // 
+            this.dgIngredientes.AllowUserToAddRows = false;
+            this.dgIngredientes.AllowUserToDeleteRows = false;
+            this.dgIngredientes.AllowUserToResizeColumns = false;
+            this.dgIngredientes.AllowUserToResizeRows = false;
+            this.dgIngredientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgIngredientes.ColumnHeadersVisible = false;
+            this.dgIngredientes.EnableHeadersVisualStyles = false;
+            this.dgIngredientes.Location = new System.Drawing.Point(17, 136);
+            this.dgIngredientes.MultiSelect = false;
+            this.dgIngredientes.Name = "dgIngredientes";
+            this.dgIngredientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgIngredientes.Size = new System.Drawing.Size(240, 179);
+            this.dgIngredientes.TabIndex = 19;
+            this.dgIngredientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgIngredientes_CellContentClick);
             // 
             // txtprecio
             // 
@@ -212,9 +229,9 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dataGridView1.Location = new System.Drawing.Point(181, 216);
+            this.dataGridView1.Location = new System.Drawing.Point(152, 216);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(527, 291);
+            this.dataGridView1.Size = new System.Drawing.Size(556, 291);
             this.dataGridView1.TabIndex = 15;
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             // 
@@ -234,7 +251,7 @@
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Location = new System.Drawing.Point(15, 216);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(157, 291);
+            this.dataGridView3.Size = new System.Drawing.Size(127, 291);
             this.dataGridView3.TabIndex = 18;
             this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
             // 
@@ -272,23 +289,6 @@
             this.panel2.Size = new System.Drawing.Size(1008, 31);
             this.panel2.TabIndex = 21;
             // 
-            // dgIngredientes
-            // 
-            this.dgIngredientes.AllowUserToAddRows = false;
-            this.dgIngredientes.AllowUserToDeleteRows = false;
-            this.dgIngredientes.AllowUserToResizeColumns = false;
-            this.dgIngredientes.AllowUserToResizeRows = false;
-            this.dgIngredientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgIngredientes.ColumnHeadersVisible = false;
-            this.dgIngredientes.EnableHeadersVisualStyles = false;
-            this.dgIngredientes.Location = new System.Drawing.Point(17, 136);
-            this.dgIngredientes.MultiSelect = false;
-            this.dgIngredientes.Name = "dgIngredientes";
-            this.dgIngredientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgIngredientes.Size = new System.Drawing.Size(240, 179);
-            this.dgIngredientes.TabIndex = 19;
-            this.dgIngredientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgIngredientes_CellContentClick);
-            // 
             // ArmaPizza
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -317,13 +317,13 @@
             this.Load += new System.EventHandler(this.AddProductos_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgIngredientes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cantidadBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgIngredientes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

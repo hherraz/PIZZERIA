@@ -49,6 +49,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtDesc = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cantidadBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -63,7 +64,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(17, 40);
+            this.label1.Location = new System.Drawing.Point(17, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(152, 17);
             this.label1.TabIndex = 1;
@@ -75,7 +76,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(17, 371);
+            this.label2.Location = new System.Drawing.Point(17, 395);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 17);
             this.label2.TabIndex = 9;
@@ -93,7 +94,7 @@
             this.panel1.Controls.Add(this.btnCerrar);
             this.panel1.Controls.Add(this.ProductoSeleccionado);
             this.panel1.Controls.Add(this.AgregarPizzaMenu);
-            this.panel1.Location = new System.Drawing.Point(714, 357);
+            this.panel1.Location = new System.Drawing.Point(715, 358);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(273, 183);
             this.panel1.TabIndex = 10;
@@ -211,7 +212,7 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dataGridView1.Location = new System.Drawing.Point(18, 60);
+            this.dataGridView1.Location = new System.Drawing.Point(18, 56);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(806, 291);
             this.dataGridView1.TabIndex = 15;
@@ -221,7 +222,7 @@
             // 
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(15, 392);
+            this.dataGridView2.Location = new System.Drawing.Point(18, 413);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(693, 128);
             this.dataGridView2.TabIndex = 17;
@@ -230,7 +231,7 @@
             // dataGridView3
             // 
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(830, 60);
+            this.dataGridView3.Location = new System.Drawing.Point(830, 56);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.Size = new System.Drawing.Size(157, 291);
             this.dataGridView3.TabIndex = 18;
@@ -242,7 +243,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(827, 40);
+            this.label5.Location = new System.Drawing.Point(827, 36);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(98, 17);
             this.label5.TabIndex = 19;
@@ -270,6 +271,18 @@
             this.panel2.Size = new System.Drawing.Size(1008, 31);
             this.panel2.TabIndex = 21;
             // 
+            // txtDesc
+            // 
+            this.txtDesc.BackColor = System.Drawing.Color.Black;
+            this.txtDesc.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDesc.ForeColor = System.Drawing.Color.White;
+            this.txtDesc.Location = new System.Drawing.Point(18, 350);
+            this.txtDesc.Multiline = true;
+            this.txtDesc.Name = "txtDesc";
+            this.txtDesc.Size = new System.Drawing.Size(693, 39);
+            this.txtDesc.TabIndex = 22;
+            this.txtDesc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // AddPizzaMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -277,6 +290,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1008, 550);
+            this.Controls.Add(this.txtDesc);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dataGridView3);
@@ -327,5 +341,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox txtprecio;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtDesc;
     }
 }
