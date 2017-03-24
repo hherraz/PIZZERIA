@@ -196,7 +196,7 @@ namespace Pizzeria
             sorpresa++;
             if (sorpresa == 10)
             {
-                AboutBox1 about = new AboutBox1();
+                About about = new About();
                 about.ShowDialog(this);
                 sorpresa = 0;
             }

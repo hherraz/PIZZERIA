@@ -1,6 +1,6 @@
 ﻿namespace Pizzeria
 {
-    partial class AboutBox1
+    partial class About
     {
         /// <summary>
         /// Required designer variable.
