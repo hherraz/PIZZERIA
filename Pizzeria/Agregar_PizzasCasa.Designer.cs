@@ -290,7 +290,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::Pizzeria.Properties.Resources._04_2;
+            this.BackgroundImage = global::Pizzeria.Properties.Resources.bg3;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(709, 440);
             this.Controls.Add(this.txtDesc);
