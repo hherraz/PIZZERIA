@@ -20,7 +20,7 @@ namespace Pizzeria
             InitializeComponent();
         }
 
-        conexion conX = new conexion();
+        Conexion conX = new Conexion();
         Imagenes imgX = new Imagenes();
         int sw = 0; //1=nuevo 2=modificar
 

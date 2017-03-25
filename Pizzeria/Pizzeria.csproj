@@ -131,7 +131,7 @@
       <DependentUpon>AddPizzaMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="ClientesDelivery.cs" />
-    <Compile Include="conexion.cs" />
+    <Compile Include="Conexion.cs" />
     <Compile Include="Delivery.cs">
       <SubType>Form</SubType>
     </Compile>

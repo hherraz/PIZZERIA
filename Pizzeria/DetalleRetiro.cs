@@ -18,7 +18,7 @@ namespace Pizzeria
             InitializeComponent();
         }
 
-        conexion conX = new conexion();
+        Conexion conX = new Conexion();
         int sw = 0; //0=retiro 1=delivery
 
         private void DetalleRetiro_Load(object sender, EventArgs e)

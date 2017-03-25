@@ -11,7 +11,7 @@ namespace Pizzeria
 {
     class Imagenes
     {
-        conexion conX = new conexion();
+        Conexion conX = new Conexion();
 
         public Image CargarImagen()
         {

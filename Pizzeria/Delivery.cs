@@ -21,7 +21,7 @@ namespace Pizzeria
         int switchModificar=0; //switch de 2 pasos para boton modificar
 
         #region INSTANCIAS
-        conexion conX = new conexion();
+        Conexion conX = new Conexion();
         NumerosPedido NumX = new NumerosPedido();
         ClientesDelivery cd = new ClientesDelivery();
         Mesas mesX = new Mesas();

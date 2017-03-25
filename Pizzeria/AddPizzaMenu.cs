@@ -19,7 +19,7 @@ namespace Pizzeria
             InitializeComponent();
         }
 
-        conexion conX = new conexion();
+        Conexion conX = new Conexion();
         Imagenes imgX = new Imagenes();
 
         //// JUEGO DE VARIABLES DEL FORMULARIO
@@ -242,7 +242,7 @@ namespace Pizzeria
                     byte[] imgArr = (byte[])dr["Imagen"];
                     imgArr = (byte[])dr["Imagen"];
                     MemoryStream stream = new MemoryStream(imgArr);
-                    image = resizeImage(Image.FromStream(stream), new Size(110, 110));
+                    image = ResizeImage(Image.FromStream(stream), new Size(110, 110));
                     /////CODIGO PARA LEER LAS FOTOS DESDE LA BASE DATOS
                     }
 
@@ -274,9 +274,11 @@ namespace Pizzeria
                     {
                         for (int index = 0; index < TotalCeldasGeneradas - TotalRegistros; index++)
                         {
-                            DataGridViewCellStyle EstiloCelda = new DataGridViewCellStyle();
-                            EstiloCelda.NullValue = null;
-                            EstiloCelda.Tag = "BLANK";
+                            DataGridViewCellStyle EstiloCelda = new DataGridViewCellStyle()
+                            {
+                                NullValue = null,
+                                Tag = "BLANK"
+                            };
                             dataGridView1.Rows[NumeroFila].Cells[NumeroColumna + index].Style = EstiloCelda;
                         }
                     }
@@ -362,7 +364,7 @@ namespace Pizzeria
                     dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.None;
 
                     // EMPAQUETAMOS IMAGEN YA CON EL TAMANO QUE QUEREMOS 80X80 Y LA AGREGAMOS A LA FILA DEL DATAGRID
-                    Image image1 = resizeImage(Image.FromFile(dr1["RutaFoto_Medida"].ToString()), new Size(100, 100));
+                    Image image1 = ResizeImage(Image.FromFile(dr1["RutaFoto_Medida"].ToString()), new Size(100, 100));
                     dataGridView2.Rows[NumeroFila1].Cells[NumeroColumna1].Value = image1;
 
                     // TOOLTIP GUARDA EL NOMBRE DEL ITEM
@@ -387,9 +389,11 @@ namespace Pizzeria
                     {
                         for (int index = 0; index < TotalCeldasGeneradas1 - TotalRegistros1; index++)
                         {
-                            DataGridViewCellStyle EstiloCelda1 = new DataGridViewCellStyle();
-                            EstiloCelda1.NullValue = null;
-                            EstiloCelda1.Tag = "BLANK";
+                            DataGridViewCellStyle EstiloCelda1 = new DataGridViewCellStyle()
+                            {
+                                NullValue = null,
+                                Tag = "BLANK"
+                            };
                             dataGridView2.Rows[NumeroFila1].Cells[NumeroColumna1 + index].Style = EstiloCelda1;
                         }
                     }
@@ -476,7 +480,7 @@ namespace Pizzeria
                     dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.None;
 
                     // EMPAQUETAMOS IMAGEN YA CON EL TAMANO QUE QUEREMOS 80X80 Y LA AGREGAMOS A LA FILA DEL DATAGRID
-                    Image image2 = resizeImage(Image.FromFile(dr2["RutaFoto_Masa"].ToString()), new Size(120, 90));
+                    Image image2 = ResizeImage(Image.FromFile(dr2["RutaFoto_Masa"].ToString()), new Size(120, 90));
                     dataGridView3.Rows[NumeroFila2].Cells[NumeroColumna2].Value = image2;
 
                     // TOOLTIP GUARDA EL NOMBRE DEL ITEM
@@ -501,9 +505,11 @@ namespace Pizzeria
                     {
                         for (int index = 0; index < TotalCeldasGeneradas2 - TotalRegistros2; index++)
                         {
-                            DataGridViewCellStyle EstiloCelda2 = new DataGridViewCellStyle();
-                            EstiloCelda2.NullValue = null;
-                            EstiloCelda2.Tag = "BLANK";
+                            DataGridViewCellStyle EstiloCelda2 = new DataGridViewCellStyle()
+                            {
+                                NullValue = null,
+                                Tag = "BLANK"
+                            };
                             dataGridView3.Rows[NumeroFila2].Cells[NumeroColumna2 + index].Style = EstiloCelda2;
                         }
                     }
@@ -519,12 +525,12 @@ namespace Pizzeria
             #endregion
         }
 
-        private void cantidadBox_ValueChanged(object sender, EventArgs e)                               ////**** ACTUALIZAR EL VALOR, SI CAMBIA LA CANTIDAD
+        private void CantidadBox_ValueChanged(object sender, EventArgs e)                               ////**** ACTUALIZAR EL VALOR, SI CAMBIA LA CANTIDAD
         {
             ActivarPedido();
         }
 
-        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)         ////**** LANZADOR DEL CLICK EN MASAS
+        private void DataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)         ////**** LANZADOR DEL CLICK EN MASAS
         {
             conX.Abrir();
             MySqlCommand MasaX = new MySqlCommand("select Item_Masa from masaspizza where IdMasa=" + dataGridView3[e.ColumnIndex, e.RowIndex].Tag.ToString() + ";", conX.cn);
@@ -539,7 +545,7 @@ namespace Pizzeria
             ItemParaEnviar = PizzaSeleccionada + " - " + PorteSeleccionada + " - " + MasaSeleccionada;
             ActivarPedido();
         }
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)         ////**** LANZADOR DEL CLICK EN TAMAÑO
+        private void DataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)         ////**** LANZADOR DEL CLICK EN TAMAÑO
         {
             conX.Abrir();
             MySqlCommand Porte = new MySqlCommand("select Item_Medida from medidapizza where IdMedida=" + dataGridView2[e.ColumnIndex, e.RowIndex].Tag.ToString() + ";", conX.cn);
@@ -554,7 +560,7 @@ namespace Pizzeria
             ItemParaEnviar = PizzaSeleccionada + " - " + PorteSeleccionada + " - " + MasaSeleccionada;
             ActivarPedido();
         }
-        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)   ////**** LANZADOR DEL CLICK EN PIZZA DE LA CASA
+        private void DataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)   ////**** LANZADOR DEL CLICK EN PIZZA DE LA CASA
         {
             conX.Abrir();
             MySqlCommand Pizzas = new MySqlCommand("select Item from pizzacasa where Id=" + dataGridView1[e.ColumnIndex, e.RowIndex].Tag.ToString() + ";", conX.cn);
@@ -576,12 +582,12 @@ namespace Pizzeria
         {
             EnviarPedido();
         }
-        private void btnCerrar_Click(object sender, EventArgs e)                                        ////**** BOTON CERRAR
+        private void BtnCerrar_Click(object sender, EventArgs e)                                        ////**** BOTON CERRAR
         {
             Close();
         }
 
-        public static Image resizeImage(Image imgToResize, Size size)                                   ////**** CAMBIA EL TAMANO DE LA IMAGEN
+        public static Image ResizeImage(Image imgToResize, Size size)                                   ////**** CAMBIA EL TAMANO DE LA IMAGEN
         {
             return (Image)(new Bitmap(imgToResize, size));
         }

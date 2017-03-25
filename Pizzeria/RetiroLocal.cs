@@ -19,7 +19,7 @@ namespace Pizzeria
         }
 
         #region INSTANCIAS
-        conexion conX = new conexion();
+        Conexion conX = new Conexion();
         Mesas mesX = new Mesas();
         NumerosPedido NumX = new NumerosPedido();
         #endregion

@@ -19,7 +19,7 @@ namespace Pizzeria
         }
 
         #region INSTANCIAS
-        conexion conX = new conexion();
+        Conexion conX = new Conexion();
         NumerosPedido NumX = new NumerosPedido();
         Garzones garX = new Garzones();
         Mesas mesX = new Mesas();
@@ -99,7 +99,7 @@ namespace Pizzeria
         #endregion
 
         #region BOTONES GENERALES DEL FORMULARIO
-        private void btn_cerrar_Click(object sender, EventArgs e)
+        private void Btn_cerrar_Click(object sender, EventArgs e)
         {
             if (GridConsumo.RowCount != 0)
             {
@@ -107,7 +107,7 @@ namespace Pizzeria
             }
             Close();
         }                                    ////**** BOTON TOPE DERECHO
-        private void btn_pagar_Click(object sender, EventArgs e)
+        private void Btn_pagar_Click(object sender, EventArgs e)
         {
             //GUARDAR PARA OBTENER LA ULTIMA MODIFICACION
             Guardar();
@@ -141,7 +141,7 @@ namespace Pizzeria
                 MessageBox.Show("NO HA SELECCIONADO UNA MESA O GARZON VALIDO.\nSELECCIONE UNO E INTENTELO NUEVAMENTE.");
             }
         }                                     ////**** BOTON PAGAR
-        private void btnGuardarConsumo_Click(object sender, EventArgs e)
+        private void BtnGuardarConsumo_Click(object sender, EventArgs e)
         {
             Guardar();
             Close();
@@ -155,12 +155,12 @@ namespace Pizzeria
             PM.ShowDialog(this);
             PM.Dispose();
         }
-        private void button4_Click(object sender, EventArgs e)
+        private void Button4_Click(object sender, EventArgs e)
         {
             ArmaPizza arma = new ArmaPizza();
             arma.ShowDialog(this);
         }
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             AddProductos prod = new AddProductos();
             prod.ShowDialog(this);

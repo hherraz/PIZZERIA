@@ -21,7 +21,7 @@ namespace Pizzeria
         int n_pedido = DatosCompartidos.Instance().PagarPedido;
         string forma=null;
 
-        conexion conX = new conexion();
+        Conexion conX = new Conexion();
         Garzones garX = new Garzones();
         Mesas mesX = new Mesas();
 

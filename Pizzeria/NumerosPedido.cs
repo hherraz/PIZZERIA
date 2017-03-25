@@ -9,7 +9,7 @@ namespace Pizzeria
 {
     class NumerosPedido
     {
-        conexion conX = new conexion();
+        Conexion conX = new Conexion();
 
         // FUNCIONES
         public int GenerarNumero()

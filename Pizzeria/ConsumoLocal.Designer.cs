@@ -111,7 +111,7 @@
             this.btn_cerrar.TabIndex = 7;
             this.btn_cerrar.Text = "X";
             this.btn_cerrar.UseVisualStyleBackColor = true;
-            this.btn_cerrar.Click += new System.EventHandler(this.btn_cerrar_Click);
+            this.btn_cerrar.Click += new System.EventHandler(this.Btn_cerrar_Click);
             // 
             // label18
             // 
@@ -136,7 +136,7 @@
             this.btnGuardarConsumo.Text = "GUARDAR";
             this.btnGuardarConsumo.UseVisualStyleBackColor = false;
             this.btnGuardarConsumo.Visible = false;
-            this.btnGuardarConsumo.Click += new System.EventHandler(this.btnGuardarConsumo_Click);
+            this.btnGuardarConsumo.Click += new System.EventHandler(this.BtnGuardarConsumo_Click);
             // 
             // groupBox1
             // 
@@ -267,7 +267,7 @@
             this.btnPagar.TabIndex = 15;
             this.btnPagar.Text = "PAGAR";
             this.btnPagar.UseVisualStyleBackColor = false;
-            this.btnPagar.Click += new System.EventHandler(this.btn_pagar_Click);
+            this.btnPagar.Click += new System.EventHandler(this.Btn_pagar_Click);
             // 
             // btnCambiarGarzon
             // 
@@ -308,7 +308,7 @@
             this.btnAcomp.TabIndex = 4;
             this.btnAcomp.Text = "ACOMPAÑAMIENTOS";
             this.btnAcomp.UseVisualStyleBackColor = true;
-            this.btnAcomp.Click += new System.EventHandler(this.button2_Click);
+            this.btnAcomp.Click += new System.EventHandler(this.Button2_Click);
             // 
             // AddPizzaMenu
             // 
@@ -328,7 +328,7 @@
             this.btnArma.TabIndex = 3;
             this.btnArma.Text = "ARMA TU PIZZA";
             this.btnArma.UseVisualStyleBackColor = true;
-            this.btnArma.Click += new System.EventHandler(this.button4_Click);
+            this.btnArma.Click += new System.EventHandler(this.Button4_Click);
             // 
             // ConsumoLocal
             // 

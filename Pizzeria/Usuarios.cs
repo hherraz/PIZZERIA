@@ -9,7 +9,7 @@ namespace Pizzeria
 {
     class Usuarios
     {
-        conexion conX = new conexion();
+        Conexion conX = new Conexion();
 
         public int ValidarUsuario(string user, string pass)
         {

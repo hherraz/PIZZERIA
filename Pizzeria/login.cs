@@ -11,13 +11,13 @@ using System.Windows.Forms;
 
 namespace Pizzeria
 {
-    public partial class login : Form
+    public partial class Login : Form
     {
-        public login()
+        public Login()
         {
             InitializeComponent();
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             Usuarios USR = new Usuarios();
             int Found = USR.ValidarUsuario(user.Text, pass.Text);
@@ -45,7 +45,7 @@ namespace Pizzeria
                 pass.Clear();
             }
         }
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
 
             int cerrando = Program.cerrar();
@@ -57,7 +57,7 @@ namespace Pizzeria
 
         }
 
-        private void login_Load(object sender, EventArgs e)
+        private void Login_Load(object sender, EventArgs e)
         {
             SplashScreen sp = new SplashScreen();
             sp.ShowDialog();

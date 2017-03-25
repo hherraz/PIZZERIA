@@ -10,7 +10,7 @@ namespace Pizzeria
 {
     class Mesas
     {
-        conexion conX = new conexion();
+        Conexion conX = new Conexion();
 
         //FUNCIONES
         public DataTable TraerMesas()

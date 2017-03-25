@@ -25,11 +25,11 @@ namespace Pizzeria
             TransparencyKey = Color.Gray;
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)
         {
             if (progressBar1.Value == 0)
             {
-                conexion conX = new conexion();
+                Conexion conX = new Conexion();
                 conX.Abrir();
                 conX.Cerrar();
             }

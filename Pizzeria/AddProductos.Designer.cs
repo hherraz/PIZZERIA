@@ -78,7 +78,7 @@
             this.dgCarrito.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCarrito.Size = new System.Drawing.Size(240, 278);
             this.dgCarrito.TabIndex = 19;
-            this.dgCarrito.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgIngredientes_CellContentClick);
+            this.dgCarrito.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgIngredientes_CellContentClick);
             // 
             // txtprecio
             // 
@@ -120,7 +120,7 @@
             this.btnCerrar.TabIndex = 16;
             this.btnCerrar.Text = "CANCELAR";
             this.btnCerrar.UseVisualStyleBackColor = false;
-            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            this.btnCerrar.Click += new System.EventHandler(this.BtnCerrar_Click);
             // 
             // AgregarPizzaMenu
             // 
@@ -144,7 +144,7 @@
             this.dgProductos.Name = "dgProductos";
             this.dgProductos.Size = new System.Drawing.Size(688, 423);
             this.dgProductos.TabIndex = 15;
-            this.dgProductos.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
+            this.dgProductos.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellContentDoubleClick);
             // 
             // label7
             // 
@@ -177,7 +177,7 @@
             this.btnLiquidos.TabIndex = 22;
             this.btnLiquidos.Text = "Liquidos";
             this.btnLiquidos.UseVisualStyleBackColor = true;
-            this.btnLiquidos.Click += new System.EventHandler(this.btnLiquidos_Click);
+            this.btnLiquidos.Click += new System.EventHandler(this.BtnLiquidos_Click);
             // 
             // btnAcom
             // 
@@ -188,7 +188,7 @@
             this.btnAcom.TabIndex = 23;
             this.btnAcom.Text = "Acompañamientos";
             this.btnAcom.UseVisualStyleBackColor = true;
-            this.btnAcom.Click += new System.EventHandler(this.btnAcom_Click);
+            this.btnAcom.Click += new System.EventHandler(this.BtnAcom_Click);
             // 
             // btnPostres
             // 
@@ -199,7 +199,7 @@
             this.btnPostres.TabIndex = 24;
             this.btnPostres.Text = "Postres";
             this.btnPostres.UseVisualStyleBackColor = true;
-            this.btnPostres.Click += new System.EventHandler(this.btnPostres_Click);
+            this.btnPostres.Click += new System.EventHandler(this.BtnPostres_Click);
             // 
             // btnOtros
             // 
@@ -210,7 +210,7 @@
             this.btnOtros.TabIndex = 25;
             this.btnOtros.Text = "Otros";
             this.btnOtros.UseVisualStyleBackColor = true;
-            this.btnOtros.Click += new System.EventHandler(this.btnOtros_Click);
+            this.btnOtros.Click += new System.EventHandler(this.BtnOtros_Click);
             // 
             // btnTodos
             // 
@@ -221,7 +221,7 @@
             this.btnTodos.TabIndex = 26;
             this.btnTodos.Text = "Todos";
             this.btnTodos.UseVisualStyleBackColor = true;
-            this.btnTodos.Click += new System.EventHandler(this.btnTodos_Click);
+            this.btnTodos.Click += new System.EventHandler(this.BtnTodos_Click);
             // 
             // AddProductos
             // 

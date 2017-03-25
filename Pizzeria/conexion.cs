@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pizzeria
 {
-    class conexion
+    class Conexion
     {
         public MySqlConnection cn = new MySqlConnection("server=rentaboxer.cl;database=pizzeria;uid=pizzeria;pwd=12345;");
 

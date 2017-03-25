@@ -19,7 +19,7 @@ namespace Pizzeria
             InitializeComponent();
         }
 
-        conexion conX = new conexion();
+        Conexion conX = new Conexion();
 
         //// JUEGO DE VARIABLES DEL FORMULARIO
         int ancho = Screen.PrimaryScreen.Bounds.Width;
@@ -50,14 +50,15 @@ namespace Pizzeria
             dgCarrito.ColumnHeadersVisible = false;
             dgCarrito.RowHeadersVisible = false;
 
-            DataGridViewButtonColumn boton = new DataGridViewButtonColumn();
-            boton.Text = "Borrar";
-            boton.HeaderText = "Borrar";
-            boton.ToolTipText = "Borrar";
-            boton.Name = "Borrar";
-            boton.UseColumnTextForButtonValue = true;
-            boton.Width = 50;
-
+            DataGridViewButtonColumn boton = new DataGridViewButtonColumn()
+            {
+                Text = "Borrar",
+                HeaderText = "Borrar",
+                ToolTipText = "Borrar",
+                Name = "Borrar",
+                UseColumnTextForButtonValue = true,
+                Width = 50
+            };
             dgCarrito.Columns.Add("Item", "Item");
             dgCarrito.Columns.Add("Precio", "Precio");
             dgCarrito.Columns.Add(boton);
@@ -205,7 +206,7 @@ namespace Pizzeria
                     byte[] imgArr = (byte[])dr["Imagen"];
                     imgArr = (byte[])dr["Imagen"];
                     MemoryStream stream = new MemoryStream(imgArr);
-                    Image image = resizeImage(Image.FromStream(stream), new Size(120, 120));
+                    Image image = ResizeImage(Image.FromStream(stream), new Size(120, 120));
                     /////CODIGO PARA LEER LAS FOTOS DESDE LA BASE DATOS
 
                     Graphics g = Graphics.FromImage(image);
@@ -234,9 +235,11 @@ namespace Pizzeria
                     {
                         for (int index = 0; index < TotalCeldasGeneradas - TotalRegistros; index++)
                         {
-                            DataGridViewCellStyle EstiloCelda = new DataGridViewCellStyle();
-                            EstiloCelda.NullValue = null;
-                            EstiloCelda.Tag = "BLANK";
+                            DataGridViewCellStyle EstiloCelda = new DataGridViewCellStyle()
+                            {
+                                NullValue = null,
+                                Tag = "BLANK"
+                            };
                             dgProductos.Rows[NumeroFila].Cells[NumeroColumna + index].Style = EstiloCelda;
                         }
                     }
@@ -324,7 +327,7 @@ namespace Pizzeria
                     byte[] imgArr = (byte[])dr["Imagen"];
                     imgArr = (byte[])dr["Imagen"];
                     MemoryStream stream = new MemoryStream(imgArr);
-                    Image image = resizeImage(Image.FromStream(stream), new Size(120, 120));
+                    Image image = ResizeImage(Image.FromStream(stream), new Size(120, 120));
                     /////CODIGO PARA LEER LAS FOTOS DESDE LA BASE DATOS
 
                     //Image image = resizeImage(Image.FromFile(dr["RutaFoto"].ToString()), new Size(120, 120));       //RUTA DE LA IMAGEN DESDE LA BASE DATOS Y TAMANO
@@ -355,9 +358,11 @@ namespace Pizzeria
                     {
                         for (int index = 0; index < TotalCeldasGeneradas - TotalRegistros; index++)
                         {
-                            DataGridViewCellStyle EstiloCelda = new DataGridViewCellStyle();
-                            EstiloCelda.NullValue = null;
-                            EstiloCelda.Tag = "BLANK";
+                            DataGridViewCellStyle EstiloCelda = new DataGridViewCellStyle()
+                            {
+                                NullValue = null,
+                                Tag = "BLANK"
+                            };
                             dgProductos.Rows[NumeroFila].Cells[NumeroColumna + index].Style = EstiloCelda;
                         }
                     }
@@ -445,7 +450,7 @@ namespace Pizzeria
                     byte[] imgArr = (byte[])dr["Imagen"];
                     imgArr = (byte[])dr["Imagen"];
                     MemoryStream stream = new MemoryStream(imgArr);
-                    Image image = resizeImage(Image.FromStream(stream), new Size(120, 120));
+                    Image image = ResizeImage(Image.FromStream(stream), new Size(120, 120));
                     /////CODIGO PARA LEER LAS FOTOS DESDE LA BASE DATOS
 
                     //Image image = resizeImage(Image.FromFile(dr["RutaFoto"].ToString()), new Size(120, 120));       //RUTA DE LA IMAGEN DESDE LA BASE DATOS Y TAMANO
@@ -476,9 +481,11 @@ namespace Pizzeria
                     {
                         for (int index = 0; index < TotalCeldasGeneradas - TotalRegistros; index++)
                         {
-                            DataGridViewCellStyle EstiloCelda = new DataGridViewCellStyle();
-                            EstiloCelda.NullValue = null;
-                            EstiloCelda.Tag = "BLANK";
+                            DataGridViewCellStyle EstiloCelda = new DataGridViewCellStyle()
+                            {
+                                NullValue = null,
+                                Tag = "BLANK"
+                            };
                             dgProductos.Rows[NumeroFila].Cells[NumeroColumna + index].Style = EstiloCelda;
                         }
                     }
@@ -566,7 +573,7 @@ namespace Pizzeria
                     byte[] imgArr = (byte[])dr["Imagen"];
                     imgArr = (byte[])dr["Imagen"];
                     MemoryStream stream = new MemoryStream(imgArr);
-                    Image image = resizeImage(Image.FromStream(stream), new Size(120, 120));
+                    Image image = ResizeImage(Image.FromStream(stream), new Size(120, 120));
                     /////CODIGO PARA LEER LAS FOTOS DESDE LA BASE DATOS
 
                     //Image image = resizeImage(Image.FromFile(dr["RutaFoto"].ToString()), new Size(120, 120));       //RUTA DE LA IMAGEN DESDE LA BASE DATOS Y TAMANO
@@ -597,9 +604,11 @@ namespace Pizzeria
                     {
                         for (int index = 0; index < TotalCeldasGeneradas - TotalRegistros; index++)
                         {
-                            DataGridViewCellStyle EstiloCelda = new DataGridViewCellStyle();
-                            EstiloCelda.NullValue = null;
-                            EstiloCelda.Tag = "BLANK";
+                            DataGridViewCellStyle EstiloCelda = new DataGridViewCellStyle()
+                            {
+                                NullValue = null,
+                                Tag = "BLANK"
+                            };
                             dgProductos.Rows[NumeroFila].Cells[NumeroColumna + index].Style = EstiloCelda;
                         }
                     }
@@ -687,7 +696,7 @@ namespace Pizzeria
                     byte[] imgArr = (byte[])dr["Imagen"];
                     imgArr = (byte[])dr["Imagen"];
                     MemoryStream stream = new MemoryStream(imgArr);
-                    Image image = resizeImage(Image.FromStream(stream), new Size(120, 120));
+                    Image image = ResizeImage(Image.FromStream(stream), new Size(120, 120));
                     /////CODIGO PARA LEER LAS FOTOS DESDE LA BASE DATOS
 
                     //Image image = resizeImage(Image.FromFile(dr["RutaFoto"].ToString()), new Size(120, 120));       //RUTA DE LA IMAGEN DESDE LA BASE DATOS Y TAMANO
@@ -718,9 +727,11 @@ namespace Pizzeria
                     {
                         for (int index = 0; index < TotalCeldasGeneradas - TotalRegistros; index++)
                         {
-                            DataGridViewCellStyle EstiloCelda = new DataGridViewCellStyle();
-                            EstiloCelda.NullValue = null;
-                            EstiloCelda.Tag = "BLANK";
+                            DataGridViewCellStyle EstiloCelda = new DataGridViewCellStyle()
+                            {
+                                NullValue = null,
+                                Tag = "BLANK"
+                            };
                             dgProductos.Rows[NumeroFila].Cells[NumeroColumna + index].Style = EstiloCelda;
                         }
                     }
@@ -735,12 +746,12 @@ namespace Pizzeria
             #endregion
         }
 
-        private void cantidadBox_ValueChanged(object sender, EventArgs e)                               ////**** ACTUALIZAR EL VALOR, SI CAMBIA LA CANTIDAD
+        private void CantidadBox_ValueChanged(object sender, EventArgs e)                               ////**** ACTUALIZAR EL VALOR, SI CAMBIA LA CANTIDAD
         {
             ActivarPedido();
         }
 
-        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)   ////**** LANZADOR DEL CLICK EN PIZZA DE LA CASA
+        private void DataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)   ////**** LANZADOR DEL CLICK EN PIZZA DE LA CASA
         {
             conX.Abrir();
             try
@@ -764,17 +775,17 @@ namespace Pizzeria
         {
             EnviarPedido();
         }
-        private void btnCerrar_Click(object sender, EventArgs e)                                        ////**** BOTON CERRAR
+        private void BtnCerrar_Click(object sender, EventArgs e)                                        ////**** BOTON CERRAR
         {
             Close();
         }
 
-        public static Image resizeImage(Image imgToResize, Size size)                                   ////**** CAMBIA EL TAMANO DE LA IMAGEN
+        public static Image ResizeImage(Image imgToResize, Size size)                                   ////**** CAMBIA EL TAMANO DE LA IMAGEN
         {
             return (Image)(new Bitmap(imgToResize, size));
         }
 
-        private void dgIngredientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DgIngredientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //SI EL CLICK ES EN UNA FILA NUEVA, O INFERIOR A LA FILA 0
             if (e.RowIndex == dgCarrito.NewRowIndex || e.RowIndex < 0)
@@ -800,27 +811,27 @@ namespace Pizzeria
             return sumatoria;
         }                                                                  ////**** SUMAR INGREDIENTES
 
-        private void btnLiquidos_Click(object sender, EventArgs e)
+        private void BtnLiquidos_Click(object sender, EventArgs e)
         {
             CargaProductosLiquidos();
         }
 
-        private void btnAcom_Click(object sender, EventArgs e)
+        private void BtnAcom_Click(object sender, EventArgs e)
         {
             CargaProductosAcomp();
         }
 
-        private void btnPostres_Click(object sender, EventArgs e)
+        private void BtnPostres_Click(object sender, EventArgs e)
         {
             CargaProductosPostres();
         }
 
-        private void btnOtros_Click(object sender, EventArgs e)
+        private void BtnOtros_Click(object sender, EventArgs e)
         {
             CargaProductosOtros();
         }
 
-        private void btnTodos_Click(object sender, EventArgs e)
+        private void BtnTodos_Click(object sender, EventArgs e)
         {
             CargaProductos();
         }

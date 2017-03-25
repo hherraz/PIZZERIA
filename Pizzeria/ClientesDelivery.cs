@@ -10,7 +10,7 @@ namespace Pizzeria
 {
     class ClientesDelivery
     {
-        conexion conX = new conexion();
+        Conexion conX = new Conexion();
 
         public List<string> TraeCliente(string telefono)
         {

@@ -25,7 +25,7 @@ namespace Pizzeria
         #endregion
 
         #region INSTANCIAS
-        conexion conX = new conexion();
+        Conexion conX = new Conexion();
         #endregion
 
         #region FORMATEO DEL FORMULARIO

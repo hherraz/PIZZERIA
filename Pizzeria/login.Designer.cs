@@ -1,6 +1,6 @@
 ﻿namespace Pizzeria
 {
-    partial class login
+    partial class Login
     {
         /// <summary>
         /// Required designer variable.
@@ -63,7 +63,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "INGRESAR";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // button2
             // 
@@ -75,7 +75,7 @@
             this.button2.Size = new System.Drawing.Size(35, 33);
             this.button2.TabIndex = 3;
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // login
             // 
@@ -95,7 +95,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "login";
             this.TransparencyKey = System.Drawing.Color.Gold;
-            this.Load += new System.EventHandler(this.login_Load);
+            this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

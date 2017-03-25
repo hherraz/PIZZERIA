@@ -22,7 +22,7 @@ namespace Pizzeria
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            login log = new login();
+            Login log = new Login();
             log.TopMost = true;
             log.ShowDialog();
             if (log.DialogResult == DialogResult.OK)
