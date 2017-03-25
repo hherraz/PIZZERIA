@@ -1,6 +1,6 @@
 ﻿namespace Pizzeria
 {
-    partial class menu
+    partial class Menu
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(menu));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
@@ -49,10 +49,10 @@
             this.cerrar = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.PanelTomaPedidos = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnDelivery = new System.Windows.Forms.Button();
-            this.btnConsumoLocal = new System.Windows.Forms.Button();
-            this.btnRetiroLocal = new System.Windows.Forms.Button();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -65,6 +65,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.btn_tomapedido)).BeginInit();
             this.panel4.SuspendLayout();
             this.PanelTomaPedidos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -79,7 +83,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
             // panel1
             // 
@@ -133,7 +137,7 @@
             // 
             // timer1
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // panel2
             // 
@@ -169,9 +173,9 @@
             this.btn_salir.TabIndex = 5;
             this.btn_salir.TabStop = false;
             this.toolTip1.SetToolTip(this.btn_salir, "SALIR DEL SISTEMA");
-            this.btn_salir.Click += new System.EventHandler(this.btn_salir_Click);
-            this.btn_salir.MouseLeave += new System.EventHandler(this.btn_salir_MouseLeave);
-            this.btn_salir.MouseHover += new System.EventHandler(this.btn_salir_MouseHover);
+            this.btn_salir.Click += new System.EventHandler(this.Btn_salir_Click);
+            this.btn_salir.MouseLeave += new System.EventHandler(this.Btn_salir_MouseLeave);
+            this.btn_salir.MouseHover += new System.EventHandler(this.Btn_salir_MouseHover);
             // 
             // btn_administrar
             // 
@@ -183,8 +187,8 @@
             this.btn_administrar.TabIndex = 4;
             this.btn_administrar.TabStop = false;
             this.toolTip1.SetToolTip(this.btn_administrar, "ADMINISTRAR");
-            this.btn_administrar.MouseLeave += new System.EventHandler(this.btn_administrar_MouseLeave);
-            this.btn_administrar.MouseHover += new System.EventHandler(this.btn_administrar_MouseHover);
+            this.btn_administrar.MouseLeave += new System.EventHandler(this.Btn_administrar_MouseLeave);
+            this.btn_administrar.MouseHover += new System.EventHandler(this.Btn_administrar_MouseHover);
             // 
             // btn_cierrecaja
             // 
@@ -196,8 +200,8 @@
             this.btn_cierrecaja.TabIndex = 3;
             this.btn_cierrecaja.TabStop = false;
             this.toolTip1.SetToolTip(this.btn_cierrecaja, "CIERRE DE CAJA");
-            this.btn_cierrecaja.MouseLeave += new System.EventHandler(this.btn_cierrecaja_MouseLeave);
-            this.btn_cierrecaja.MouseHover += new System.EventHandler(this.btn_cierrecaja_MouseHover);
+            this.btn_cierrecaja.MouseLeave += new System.EventHandler(this.Btn_cierrecaja_MouseLeave);
+            this.btn_cierrecaja.MouseHover += new System.EventHandler(this.Btn_cierrecaja_MouseHover);
             // 
             // btn_productos
             // 
@@ -209,9 +213,9 @@
             this.btn_productos.TabIndex = 2;
             this.btn_productos.TabStop = false;
             this.toolTip1.SetToolTip(this.btn_productos, "MANAGER DE PRODUCTOS");
-            this.btn_productos.Click += new System.EventHandler(this.btn_productos_Click);
-            this.btn_productos.MouseLeave += new System.EventHandler(this.btn_productos_MouseLeave);
-            this.btn_productos.MouseHover += new System.EventHandler(this.btn_productos_MouseHover);
+            this.btn_productos.Click += new System.EventHandler(this.Btn_productos_Click);
+            this.btn_productos.MouseLeave += new System.EventHandler(this.Btn_productos_MouseLeave);
+            this.btn_productos.MouseHover += new System.EventHandler(this.Btn_productos_MouseHover);
             // 
             // btn_delivery
             // 
@@ -223,9 +227,9 @@
             this.btn_delivery.TabIndex = 1;
             this.btn_delivery.TabStop = false;
             this.toolTip1.SetToolTip(this.btn_delivery, "ESTADO PEDIDOS / DELIVERY");
-            this.btn_delivery.Click += new System.EventHandler(this.btn_delivery_Click);
-            this.btn_delivery.MouseLeave += new System.EventHandler(this.btn_delivery_MouseLeave);
-            this.btn_delivery.MouseHover += new System.EventHandler(this.btn_delivery_MouseHover);
+            this.btn_delivery.Click += new System.EventHandler(this.Btn_delivery_Click);
+            this.btn_delivery.MouseLeave += new System.EventHandler(this.Btn_delivery_MouseLeave);
+            this.btn_delivery.MouseHover += new System.EventHandler(this.Btn_delivery_MouseHover);
             // 
             // btn_tomapedido
             // 
@@ -237,9 +241,9 @@
             this.btn_tomapedido.TabIndex = 0;
             this.btn_tomapedido.TabStop = false;
             this.toolTip1.SetToolTip(this.btn_tomapedido, "TOMA DE PEDIDOS");
-            this.btn_tomapedido.Click += new System.EventHandler(this.btn_tomapedido_Click);
-            this.btn_tomapedido.MouseLeave += new System.EventHandler(this.btn_tomapedido_MouseLeave);
-            this.btn_tomapedido.MouseHover += new System.EventHandler(this.btn_tomapedido_MouseHover);
+            this.btn_tomapedido.Click += new System.EventHandler(this.Btn_tomapedido_Click);
+            this.btn_tomapedido.MouseLeave += new System.EventHandler(this.Btn_tomapedido_MouseLeave);
+            this.btn_tomapedido.MouseHover += new System.EventHandler(this.Btn_tomapedido_MouseHover);
             // 
             // minimizar
             // 
@@ -254,7 +258,7 @@
             this.minimizar.Text = "--";
             this.toolTip1.SetToolTip(this.minimizar, "MINIMIZAR");
             this.minimizar.UseVisualStyleBackColor = false;
-            this.minimizar.Click += new System.EventHandler(this.minimizar_Click);
+            this.minimizar.Click += new System.EventHandler(this.Minimizar_Click);
             // 
             // panel4
             // 
@@ -281,74 +285,78 @@
             this.cerrar.Text = "X";
             this.toolTip1.SetToolTip(this.cerrar, "SALIR");
             this.cerrar.UseVisualStyleBackColor = false;
-            this.cerrar.Click += new System.EventHandler(this.cerrar_Click);
+            this.cerrar.Click += new System.EventHandler(this.Cerrar_Click);
             // 
             // PanelTomaPedidos
             // 
             this.PanelTomaPedidos.BackColor = System.Drawing.Color.Transparent;
-            this.PanelTomaPedidos.BackgroundImage = global::Pizzeria.Properties.Resources.fondo;
-            this.PanelTomaPedidos.Controls.Add(this.button1);
-            this.PanelTomaPedidos.Controls.Add(this.btnDelivery);
-            this.PanelTomaPedidos.Controls.Add(this.btnConsumoLocal);
-            this.PanelTomaPedidos.Controls.Add(this.btnRetiroLocal);
+            this.PanelTomaPedidos.Controls.Add(this.pictureBox5);
+            this.PanelTomaPedidos.Controls.Add(this.pictureBox4);
+            this.PanelTomaPedidos.Controls.Add(this.pictureBox3);
+            this.PanelTomaPedidos.Controls.Add(this.pictureBox2);
             this.PanelTomaPedidos.Location = new System.Drawing.Point(0, 0);
             this.PanelTomaPedidos.Name = "PanelTomaPedidos";
-            this.PanelTomaPedidos.Size = new System.Drawing.Size(727, 53);
+            this.PanelTomaPedidos.Size = new System.Drawing.Size(573, 116);
             this.PanelTomaPedidos.TabIndex = 6;
             this.PanelTomaPedidos.Visible = false;
             // 
-            // button1
+            // pictureBox4
             // 
-            this.button1.BackColor = System.Drawing.Color.Black;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.button1.Location = new System.Drawing.Point(586, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(126, 40);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "CANCELAR";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.pictureBox4.Image = global::Pizzeria.Properties.Resources.delivery1;
+            this.pictureBox4.Location = new System.Drawing.Point(320, 18);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(81, 79);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 12;
+            this.pictureBox4.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox4, "PEDIDO TELEFONICO");
+            this.pictureBox4.Click += new System.EventHandler(this.BtnDelivery_Click);
+            this.pictureBox4.MouseLeave += new System.EventHandler(this.pictureBox4_MouseLeave);
+            this.pictureBox4.MouseHover += new System.EventHandler(this.pictureBox4_MouseHover);
             // 
-            // btnDelivery
+            // pictureBox3
             // 
-            this.btnDelivery.BackColor = System.Drawing.Color.Silver;
-            this.btnDelivery.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelivery.Location = new System.Drawing.Point(395, 6);
-            this.btnDelivery.Name = "btnDelivery";
-            this.btnDelivery.Size = new System.Drawing.Size(186, 40);
-            this.btnDelivery.TabIndex = 8;
-            this.btnDelivery.Text = "PEDIDO TELEFONICO";
-            this.btnDelivery.UseVisualStyleBackColor = false;
-            this.btnDelivery.Click += new System.EventHandler(this.btnDelivery_Click);
+            this.pictureBox3.Image = global::Pizzeria.Properties.Resources.bag;
+            this.pictureBox3.Location = new System.Drawing.Point(165, 18);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(81, 79);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 11;
+            this.pictureBox3.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox3, "RETIRO EN EL LOCAL");
+            this.pictureBox3.Click += new System.EventHandler(this.BtnRetiroLocal_Click);
+            this.pictureBox3.MouseLeave += new System.EventHandler(this.pictureBox3_MouseLeave);
+            this.pictureBox3.MouseHover += new System.EventHandler(this.pictureBox3_MouseHover);
             // 
-            // btnConsumoLocal
+            // pictureBox2
             // 
-            this.btnConsumoLocal.BackColor = System.Drawing.Color.Silver;
-            this.btnConsumoLocal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConsumoLocal.Location = new System.Drawing.Point(17, 6);
-            this.btnConsumoLocal.Name = "btnConsumoLocal";
-            this.btnConsumoLocal.Size = new System.Drawing.Size(186, 40);
-            this.btnConsumoLocal.TabIndex = 6;
-            this.btnConsumoLocal.Text = "CONSUMO EN EL LOCAL";
-            this.btnConsumoLocal.UseVisualStyleBackColor = false;
-            this.btnConsumoLocal.Click += new System.EventHandler(this.btnConsumoLocal_Click);
+            this.pictureBox2.Image = global::Pizzeria.Properties.Resources.store;
+            this.pictureBox2.Location = new System.Drawing.Point(16, 18);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(81, 79);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 10;
+            this.pictureBox2.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox2, "CONSUMO EN EL LOCAL");
+            this.pictureBox2.Click += new System.EventHandler(this.BtnConsumoLocal_Click);
+            this.pictureBox2.MouseLeave += new System.EventHandler(this.pictureBox2_MouseLeave);
+            this.pictureBox2.MouseHover += new System.EventHandler(this.pictureBox2_MouseHover);
             // 
-            // btnRetiroLocal
+            // pictureBox5
             // 
-            this.btnRetiroLocal.BackColor = System.Drawing.Color.Silver;
-            this.btnRetiroLocal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRetiroLocal.Location = new System.Drawing.Point(206, 6);
-            this.btnRetiroLocal.Name = "btnRetiroLocal";
-            this.btnRetiroLocal.Size = new System.Drawing.Size(186, 40);
-            this.btnRetiroLocal.TabIndex = 7;
-            this.btnRetiroLocal.Text = "RETIRO EN EL LOCAL";
-            this.btnRetiroLocal.UseVisualStyleBackColor = false;
-            this.btnRetiroLocal.Click += new System.EventHandler(this.btnRetiroLocal_Click);
+            this.pictureBox5.Image = global::Pizzeria.Properties.Resources.salida;
+            this.pictureBox5.Location = new System.Drawing.Point(473, 18);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(81, 79);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 13;
+            this.pictureBox5.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox5, "CERRAR");
+            this.pictureBox5.Click += new System.EventHandler(this.Button1_Click);
+            this.pictureBox5.MouseLeave += new System.EventHandler(this.pictureBox5_MouseLeave);
+            this.pictureBox5.MouseHover += new System.EventHandler(this.pictureBox5_MouseHover);
             // 
-            // menu
+            // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -363,11 +371,11 @@
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "menu";
+            this.Name = "Menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu Principal";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.menu_Load);
+            this.Load += new System.EventHandler(this.Menu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -381,6 +389,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.btn_tomapedido)).EndInit();
             this.panel4.ResumeLayout(false);
             this.PanelTomaPedidos.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -402,13 +414,13 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Panel PanelTomaPedidos;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnDelivery;
-        private System.Windows.Forms.Button btnConsumoLocal;
-        private System.Windows.Forms.Button btnRetiroLocal;
         public System.Windows.Forms.Panel panel2;
         public System.Windows.Forms.Panel panel3;
         public System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button cerrar;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox5;
     }
 }

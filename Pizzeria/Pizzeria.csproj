@@ -332,6 +332,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pizza.ico" />
+    <None Include="Resources\delivery1.png" />
+    <None Include="Resources\bag.png" />
+    <None Include="Resources\store.png" />
     <None Include="Resources\04-2.jpg" />
     <None Include="Resources\EMPTY.png" />
     <None Include="Resources\empty.bmp" />

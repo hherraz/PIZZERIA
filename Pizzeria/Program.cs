@@ -27,7 +27,7 @@ namespace Pizzeria
             log.ShowDialog();
             if (log.DialogResult == DialogResult.OK)
             {
-                Application.Run(new menu());
+                Application.Run(new Menu());
             }
         }
 
