@@ -21,17 +21,60 @@ namespace Pizzeria
         {
             Console.WriteLine("INICIO DEL TIMER");
             timer1.Enabled = true;
-            BackColor = Color.Gray;
-            TransparencyKey = Color.Gray;
+            //BackColor = Color.Black;
+            //TransparencyKey = Color.Black;
+        }
+
+        public Boolean Verifica(string url)
+        {
+            try
+            {
+                System.Net.IPHostEntry host = System.Net.Dns.GetHostEntry(url);
+                return true;
+
+            }
+            catch (Exception es)
+            {
+
+                return false;
+            }
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
             if (progressBar1.Value == 0)
             {
+                status.Text = "Verificando Conección a Internet...";
+            }
+
+            if (progressBar1.Value == 20)
+            {
+                if (Verifica("www.google.cl") == true)
+                {
+                    status.Text = "Conección Exitosa a Internet.";
+                }
+                else
+                {
+                    status.Text = "Equipo no conectado Internet.";
+                }
+            }
+
+            if (progressBar1.Value == 40)
+            {
                 Conexion conX = new Conexion();
+                status.Text = "Abriendo Servidor de Base de Datos...";
                 conX.Abrir();
                 conX.Cerrar();
+            }
+
+            if (progressBar1.Value == 60)
+            {
+                status.Text = "Base de Datos Abierta de Forma Exitosa.";
+            }
+
+            if (progressBar1.Value == 80)
+            {
+                status.Text = "Verificando Licencia de Producto...";
             }
 
             if (progressBar1.Value < 100)
@@ -46,6 +89,12 @@ namespace Pizzeria
                 this.Close();
                 this.Dispose();
             }
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            About ab = new About();
+            ab.ShowDialog();
         }
     }
 }

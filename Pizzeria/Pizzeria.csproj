@@ -100,6 +100,18 @@
     <Compile Include="AddProductos.Designer.cs">
       <DependentUpon>AddProductos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Agregar_Medida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Agregar_Medida.Designer.cs">
+      <DependentUpon>Agregar_Medida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Agregar_Masas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Agregar_Masas.Designer.cs">
+      <DependentUpon>Agregar_Masas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Agregar_PizzasCasa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +211,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddProductos.resx">
       <DependentUpon>AddProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Agregar_Medida.resx">
+      <DependentUpon>Agregar_Medida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Agregar_Masas.resx">
+      <DependentUpon>Agregar_Masas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Agregar_PizzasCasa.resx">
       <DependentUpon>Agregar_PizzasCasa.cs</DependentUpon>
@@ -332,6 +350,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pizza.ico" />
+    <None Include="Resources\pizza-splashXfin.png" />
+    <None Include="Resources\pizza-splashX.png" />
+    <None Include="Resources\pizza-splash2.png" />
+    <None Include="Resources\pizza-splash1.png" />
+    <None Include="Resources\pizza-splash.png" />
     <None Include="Resources\delivery1.png" />
     <None Include="Resources\bag.png" />
     <None Include="Resources\store.png" />

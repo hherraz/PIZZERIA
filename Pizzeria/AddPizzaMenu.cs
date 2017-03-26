@@ -364,7 +364,13 @@ namespace Pizzeria
                     dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.None;
 
                     // EMPAQUETAMOS IMAGEN YA CON EL TAMANO QUE QUEREMOS 80X80 Y LA AGREGAMOS A LA FILA DEL DATAGRID
-                    Image image1 = ResizeImage(Image.FromFile(dr1["RutaFoto_Medida"].ToString()), new Size(100, 100));
+                    //Image image1 = ResizeImage(Image.FromFile(dr1["RutaFoto_Medida"].ToString()), new Size(100, 100));
+
+                    byte[] imgArr = (byte[])dr1["Imagen"];
+                    imgArr = (byte[])dr1["Imagen"];
+                    MemoryStream stream = new MemoryStream(imgArr);
+                    Image image1 = ResizeImage(Image.FromStream(stream), new Size(100, 100));
+
                     dataGridView2.Rows[NumeroFila1].Cells[NumeroColumna1].Value = image1;
 
                     // TOOLTIP GUARDA EL NOMBRE DEL ITEM
@@ -480,7 +486,13 @@ namespace Pizzeria
                     dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.None;
 
                     // EMPAQUETAMOS IMAGEN YA CON EL TAMANO QUE QUEREMOS 80X80 Y LA AGREGAMOS A LA FILA DEL DATAGRID
-                    Image image2 = ResizeImage(Image.FromFile(dr2["RutaFoto_Masa"].ToString()), new Size(120, 90));
+                    //Image image2 = ResizeImage(Image.FromStream(dr2["Imagen"].ToString()), new Size(120, 90));
+
+                    byte[] imgArr = (byte[])dr2["Imagen"];
+                    imgArr = (byte[])dr2["Imagen"];
+                    MemoryStream stream = new MemoryStream(imgArr);
+                    Image image2 = ResizeImage(Image.FromStream(stream), new Size(120, 90));
+
                     dataGridView3.Rows[NumeroFila2].Cells[NumeroColumna2].Value = image2;
 
                     // TOOLTIP GUARDA EL NOMBRE DEL ITEM

@@ -48,11 +48,11 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.cerrar = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.PanelTomaPedidos = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.PanelTomaPedidos = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -64,11 +64,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.btn_delivery)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_tomapedido)).BeginInit();
             this.panel4.SuspendLayout();
-            this.PanelTomaPedidos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            this.PanelTomaPedidos.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -87,7 +87,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Blue;
+            this.panel1.BackColor = System.Drawing.Color.DarkBlue;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
@@ -287,19 +287,6 @@
             this.cerrar.UseVisualStyleBackColor = false;
             this.cerrar.Click += new System.EventHandler(this.Cerrar_Click);
             // 
-            // PanelTomaPedidos
-            // 
-            this.PanelTomaPedidos.BackColor = System.Drawing.Color.Transparent;
-            this.PanelTomaPedidos.Controls.Add(this.pictureBox5);
-            this.PanelTomaPedidos.Controls.Add(this.pictureBox4);
-            this.PanelTomaPedidos.Controls.Add(this.pictureBox3);
-            this.PanelTomaPedidos.Controls.Add(this.pictureBox2);
-            this.PanelTomaPedidos.Location = new System.Drawing.Point(0, 0);
-            this.PanelTomaPedidos.Name = "PanelTomaPedidos";
-            this.PanelTomaPedidos.Size = new System.Drawing.Size(573, 116);
-            this.PanelTomaPedidos.TabIndex = 6;
-            this.PanelTomaPedidos.Visible = false;
-            // 
             // pictureBox4
             // 
             this.pictureBox4.Image = global::Pizzeria.Properties.Resources.delivery1;
@@ -356,6 +343,19 @@
             this.pictureBox5.MouseLeave += new System.EventHandler(this.pictureBox5_MouseLeave);
             this.pictureBox5.MouseHover += new System.EventHandler(this.pictureBox5_MouseHover);
             // 
+            // PanelTomaPedidos
+            // 
+            this.PanelTomaPedidos.BackColor = System.Drawing.Color.Transparent;
+            this.PanelTomaPedidos.Controls.Add(this.pictureBox5);
+            this.PanelTomaPedidos.Controls.Add(this.pictureBox4);
+            this.PanelTomaPedidos.Controls.Add(this.pictureBox3);
+            this.PanelTomaPedidos.Controls.Add(this.pictureBox2);
+            this.PanelTomaPedidos.Location = new System.Drawing.Point(0, 0);
+            this.PanelTomaPedidos.Name = "PanelTomaPedidos";
+            this.PanelTomaPedidos.Size = new System.Drawing.Size(573, 116);
+            this.PanelTomaPedidos.TabIndex = 6;
+            this.PanelTomaPedidos.Visible = false;
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -388,11 +388,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.btn_delivery)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_tomapedido)).EndInit();
             this.panel4.ResumeLayout(false);
-            this.PanelTomaPedidos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            this.PanelTomaPedidos.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
