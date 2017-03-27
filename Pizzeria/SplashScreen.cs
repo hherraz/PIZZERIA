@@ -35,7 +35,7 @@ namespace Pizzeria
             }
             catch (Exception es)
             {
-
+                Console.WriteLine("NO URL: " + es.Message);
                 return false;
             }
         }
@@ -44,18 +44,20 @@ namespace Pizzeria
         {
             if (progressBar1.Value == 0)
             {
-                status.Text = "Verificando Conección a Internet...";
+                status.Text = "Verificando Conexión a Internet...";
             }
 
             if (progressBar1.Value == 20)
             {
                 if (Verifica("www.google.cl") == true)
                 {
-                    status.Text = "Conección Exitosa a Internet.";
+                    status.Text = "Conexión Exitosa a Internet.";
                 }
                 else
                 {
                     status.Text = "Equipo no conectado Internet.";
+                    MessageBox.Show("ERROR - Equipo no conectado a Internet");
+                    Dispose();
                 }
             }
 

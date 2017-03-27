@@ -53,12 +53,15 @@
             // 
             this.status.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(72)))), ((int)(((byte)(72)))));
             this.status.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.status.Enabled = false;
             this.status.ForeColor = System.Drawing.Color.White;
             this.status.Location = new System.Drawing.Point(31, 250);
             this.status.Name = "status";
+            this.status.ReadOnly = true;
             this.status.Size = new System.Drawing.Size(336, 13);
             this.status.TabIndex = 1;
             this.status.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.status.UseWaitCursor = true;
             // 
             // SplashScreen
             // 

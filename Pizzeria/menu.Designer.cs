@@ -200,6 +200,7 @@
             this.btn_cierrecaja.TabIndex = 3;
             this.btn_cierrecaja.TabStop = false;
             this.toolTip1.SetToolTip(this.btn_cierrecaja, "CIERRE DE CAJA");
+            this.btn_cierrecaja.Click += new System.EventHandler(this.btn_cierrecaja_Click);
             this.btn_cierrecaja.MouseLeave += new System.EventHandler(this.Btn_cierrecaja_MouseLeave);
             this.btn_cierrecaja.MouseHover += new System.EventHandler(this.Btn_cierrecaja_MouseHover);
             // 

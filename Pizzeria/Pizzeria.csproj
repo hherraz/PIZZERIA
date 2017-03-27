@@ -94,60 +94,66 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddProductos.cs">
+    <Compile Include="Carrito\AddProductos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddProductos.Designer.cs">
+    <Compile Include="Carrito\AddProductos.Designer.cs">
       <DependentUpon>AddProductos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Agregar_Medida.cs">
+    <Compile Include="ManagerProductos\Agregar_Medida.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Agregar_Medida.Designer.cs">
+    <Compile Include="ManagerProductos\Agregar_Medida.Designer.cs">
       <DependentUpon>Agregar_Medida.cs</DependentUpon>
     </Compile>
-    <Compile Include="Agregar_Masas.cs">
+    <Compile Include="ManagerProductos\Agregar_Masas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Agregar_Masas.Designer.cs">
+    <Compile Include="ManagerProductos\Agregar_Masas.Designer.cs">
       <DependentUpon>Agregar_Masas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Agregar_PizzasCasa.cs">
+    <Compile Include="ManagerProductos\Agregar_PizzasCasa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Agregar_PizzasCasa.Designer.cs">
+    <Compile Include="ManagerProductos\Agregar_PizzasCasa.Designer.cs">
       <DependentUpon>Agregar_PizzasCasa.cs</DependentUpon>
     </Compile>
-    <Compile Include="Agregar_Productos.cs">
+    <Compile Include="ManagerProductos\Agregar_Productos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Agregar_Productos.Designer.cs">
+    <Compile Include="ManagerProductos\Agregar_Productos.Designer.cs">
       <DependentUpon>Agregar_Productos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Agregar_Ingredientes.cs">
+    <Compile Include="ManagerProductos\Agregar_Ingredientes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Agregar_Ingredientes.Designer.cs">
+    <Compile Include="ManagerProductos\Agregar_Ingredientes.Designer.cs">
       <DependentUpon>Agregar_Ingredientes.cs</DependentUpon>
     </Compile>
-    <Compile Include="ArmaPizza.cs">
+    <Compile Include="Carrito\ArmaPizza.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ArmaPizza.Designer.cs">
+    <Compile Include="Carrito\ArmaPizza.Designer.cs">
       <DependentUpon>ArmaPizza.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddPizzaMenu.cs">
+    <Compile Include="Carrito\AddPizzaMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddPizzaMenu.Designer.cs">
+    <Compile Include="Carrito\AddPizzaMenu.Designer.cs">
       <DependentUpon>AddPizzaMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="ClientesDelivery.cs" />
-    <Compile Include="Conexion.cs" />
-    <Compile Include="Delivery.cs">
+    <Compile Include="Caja.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Delivery.Designer.cs">
+    <Compile Include="Caja.Designer.cs">
+      <DependentUpon>Caja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\ClientesDelivery.cs" />
+    <Compile Include="Clases\Conexion.cs" />
+    <Compile Include="Pedidos\Delivery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pedidos\Delivery.Designer.cs">
       <DependentUpon>Delivery.cs</DependentUpon>
     </Compile>
     <Compile Include="DetalleRetiro.cs">
@@ -156,11 +162,11 @@
     <Compile Include="DetalleRetiro.Designer.cs">
       <DependentUpon>DetalleRetiro.cs</DependentUpon>
     </Compile>
-    <Compile Include="Imagenes.cs" />
-    <Compile Include="MantenimientoProductos.cs">
+    <Compile Include="Clases\Imagenes.cs" />
+    <Compile Include="ManagerProductos\MantenimientoProductos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MantenimientoProductos.Designer.cs">
+    <Compile Include="ManagerProductos\MantenimientoProductos.Designer.cs">
       <DependentUpon>MantenimientoProductos.cs</DependentUpon>
     </Compile>
     <Compile Include="Pagar.cs">
@@ -169,16 +175,16 @@
     <Compile Include="Pagar.Designer.cs">
       <DependentUpon>Pagar.cs</DependentUpon>
     </Compile>
-    <Compile Include="RetiroLocal.cs">
+    <Compile Include="Pedidos\RetiroLocal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RetiroLocal.Designer.cs">
+    <Compile Include="Pedidos\RetiroLocal.Designer.cs">
       <DependentUpon>RetiroLocal.cs</DependentUpon>
     </Compile>
-    <Compile Include="DatosCompartidos.cs" />
-    <Compile Include="Garzones.cs" />
-    <Compile Include="Mesas.cs" />
-    <Compile Include="NumerosPedido.cs" />
+    <Compile Include="Clases\DatosCompartidos.cs" />
+    <Compile Include="Clases\Garzones.cs" />
+    <Compile Include="Clases\Mesas.cs" />
+    <Compile Include="Clases\NumerosPedido.cs" />
     <Compile Include="SplashScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,53 +205,56 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ConsumoLocal.cs">
+    <Compile Include="Pedidos\ConsumoLocal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsumoLocal.Designer.cs">
+    <Compile Include="Pedidos\ConsumoLocal.Designer.cs">
       <DependentUpon>ConsumoLocal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Usuarios.cs" />
+    <Compile Include="Clases\Usuarios.cs" />
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddProductos.resx">
+    <EmbeddedResource Include="Carrito\AddProductos.resx">
       <DependentUpon>AddProductos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Agregar_Medida.resx">
+    <EmbeddedResource Include="ManagerProductos\Agregar_Medida.resx">
       <DependentUpon>Agregar_Medida.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Agregar_Masas.resx">
+    <EmbeddedResource Include="ManagerProductos\Agregar_Masas.resx">
       <DependentUpon>Agregar_Masas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Agregar_PizzasCasa.resx">
+    <EmbeddedResource Include="ManagerProductos\Agregar_PizzasCasa.resx">
       <DependentUpon>Agregar_PizzasCasa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Agregar_Productos.resx">
+    <EmbeddedResource Include="ManagerProductos\Agregar_Productos.resx">
       <DependentUpon>Agregar_Productos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Agregar_Ingredientes.resx">
+    <EmbeddedResource Include="ManagerProductos\Agregar_Ingredientes.resx">
       <DependentUpon>Agregar_Ingredientes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ArmaPizza.resx">
+    <EmbeddedResource Include="Carrito\ArmaPizza.resx">
       <DependentUpon>ArmaPizza.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddPizzaMenu.resx">
+    <EmbeddedResource Include="Carrito\AddPizzaMenu.resx">
       <DependentUpon>AddPizzaMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Delivery.resx">
+    <EmbeddedResource Include="Caja.resx">
+      <DependentUpon>Caja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pedidos\Delivery.resx">
       <DependentUpon>Delivery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DetalleRetiro.resx">
       <DependentUpon>DetalleRetiro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MantenimientoProductos.resx">
+    <EmbeddedResource Include="ManagerProductos\MantenimientoProductos.resx">
       <DependentUpon>MantenimientoProductos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pagar.resx">
       <DependentUpon>Pagar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RetiroLocal.resx">
+    <EmbeddedResource Include="Pedidos\RetiroLocal.resx">
       <DependentUpon>RetiroLocal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SplashScreen.resx">
@@ -267,7 +276,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ConsumoLocal.resx">
+    <EmbeddedResource Include="Pedidos\ConsumoLocal.resx">
       <DependentUpon>ConsumoLocal.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Pizzeria_TemporaryKey.pfx" />
@@ -368,6 +377,9 @@
     <None Include="Resources\gray-background.jpg" />
     <None Include="Resources\Wallp.png" />
     <None Include="Resources\FONDO2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

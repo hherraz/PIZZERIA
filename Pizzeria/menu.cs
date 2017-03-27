@@ -260,5 +260,11 @@ namespace Pizzeria
         {
             pictureBox5.Size = new System.Drawing.Size(81, 79);
         }
+
+        private void btn_cierrecaja_Click(object sender, EventArgs e)
+        {
+            Caja cj = new Caja();
+            cj.ShowDialog(this);
+        }
     }
 }
