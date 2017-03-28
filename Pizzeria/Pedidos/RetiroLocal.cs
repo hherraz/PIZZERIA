@@ -22,6 +22,7 @@ namespace Pizzeria
         Conexion conX = new Conexion();
         Mesas mesX = new Mesas();
         NumerosPedido NumX = new NumerosPedido();
+        CreaTicket ticket = new CreaTicket();
         #endregion
 
         private void RetiroLocal_Load(object sender, EventArgs e)
@@ -184,6 +185,26 @@ namespace Pizzeria
                 AgregarPedidoMySql();
                 //AGREGA A LA TABLA DETALLE DE PEDIDOS
                 AgregaDetallePedidoMySql();
+
+                //************ IMPRIMIR TICKET **********************//
+
+                if (DatosCompartidos.Instance().NombreFormularioActivo == "RetiroLocal")
+                {
+                    DataTable data = new DataTable("ACocina");
+                    data.Columns.Add("Cantidad");
+                    data.Columns.Add("Item");
+                    foreach (DataGridViewRow row in GridRetiro.Rows)
+                    {
+                        data.Rows.Add(Convert.ToString(row.Cells[0].Value), Convert.ToString(row.Cells[1].Value));
+                    }
+
+                    string nombre = txtNombre.Text;
+                    string telefono = txtTelefono.Text;
+
+                    ticket.TicketRetiroCocina(data, label20.Text, nombre, telefono);
+                }
+                //***************************************************//
+
                 //LIMPIA EL GRID
                 GridRetiro.Rows.Clear();
                 //MARCA EL NUMERO DE PEDIDO Y TRAE EL PROXIMO

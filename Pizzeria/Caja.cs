@@ -92,23 +92,22 @@ namespace Pizzeria
 
         public void Fusion(DataTable DtPedidos, DataTable DtDetalle)
         {
-            DataSet Fusion = new DataSet();
-            Fusion.Tables.Add(DtPedidos);
-            Fusion.Tables.Add(DtDetalle);
+            DataSet Fus = new DataSet();
+            Fus.Tables.Add(DtPedidos);
+            Fus.Tables.Add(DtDetalle);
 
-            DataRelation rel = new DataRelation("Detalle del Pedido", Fusion.Tables[0].Columns[1], Fusion.Tables[1].Columns[0], true);
+            DataRelation rel = new DataRelation("Detalle del Pedido", Fus.Tables[0].Columns[1], Fus.Tables[1].Columns[0], true);
             
             try
             {
-                Fusion.Relations.Add(rel);
+                Fus.Relations.Add(rel);
             }
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            dataGrid1.DataSource = Fusion.Tables[0];
-
-
+            dataGrid1.DataSource = Fus.Tables[0];
+            
             //calcular la suma total
             int suma = 0;
             try

@@ -23,6 +23,8 @@ namespace Pizzeria
         NumerosPedido NumX = new NumerosPedido();
         Garzones garX = new Garzones();
         Mesas mesX = new Mesas();
+        CreaTicket ticket = new CreaTicket();
+
         #endregion
 
         private int numero_de_pedido_actual;
@@ -265,6 +267,26 @@ namespace Pizzeria
             AgregarPedidoMySql();
             //AGREGA A LA TABLA DETALLE DE PEDIDOS
             AgregaDetallePedidoMySql();
+
+            //************ IMPRIMIR TICKET **********************//
+
+            if (DatosCompartidos.Instance().NombreFormularioActivo == "ConsumoLocal")
+            {
+                DataTable data = new DataTable("ACocina");
+                data.Columns.Add("Cantidad");
+                data.Columns.Add("Item");
+                foreach (DataGridViewRow row in GridConsumo.Rows)
+                {
+                    data.Rows.Add(Convert.ToString(row.Cells[0].Value), Convert.ToString(row.Cells[1].Value));
+                }
+
+                string nombregarzon = garX.NombreGarzon(Convert.ToInt32(label1.Text));
+                string numeroMesa = mesX.TraerMesaPedido(Convert.ToInt32(label1.Text));
+
+                ticket.TicketConsumoCocina(data,label20.Text, nombregarzon, numeroMesa);
+            }
+            //***************************************************//
+
             //LIMPIA EL GRID
             GridConsumo.Rows.Clear();
             //MARCA EL NUMERO DE PEDIDO Y TRAE EL PROXIMO
@@ -356,9 +378,7 @@ namespace Pizzeria
             }
             conX.Cerrar();
         }                                                                 ////**** TRAE EL PEDIDO SI MESA ABIERTA
+
         #endregion
-
-
-
     }
 }

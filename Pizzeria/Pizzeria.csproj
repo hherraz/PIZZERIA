@@ -75,7 +75,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.9.7\Assemblies\v4.5\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="PrinterUtility, Version=1.0.1.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PrinterUtility.1.1.2\lib\PrinterUtility.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -100,6 +104,7 @@
     <Compile Include="Carrito\AddProductos.Designer.cs">
       <DependentUpon>AddProductos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Clases\CreaTicket.cs" />
     <Compile Include="ManagerProductos\Agregar_Medida.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -279,6 +284,7 @@
     <EmbeddedResource Include="Pedidos\ConsumoLocal.resx">
       <DependentUpon>ConsumoLocal.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Pizzeria_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">

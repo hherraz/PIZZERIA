@@ -109,5 +109,23 @@ namespace Pizzeria
             conX.Cerrar();
         }
 
+        public string TraerMesaPedido(int num_pedido)
+        {
+            string Mesa = "";
+            conX.Abrir();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT mesas.Nombre_Mesa FROM mesas, pedidos WHERE mesas.IdMesa = pedidos.Id_Mesa AND(pedidos.N_Pedido = @pedido);", conX.cn);
+                cmd.Parameters.AddWithValue("@pedido", num_pedido);
+                Mesa = Convert.ToString(cmd.ExecuteScalar());
+            }
+            catch (MySqlException EX)
+            {
+                Console.WriteLine(EX.Message);
+            }
+            conX.Cerrar();
+            return Mesa;
+        }
+
     }
 }

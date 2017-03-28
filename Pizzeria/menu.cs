@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.IO;
 
 namespace Pizzeria
 {
@@ -65,6 +66,8 @@ namespace Pizzeria
             FormatoPantalla();
             panel3.Visible = true;
             label2.Text = DatosCompartidos.Instance().Usuario;
+
+            //CambiaImg();
 
         }               ////*** LANZADOR DEL FORMULARIO
 
@@ -224,6 +227,7 @@ namespace Pizzeria
         private void pictureBox2_MouseHover(object sender, EventArgs e)
         {
             pictureBox2.Size = new System.Drawing.Size(91, 89);
+
         }
 
         private void pictureBox2_MouseLeave(object sender, EventArgs e)
@@ -266,5 +270,31 @@ namespace Pizzeria
             Caja cj = new Caja();
             cj.ShowDialog(this);
         }
+
+        //public Image TextoImagen(Image img, string txt)
+        //{
+        //    Image imgX;
+        //    Font fuente = new Font("Verdana", 12);                                                          //PREDETERMINO LA FUENTE Y EL TAMANO DEL TEXTO A GENERAR
+
+        //    Bitmap output = new Bitmap(img.Width, img.Height + 25, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+        //    using (Graphics graphics = Graphics.FromImage(output))
+        //    {
+        //        graphics.DrawImage(img, new Rectangle(new Point(), img.Size),
+        //            new Rectangle(new Point(), img.Size), GraphicsUnit.Pixel);
+        //    }
+
+        //    Graphics g = Graphics.FromImage(output);                                                           //LA PASAMOS A OBJETO GRAFICO
+        //    g.FillRectangle(Brushes.Black, new Rectangle(0, img.Height, img.Width, 25));                            //DIBUJO EL RECTANGULO NEGRO CON GDI+
+        //    SizeF txtsize = TextRenderer.MeasureText(txt, fuente);                                          //CALCULO EL TAMANO GRAFICO DEL STRING PARA PODER CENTRAR EL TEXTO
+        //    g.DrawString(txt, fuente, Brushes.White, new PointF((img.Width - txtsize.Width) / 2, img.Height));       //ESCRIBO SOBRE EL RECTANGULO CON GDI+
+        //    imgX = output;
+        //    g.Dispose();
+        //    return imgX;
+        //}
+
+        //public void CambiaImg()
+        //{
+        //    pictureBox2.Image = TextoImagen(pictureBox2.Image, "CONSUMO");
+        //}
     }
 }

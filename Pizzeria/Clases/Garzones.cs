@@ -49,5 +49,22 @@ namespace Pizzeria
             conX.Cerrar();
             return gar;
         }
+        public string NombreGarzon(int num_pedido)
+        {
+            string gar = "";
+            conX.Abrir();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT garzones.aliasGarzon FROM garzones, pedidos WHERE garzones.idGarzon = pedidos.Id_Garzon AND(pedidos.N_Pedido = @pedido);", conX.cn);
+                cmd.Parameters.AddWithValue("@pedido", num_pedido);
+                gar = Convert.ToString(cmd.ExecuteScalar());
+            }
+            catch (MySqlException EX)
+            {
+                Console.WriteLine(EX.Message);
+            }
+            conX.Cerrar();
+            return gar;
+        }
     }
 }

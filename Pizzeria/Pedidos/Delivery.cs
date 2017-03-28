@@ -25,6 +25,8 @@ namespace Pizzeria
         NumerosPedido NumX = new NumerosPedido();
         ClientesDelivery cd = new ClientesDelivery();
         Mesas mesX = new Mesas();
+
+        CreaTicket ticket = new CreaTicket();
         #endregion
 
         private void Delivery_Load(object sender, EventArgs e)
@@ -208,6 +210,28 @@ namespace Pizzeria
                 AgregarPedidoMySql();
                 //AGREGA A LA TABLA DETALLE DE PEDIDOS
                 AgregaDetallePedidoMySql();
+
+
+                //************ IMPRIMIR TICKET **********************//
+
+                if (DatosCompartidos.Instance().NombreFormularioActivo == "Delivery")
+                {
+                    DataTable data = new DataTable("ACocina");
+                    data.Columns.Add("Cantidad");
+                    data.Columns.Add("Item");
+                    foreach (DataGridViewRow row in GridDelivery.Rows)
+                    {
+                        data.Rows.Add(Convert.ToString(row.Cells[0].Value), Convert.ToString(row.Cells[1].Value));
+                    }
+
+                    string nombre = txtNombre.Text;
+                    string telefono = txtTelefono.Text;
+                    string direccion = txtDireccion.Text;
+                    string referencia = txtReferencia.Text;
+
+                    ticket.TicketDeliveryCocina(data, label20.Text, nombre, telefono, direccion, referencia);
+                }
+                //***************************************************//
 
                 //SU NUMERO DE PEDIDO ES
                 MessageBox.Show("Su numero de pedido es el: " + (Convert.ToInt32(label20.Text)+1));

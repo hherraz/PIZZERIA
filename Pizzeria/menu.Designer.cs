@@ -53,6 +53,14 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.PanelTomaPedidos = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -69,6 +77,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.PanelTomaPedidos.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -291,7 +303,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = global::Pizzeria.Properties.Resources.delivery1;
-            this.pictureBox4.Location = new System.Drawing.Point(320, 18);
+            this.pictureBox4.Location = new System.Drawing.Point(320, 9);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(81, 79);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -305,7 +317,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::Pizzeria.Properties.Resources.bag;
-            this.pictureBox3.Location = new System.Drawing.Point(165, 18);
+            this.pictureBox3.Location = new System.Drawing.Point(165, 9);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(81, 79);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -319,7 +331,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::Pizzeria.Properties.Resources.store;
-            this.pictureBox2.Location = new System.Drawing.Point(16, 18);
+            this.pictureBox2.Location = new System.Drawing.Point(16, 9);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(81, 79);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -333,7 +345,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = global::Pizzeria.Properties.Resources.salida;
-            this.pictureBox5.Location = new System.Drawing.Point(473, 18);
+            this.pictureBox5.Location = new System.Drawing.Point(473, 9);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(81, 79);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -347,15 +359,99 @@
             // PanelTomaPedidos
             // 
             this.PanelTomaPedidos.BackColor = System.Drawing.Color.Transparent;
+            this.PanelTomaPedidos.Controls.Add(this.panel8);
+            this.PanelTomaPedidos.Controls.Add(this.panel7);
+            this.PanelTomaPedidos.Controls.Add(this.panel6);
+            this.PanelTomaPedidos.Controls.Add(this.panel5);
             this.PanelTomaPedidos.Controls.Add(this.pictureBox5);
             this.PanelTomaPedidos.Controls.Add(this.pictureBox4);
             this.PanelTomaPedidos.Controls.Add(this.pictureBox3);
             this.PanelTomaPedidos.Controls.Add(this.pictureBox2);
             this.PanelTomaPedidos.Location = new System.Drawing.Point(0, 0);
             this.PanelTomaPedidos.Name = "PanelTomaPedidos";
-            this.PanelTomaPedidos.Size = new System.Drawing.Size(573, 116);
+            this.PanelTomaPedidos.Size = new System.Drawing.Size(573, 130);
             this.PanelTomaPedidos.TabIndex = 6;
             this.PanelTomaPedidos.Visible = false;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.Black;
+            this.panel5.Controls.Add(this.label4);
+            this.panel5.Location = new System.Drawing.Point(16, 103);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(81, 19);
+            this.panel5.TabIndex = 14;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.Black;
+            this.panel6.Controls.Add(this.label5);
+            this.panel6.Location = new System.Drawing.Point(165, 103);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(81, 19);
+            this.panel6.TabIndex = 15;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.Black;
+            this.panel7.Controls.Add(this.label6);
+            this.panel7.Location = new System.Drawing.Point(320, 103);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(81, 19);
+            this.panel7.TabIndex = 15;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.Black;
+            this.panel8.Controls.Add(this.label7);
+            this.panel8.Location = new System.Drawing.Point(473, 103);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(81, 19);
+            this.panel8.TabIndex = 15;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(11, 3);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(62, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "CONSUMO";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(18, 3);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(48, 13);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "RETIRO";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(11, 3);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 13);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "DELIVERY";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(19, 3);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(43, 13);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "ATRAS";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Menu
             // 
@@ -394,6 +490,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.PanelTomaPedidos.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -423,5 +527,13 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label4;
     }
 }
