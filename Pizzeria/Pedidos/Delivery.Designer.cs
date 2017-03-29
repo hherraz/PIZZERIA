@@ -141,6 +141,7 @@
             // 
             // txtVuelto
             // 
+            this.txtVuelto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtVuelto.Location = new System.Drawing.Point(107, 38);
             this.txtVuelto.Name = "txtVuelto";
             this.txtVuelto.Size = new System.Drawing.Size(156, 20);
@@ -224,6 +225,7 @@
             // txtReferencia
             // 
             this.txtReferencia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtReferencia.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtReferencia.Enabled = false;
             this.txtReferencia.Location = new System.Drawing.Point(115, 84);
             this.txtReferencia.Name = "txtReferencia";
@@ -245,6 +247,7 @@
             // txtDireccion
             // 
             this.txtDireccion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDireccion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDireccion.Enabled = false;
             this.txtDireccion.Location = new System.Drawing.Point(105, 52);
             this.txtDireccion.Name = "txtDireccion";
@@ -267,6 +270,7 @@
             // 
             this.txtTelefono.BackColor = System.Drawing.Color.Blue;
             this.txtTelefono.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTelefono.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTelefono.ForeColor = System.Drawing.Color.Yellow;
             this.txtTelefono.Location = new System.Drawing.Point(471, 19);
@@ -277,6 +281,7 @@
             // txtNombre
             // 
             this.txtNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombre.Enabled = false;
             this.txtNombre.Location = new System.Drawing.Point(88, 20);
             this.txtNombre.Name = "txtNombre";

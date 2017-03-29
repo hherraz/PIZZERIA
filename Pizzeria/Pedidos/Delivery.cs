@@ -238,14 +238,14 @@ namespace Pizzeria
                     DialogResult Dcaja;
                     do
                     {
-                        ticket.TicketDelivery(data, label20.Text, nombre, telefono, direccion, referencia, Convert.ToDouble(Total.Text));
+                        ticket.TicketDelivery(data, Convert.ToString((Convert.ToInt32(label20.Text) + 1)), nombre, telefono, direccion, referencia, Convert.ToDouble(Total.Text));
                         Dcaja = MessageBox.Show("Desea Imprimir nuevamente el Comprobante de Caja?", "CAJA", MessageBoxButtons.YesNo);
                     } while (Dcaja == DialogResult.Yes);
 
                     DialogResult Dcocina;
                     do
                     {
-                        ticket.TicketDeliveryCocina(data, label20.Text, nombre, telefono, direccion, referencia);
+                        ticket.TicketDeliveryCocina(data, Convert.ToString((Convert.ToInt32(label20.Text) + 1)), nombre, telefono, direccion, referencia);
                         Dcocina = MessageBox.Show("Desea Imprimir nuevamente el Comprobante de Cocina?", "COCINA", MessageBoxButtons.YesNo);
                     } while (Dcocina == DialogResult.Yes);
 

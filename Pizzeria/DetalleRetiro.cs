@@ -83,9 +83,7 @@ namespace Pizzeria
             conX.Abrir();
             try
             {
-                MySqlCommand cmd = new MySqlCommand("SELECT pedidos.Fecha_Pedido, pedidos.N_Pedido, pedidos.NombreRetiro, pedidos.TelefonoRetiro, SUM(prod_pedidos.Subtotal) AS Total FROM pedidos, prod_pedidos WHERE pedidos.N_Pedido = prod_pedidos.N_Pedido AND (PAGADO=@pagado) AND (Tipo_Pedido=@Retiro);", conX.cn);
-                cmd.Parameters.AddWithValue("@pagado",0);
-                cmd.Parameters.AddWithValue("@Retiro", "Retiro");
+                MySqlCommand cmd = new MySqlCommand("SELECT pedidos.Fecha_Pedido, pedidos.N_Pedido, pedidos.NombreRetiro, pedidos.TelefonoRetiro, SUM(prod_pedidos.Subtotal) AS Total FROM { oj pedidos LEFT OUTER JOIN prod_pedidos ON pedidos.N_Pedido = prod_pedidos.N_Pedido } WHERE(pedidos.PAGADO = 0) AND(pedidos.Tipo_Pedido = 'Retiro') GROUP BY pedidos.N_Pedido;", conX.cn);
                 MySqlDataReader da = cmd.ExecuteReader();
                 while (da.Read())
                 {
@@ -147,9 +145,7 @@ namespace Pizzeria
             conX.Abrir();
             try
             {
-                MySqlCommand cmd = new MySqlCommand("SELECT pedidos.Fecha_Pedido, pedidos.N_Pedido, clientes_delivery.DL_Nombre, clientes_delivery.DL_Telefono, SUM(prod_pedidos.Subtotal) AS Total FROM pedidos, clientes_delivery, prod_pedidos WHERE pedidos.IdClienteDelivery = clientes_delivery.idCliente AND pedidos.N_Pedido = prod_pedidos.N_Pedido AND (pedidos.Tipo_Pedido = @Delivery) AND (pedidos.PAGADO = @pagado)", conX.cn);
-                cmd.Parameters.AddWithValue("@pagado", 0);
-                cmd.Parameters.AddWithValue("@Delivery", "Delivery");
+                MySqlCommand cmd = new MySqlCommand("SELECT pedidos.Fecha_Pedido, pedidos.N_Pedido, clientes_delivery.DL_Nombre, clientes_delivery.DL_Telefono, SUM(prod_pedidos.Subtotal) AS Total, pedidos.PAGADO, pedidos.Tipo_Pedido FROM clientes_delivery, { oj pedidos LEFT OUTER JOIN prod_pedidos ON pedidos.N_Pedido = prod_pedidos.N_Pedido } WHERE pedidos.IdClienteDelivery = clientes_delivery.idCliente GROUP BY pedidos.N_Pedido HAVING(pedidos.PAGADO = 0) AND(pedidos.Tipo_Pedido = 'DELIVERY'); ", conX.cn);
                 MySqlDataReader da = cmd.ExecuteReader();
                 while (da.Read())
                 {
