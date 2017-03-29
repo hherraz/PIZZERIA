@@ -230,22 +230,33 @@ namespace Pizzeria
                 }
                 else
                 {
-                    btnGuardarConsumo.Visible = true;
-                
-                    //BLOQUEA BOTONES
-                    ListaMesas.Enabled = false;
-                    ListaGarzones.Enabled = false;
+                    DialogResult result = MessageBox.Show("MESA ABIERTA - DESEA VER OTRA MESA?", "IMPORTANTE", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.No)
+                    {
+                        btnGuardarConsumo.Visible = true;
 
-                    //TRAE PEDIDO MESA ABIERTA
-                    TrarPedidoMesa();
-                    NumX.BorrarPedido(Convert.ToInt32(label1.Text));
+                        //BLOQUEA BOTONES
+                        ListaMesas.Enabled = false;
+                        ListaGarzones.Enabled = false;
 
-                    //TRAER AL GARZON
-                    int num_pedido = NumX.TraeNumeroMesaAbierta(Convert.ToInt32(ListaMesas.SelectedValue.ToString()));
-                    ListaGarzones.SelectedValue = garX.GarzonPedido(num_pedido);
+                        //TRAE PEDIDO MESA ABIERTA
+                        TrarPedidoMesa();
+                        NumX.BorrarPedido(Convert.ToInt32(label1.Text));
 
-                    //SUMAR
-                    ActualizarSuma();
+                        //TRAER AL GARZON
+                        int num_pedido = NumX.TraeNumeroMesaAbierta(Convert.ToInt32(ListaMesas.SelectedValue.ToString()));
+                        ListaGarzones.SelectedValue = garX.GarzonPedido(num_pedido);
+
+                        //SUMAR
+                        ActualizarSuma();
+                    }
+                    else
+                    {
+                        ListaMesas.SelectedIndex = 0;
+                        ListaMesas.Focus();
+                    }
+
+                        
                 }
             }
             else if(ListaMesas.SelectedIndex == 1)
