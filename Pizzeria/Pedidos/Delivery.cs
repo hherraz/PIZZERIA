@@ -112,7 +112,11 @@ namespace Pizzeria
         {
             if (GridDelivery.RowCount != 0)
             {
-                Guardar();
+                DialogResult result = MessageBox.Show("Esta a punto de Cancelar el pedido tomado.\nDesea Guardarlo?", "ALERTA", MessageBoxButtons.YesNo);
+                if (result== DialogResult.Yes)
+                {
+                    Guardar();
+                }
             }
             Close();
         }                                    ////**** BOTON TOPE DERECHO

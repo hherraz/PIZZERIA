@@ -25,6 +25,8 @@ namespace Pizzeria
         CreaTicket ticket = new CreaTicket();
         #endregion
 
+        int ImprimeSW = 0;
+
         private void RetiroLocal_Load(object sender, EventArgs e)
         {
             //Guardo Nombre del Formulari Activo
@@ -93,6 +95,13 @@ namespace Pizzeria
         {
             //GUARDAR PARA OBTENER LA ULTIMA MODIFICACION
             Guardar();
+            DialogResult result = MessageBox.Show("Desea Imprimir Ticket Caja y Cocina?", "IMPRIMIR", MessageBoxButtons.YesNo);
+            if (result==DialogResult.Yes)
+            {
+                Imprime();
+            }
+
+
             if (GridRetiro.RowCount >0)
             {
                 //PASAR VARIABLE DEL NUMERO DE PEDIDO AL GLOBAL
@@ -126,7 +135,16 @@ namespace Pizzeria
         private void btnGuardarConsumo_Click(object sender, EventArgs e)
         {
             Guardar();
-            Close();
+            if (ImprimeSW == 1)
+            {
+                Imprime();
+                Limpia();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("No se puede Guardar, revise los datos faltantes.");
+            }
         }                             ////**** BOTON PARA GUARDAR LOS DATOS DEL GRIDCONSUMO EN BASE DE DATOS
         #endregion
 
@@ -186,49 +204,7 @@ namespace Pizzeria
                 //AGREGA A LA TABLA DETALLE DE PEDIDOS
                 AgregaDetallePedidoMySql();
 
-                //************ IMPRIMIR TICKET **********************//
-
-                if (DatosCompartidos.Instance().NombreFormularioActivo == "RetiroLocal")
-                {
-                    DataTable data = new DataTable("ACocina");
-                    data.Columns.Add("Cantidad");
-                    data.Columns.Add("Item");
-                    data.Columns.Add("Unitario");
-                    data.Columns.Add("Total");
-                    foreach (DataGridViewRow row in GridRetiro.Rows)
-                    {
-                        data.Rows.Add(Convert.ToString(row.Cells[0].Value), Convert.ToString(row.Cells[1].Value), Convert.ToString(row.Cells[2].Value), Convert.ToString(row.Cells[3].Value));
-                    }
-
-                    string nombre = txtNombre.Text;
-                    string telefono = txtTelefono.Text;
-
-                    DialogResult Dcaja;
-                    do
-                    {
-                        ticket.TicketRetiro(data, label20.Text, nombre, telefono, Convert.ToDouble(Total.Text));
-                        Dcaja = MessageBox.Show("Desea Imprimir nuevamente el Comprobante de Caja?", "CAJA", MessageBoxButtons.YesNo);
-                    } while (Dcaja == DialogResult.Yes);
-
-                    DialogResult Dcocina;
-                    do
-                    {
-                        ticket.TicketRetiroCocina(data, label20.Text, nombre, telefono);
-                        Dcocina = MessageBox.Show("Desea Imprimir nuevamente el Comprobante de Cocina?", "COCINA", MessageBoxButtons.YesNo);
-                    } while (Dcocina == DialogResult.Yes);
-                }
-                //***************************************************//
-
-                //LIMPIA EL GRID
-                GridRetiro.Rows.Clear();
-                //MARCA EL NUMERO DE PEDIDO Y TRAE EL PROXIMO
-                NumX.MarcarUltimoNumero(Convert.ToInt32(label20.Text));
-                label20.Text = Convert.ToString(NumX.GenerarNumero());
-                NumX.LimpiarFoliosSinUso();
-
-                txtNombre.BackColor = Color.White;
-                txtTelefono.BackColor = Color.White;
-
+                ImprimeSW = 1;
             }
             else
             {
@@ -243,8 +219,58 @@ namespace Pizzeria
                     txtTelefono.BackColor = Color.Red;
                     txtTelefono.Focus();
                 }
+                ImprimeSW = 0;
             }
         }                                                                        ////**** GUARDA EL GRID EN LA BASE DATOS
+        public void Imprime()
+        {
+            //************ IMPRIMIR TICKET **********************//
+
+            if (DatosCompartidos.Instance().NombreFormularioActivo == "RetiroLocal")
+            {
+                DataTable data = new DataTable("ACocina");
+                data.Columns.Add("Cantidad");
+                data.Columns.Add("Item");
+                data.Columns.Add("Unitario");
+                data.Columns.Add("Total");
+                foreach (DataGridViewRow row in GridRetiro.Rows)
+                {
+                    data.Rows.Add(Convert.ToString(row.Cells[0].Value), Convert.ToString(row.Cells[1].Value), Convert.ToString(row.Cells[2].Value), Convert.ToString(row.Cells[3].Value));
+                }
+
+                string nombre = txtNombre.Text;
+                string telefono = txtTelefono.Text;
+
+                DialogResult Dcaja;
+                do
+                {
+                    ticket.TicketRetiro(data, label20.Text, nombre, telefono, Convert.ToDouble(Total.Text));
+                    Dcaja = MessageBox.Show("Desea Imprimir nuevamente el Comprobante de Caja?", "CAJA", MessageBoxButtons.YesNo);
+                } while (Dcaja == DialogResult.Yes);
+
+                DialogResult Dcocina;
+                do
+                {
+                    ticket.TicketRetiroCocina(data, label20.Text, nombre, telefono);
+                    Dcocina = MessageBox.Show("Desea Imprimir nuevamente el Comprobante de Cocina?", "COCINA", MessageBoxButtons.YesNo);
+                } while (Dcocina == DialogResult.Yes);
+            }
+            ImprimeSW = 0;
+            //***************************************************//
+        }
+        public void Limpia()
+        {
+            //LIMPIA EL GRID
+            GridRetiro.Rows.Clear();
+            //MARCA EL NUMERO DE PEDIDO Y TRAE EL PROXIMO
+            NumX.MarcarUltimoNumero(Convert.ToInt32(label20.Text));
+            label20.Text = Convert.ToString(NumX.GenerarNumero());
+            NumX.LimpiarFoliosSinUso();
+
+            txtNombre.BackColor = Color.White;
+            txtTelefono.BackColor = Color.White;
+        }
+
         public void AgregaDetallePedidoMySql()                                                          ////**** GUARDA LOS DATOS DEL GRID EN DETALLE PRODUCTOS
         {
             conX.Abrir();

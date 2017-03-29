@@ -24,8 +24,10 @@ namespace Pizzeria
         Garzones garX = new Garzones();
         Mesas mesX = new Mesas();
         CreaTicket ticket = new CreaTicket();
-
         #endregion
+
+
+        int ImprimeSW = 0;
 
         private int numero_de_pedido_actual;
 
@@ -113,6 +115,11 @@ namespace Pizzeria
         {
             //GUARDAR PARA OBTENER LA ULTIMA MODIFICACION
             Guardar();
+            DialogResult result = MessageBox.Show("Desea Imprimir Ticket Caja y Cocina?", "IMPRIMIR", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                Imprimir();
+            }
 
             if (ListaMesas.SelectedIndex != 0 || ListaGarzones.SelectedIndex !=0)
             {
@@ -146,7 +153,16 @@ namespace Pizzeria
         private void BtnGuardarConsumo_Click(object sender, EventArgs e)
         {
             Guardar();
-            Close();
+            if (ImprimeSW == 1)
+            {
+                Imprimir();
+                Limpia();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("No se puede Guardar, revise los datos faltantes.");
+            }
         }                             ////**** BOTON PARA GUARDAR LOS DATOS DEL GRIDCONSUMO EN BASE DE DATOS
         #endregion
 
@@ -267,7 +283,10 @@ namespace Pizzeria
             AgregarPedidoMySql();
             //AGREGA A LA TABLA DETALLE DE PEDIDOS
             AgregaDetallePedidoMySql();
-
+            ImprimeSW = 1;
+        }                                                                        ////**** GUARDA EL GRID EN LA BASE DATOS
+        public void Imprimir()
+        {
             //************ IMPRIMIR TICKET **********************//
 
             if (DatosCompartidos.Instance().NombreFormularioActivo == "ConsumoLocal")
@@ -282,8 +301,19 @@ namespace Pizzeria
                     data.Rows.Add(Convert.ToString(row.Cells[0].Value), Convert.ToString(row.Cells[1].Value), Convert.ToString(row.Cells[2].Value), Convert.ToString(row.Cells[3].Value));
                 }
 
-                string nombregarzon = garX.NombreGarzon(Convert.ToInt32(label1.Text));
-                string numeroMesa = mesX.TraerMesaPedido(Convert.ToInt32(label1.Text));
+                string nombregarzon, numeroMesa;
+
+                if (status.Text == "CERRADA")
+                {
+                    nombregarzon = garX.NombreGarzon(Convert.ToInt32(label20.Text));
+                    numeroMesa = mesX.TraerMesaPedido(Convert.ToInt32(label20.Text));
+                }
+                else
+                {
+                    nombregarzon = garX.NombreGarzon(Convert.ToInt32(label1.Text));
+                    numeroMesa = mesX.TraerMesaPedido(Convert.ToInt32(label1.Text));
+                }
+                
 
                 DialogResult Dcaja;
                 do
@@ -295,23 +325,28 @@ namespace Pizzeria
                 DialogResult Dcocina;
                 do
                 {
-                    ticket.TicketConsumoCocina(data,label20.Text, nombregarzon, numeroMesa);
+                    ticket.TicketConsumoCocina(data, label20.Text, nombregarzon, numeroMesa);
                     Dcocina = MessageBox.Show("Desea Imprimir nuevamente el Comprobante de Cocina?", "COCINA", MessageBoxButtons.YesNo);
                 } while (Dcocina == DialogResult.Yes);
             }
             //***************************************************//
-
+        }
+        public void Limpia()
+        {
             //LIMPIA EL GRID
             GridConsumo.Rows.Clear();
             //MARCA EL NUMERO DE PEDIDO Y TRAE EL PROXIMO
-            NumX.MarcarUltimoNumero(numero_de_pedido_actual-1);
+            NumX.MarcarUltimoNumero(numero_de_pedido_actual - 1);
             label20.Text = Convert.ToString(NumX.GenerarNumero());
             NumX.LimpiarFoliosSinUso();
 
             //LIBERA LOS BOTONES BLOQUEADOS
             ListaMesas.Enabled = true;
             ListaGarzones.Enabled = true;
-        }                                                                        ////**** GUARDA EL GRID EN LA BASE DATOS
+        }
+
+
+
         public void AgregaDetallePedidoMySql()                                                          ////**** GUARDA LOS DATOS DEL GRID EN DETALLE PRODUCTOS
         {
             conX.Abrir();
