@@ -63,9 +63,6 @@ namespace Pizzeria
             }
             Ticket1.TextoCentro(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString());
             Ticket1.CortaTicket();                                                          // corta el ticket
-            Ticket1.TextoCentro("");
-            Ticket1.TextoCentro("");
-            Ticket1.TextoCentro("");
         }
         public void TicketRetiroCocina(DataTable items, string pedido, string nombre, string telefono)
         {
@@ -95,9 +92,6 @@ namespace Pizzeria
             }
             Ticket1.TextoCentro(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString());
             Ticket1.CortaTicket();                                                          // corta el ticket
-            Ticket1.TextoCentro("");
-            Ticket1.TextoCentro("");
-            Ticket1.TextoCentro("");
         }
         public void TicketDeliveryCocina(DataTable items, string pedido, string nombre, string telefono, string direccion, string referencia)
         {
@@ -130,13 +124,115 @@ namespace Pizzeria
             }
             Ticket1.TextoCentro(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString());
             Ticket1.CortaTicket();                                                          // corta el ticket
-            Ticket1.TextoCentro("");
-            Ticket1.TextoCentro("");
-            Ticket1.TextoCentro("");
         }
-#endregion
+        #endregion
 
-#region Clase para generar ticket
+        #region TICKETS DE VENTA
+        public void TicketConsumo(DataTable items, string pedido, string garzon, string mesa, double total)
+        {
+            CreaTicket Ticket1 = new CreaTicket();
+
+            Ticket1.AbreCajon();                                                            //abre el cajon
+            Ticket1.TextoCentro("COMPROBANTE CAJA");                                          // imprime en el centro "Venta mostrador"
+            Ticket1.LineasAsterisco();                                                          // imprime una linea de guiones
+            Ticket1.TextoExtremos("CONSUMO", "PEDIDO: " + pedido.ToString());
+            Ticket1.TextoExtremos(garzon, "MESA: " + mesa.ToString());
+            Ticket1.LineasAsterisco();                                                          // imprime una linea de guiones
+            Ticket1.EncabezadoVenta();                                                      // imprime encabezados
+            foreach (DataRow row in items.Rows)
+            {
+                try
+                {
+                    Ticket1.LineasGuion();                                                                                      // imprime una linea de guiones
+                    Ticket1.AgregaArticulo(Convert.ToString(row[1]), Convert.ToInt32(row[0]), Convert.ToDouble(row[2]), Convert.ToDouble(row[3]));                            //imprime una linea de descripcion
+                    
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+            }
+            /// agregar total
+            Ticket1.LineasTotales();
+            Ticket1.AgregaTotales("Total", total);
+            //Ticket1.LineasGuion();                                                                                      // imprime una linea de guiones
+            Ticket1.TextoCentro("");
+            Ticket1.TextoCentro(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString());
+            Ticket1.CortaTicket();                                                          // corta el ticket
+        }
+        public void TicketRetiro(DataTable items, string pedido, string nombre, string telefono, double total)
+        {
+            CreaTicket Ticket1 = new CreaTicket();
+
+            Ticket1.AbreCajon();                                                            //abre el cajon
+            Ticket1.TextoCentro("COMPROBANTE CAJA");                                          // imprime en el centro "Venta mostrador"
+            Ticket1.LineasAsterisco();                                                          // imprime una linea de guiones
+            Ticket1.TextoExtremos("RETIRO", "PEDIDO: " + pedido.ToString());
+            Ticket1.TextoCentro(nombre);
+            Ticket1.TextoCentro("F: " + telefono);
+            Ticket1.LineasAsterisco();                                                          // imprime una linea de guiones
+            Ticket1.EncabezadoVenta();                                                      // imprime encabezados
+            Ticket1.LineasGuion();                                                          // imprime una linea de guiones
+            foreach (DataRow row in items.Rows)
+            {
+                try
+                {
+                    Ticket1.LineasGuion();                                                                                      // imprime una linea de guiones
+                    Ticket1.AgregaArticuloCocina(Convert.ToString(row[1]), Convert.ToInt32(row[0]));                            //imprime una linea de descripcion
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+            }
+            /// agregar total
+            Ticket1.LineasTotales();
+            Ticket1.AgregaTotales("Total", total);
+            //Ticket1.LineasGuion();                                                                                      // imprime una linea de guiones
+            Ticket1.TextoCentro("");
+            Ticket1.TextoCentro(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString());
+            Ticket1.CortaTicket();                                                          // corta el ticket
+        }
+        public void TicketDelivery(DataTable items, string pedido, string nombre, string telefono, string direccion, string referencia, double total)
+        {
+            CreaTicket Ticket1 = new CreaTicket();
+
+            Ticket1.AbreCajon();                                                            //abre el cajon
+            Ticket1.TextoCentro("COMPROBANTE CAJA");                                          // imprime en el centro "Venta mostrador"
+            Ticket1.LineasAsterisco();                                                          // imprime una linea de guiones
+            Ticket1.TextoExtremos("DELIVERY", "PEDIDO: " + pedido.ToString());
+            Ticket1.LineasIgual();
+            Ticket1.TextoCentro(nombre);
+            Ticket1.TextoCentro("F: " + telefono);
+            Ticket1.TextoCentro(direccion);
+            Ticket1.TextoCentro(referencia);
+            Ticket1.LineasAsterisco();                                                          // imprime una linea de guiones
+            Ticket1.EncabezadoVenta();                                                      // imprime encabezados
+            foreach (DataRow row in items.Rows)
+            {
+                try
+                {
+                    Ticket1.LineasGuion();
+                    Ticket1.AgregaArticuloCocina(Convert.ToString(row[1]), Convert.ToInt32(row[0]));                            //imprime una linea de descripcion
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            /// agregar total
+            Ticket1.LineasTotales();
+            Ticket1.AgregaTotales("Total", total);
+            //Ticket1.LineasGuion();                                                                                      // imprime una linea de guiones
+            Ticket1.TextoCentro("");
+            Ticket1.TextoCentro(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString());
+            Ticket1.CortaTicket();                                                         // corta el ticket
+        }
+        #endregion
+
+        #region Clase para generar ticket
         public void LineasGuion()
         {
             ticket = "--------------------------------\n";   // agrega lineas separadoras -
@@ -256,52 +352,21 @@ namespace Pizzeria
         }
         public void AgregaArticulo(string par1, int cant, double precio, double total)
         {
-            if (cant.ToString().Length <= 3 && precio.ToString("c").Length <= 10 && total.ToString("c").Length <= 11) // valida que cant precio y total esten dentro de rango
+            par1 = Convert.ToString(cant) + " x " + par1;
+            if (par1.ToString().Length != 0) // valida que el detalle no sea cero
             {
                 max = par1.Length;
-
                 if (max > 16)                                 // **********
                 {
-                    //cort = max - 16;
-                    //parte1 = par1.Remove(16, cort);          // corta a 16 la descripcion del articulo
-                    //
                     parte1 = WordWrap(par1, 32);
                 }
                 else
                 {
                     parte1 = par1;
                 }                                            // **********
-
                 ticket = parte1;                             // agrega articulo
-
-                max = (3 - cant.ToString().Length) + (16 - parte1.Length);
-
-                for (int i = 0; i < max; i++)                // **********
-                {
-                    ticket += " ";                           // Agrega espacios para poner el valor de cantidad
-                }
-
-                ticket += cant.ToString();                   // agrega cantidad
-
-                max = 10 - (precio.ToString("c").Length);
-
-                for (int i = 0; i < max; i++)                // **********
-                {
-                    ticket += " ";                           // Agrega espacios
-                }                                            // **********
-
-                ticket += precio.ToString("c");              // agrega precio
-
-                max = 11 - (total.ToString().Length);
-
-                for (int i = 0; i < max; i++)                // **********
-                {
-                    ticket += " ";                           // Agrega espacios
-                }                                            // **********
-
-                ticket += total.ToString("c") + "\n";        // agrega precio
-
                 RawPrinterHelper.SendStringToPrinter(impresora, ticket); // imprime texto
+                TextoExtremos(Convert.ToString(precio), Convert.ToString(total));
             }
             else
             {
@@ -334,17 +399,16 @@ namespace Pizzeria
         }
         public void CortaTicket()
         {
-            //string corte = "\x1B" + "m";                                // caracteres de corte
-            string avance = "\x1B" + "d" + "\x09";                      // avanza 9 renglones
+            string avance = (char)0x1B + "d" + 7;                       // avanza 7 renglones
             RawPrinterHelper.SendStringToPrinter(impresora, avance);    // avanza
             //RawPrinterHelper.SendStringToPrinter(impresora, corte);     // corta
         }
         public void AbreCajon()
         {
-            string cajon0 = "\x1B" + "p" + "\x00" + "\x0F" + "\x96";                  // caracteres de apertura cajon 0
-                                                                                      //string cajon1 = "\x1B" + "p" + "\x01" + "\x0F" + "\x96";                // caracteres de apertura cajon 1
+            string cajon0 = (char)0x1B + "p" + (char)0x00 + (char)0x31 + (char)0x32;                    // caracteres de apertura cajon 0
+            //string cajon1 = "\x1B" + "p" + "\x01" + "\x0F" + "\x96";                                  // caracteres de apertura cajon 1
             RawPrinterHelper.SendStringToPrinter(impresora, cajon0); // abre cajon0
-                                                                     //RawPrinterHelper.SendStringToPrinter(impresora, cajon1); // abre cajon1
+            //RawPrinterHelper.SendStringToPrinter(impresora, cajon1); // abre cajon1
         }
 
 

@@ -193,15 +193,29 @@ namespace Pizzeria
                     DataTable data = new DataTable("ACocina");
                     data.Columns.Add("Cantidad");
                     data.Columns.Add("Item");
+                    data.Columns.Add("Unitario");
+                    data.Columns.Add("Total");
                     foreach (DataGridViewRow row in GridRetiro.Rows)
                     {
-                        data.Rows.Add(Convert.ToString(row.Cells[0].Value), Convert.ToString(row.Cells[1].Value));
+                        data.Rows.Add(Convert.ToString(row.Cells[0].Value), Convert.ToString(row.Cells[1].Value), Convert.ToString(row.Cells[2].Value), Convert.ToString(row.Cells[3].Value));
                     }
 
                     string nombre = txtNombre.Text;
                     string telefono = txtTelefono.Text;
 
-                    ticket.TicketRetiroCocina(data, label20.Text, nombre, telefono);
+                    DialogResult Dcaja;
+                    do
+                    {
+                        ticket.TicketRetiro(data, label20.Text, nombre, telefono, Convert.ToDouble(Total.Text));
+                        Dcaja = MessageBox.Show("Desea Imprimir nuevamente el Comprobante de Caja?", "CAJA", MessageBoxButtons.YesNo);
+                    } while (Dcaja == DialogResult.Yes);
+
+                    DialogResult Dcocina;
+                    do
+                    {
+                        ticket.TicketRetiroCocina(data, label20.Text, nombre, telefono);
+                        Dcocina = MessageBox.Show("Desea Imprimir nuevamente el Comprobante de Cocina?", "COCINA", MessageBoxButtons.YesNo);
+                    } while (Dcocina == DialogResult.Yes);
                 }
                 //***************************************************//
 

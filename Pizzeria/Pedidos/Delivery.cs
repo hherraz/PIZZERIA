@@ -219,9 +219,11 @@ namespace Pizzeria
                     DataTable data = new DataTable("ACocina");
                     data.Columns.Add("Cantidad");
                     data.Columns.Add("Item");
+                    data.Columns.Add("Unitario");
+                    data.Columns.Add("Total");
                     foreach (DataGridViewRow row in GridDelivery.Rows)
                     {
-                        data.Rows.Add(Convert.ToString(row.Cells[0].Value), Convert.ToString(row.Cells[1].Value));
+                        data.Rows.Add(Convert.ToString(row.Cells[0].Value), Convert.ToString(row.Cells[1].Value), Convert.ToString(row.Cells[2].Value), Convert.ToString(row.Cells[3].Value));
                     }
 
                     string nombre = txtNombre.Text;
@@ -229,7 +231,21 @@ namespace Pizzeria
                     string direccion = txtDireccion.Text;
                     string referencia = txtReferencia.Text;
 
-                    ticket.TicketDeliveryCocina(data, label20.Text, nombre, telefono, direccion, referencia);
+                    DialogResult Dcaja;
+                    do
+                    {
+                        ticket.TicketDelivery(data, label20.Text, nombre, telefono, direccion, referencia, Convert.ToDouble(Total.Text));
+                        Dcaja = MessageBox.Show("Desea Imprimir nuevamente el Comprobante de Caja?", "CAJA", MessageBoxButtons.YesNo);
+                    } while (Dcaja == DialogResult.Yes);
+
+                    DialogResult Dcocina;
+                    do
+                    {
+                        ticket.TicketDeliveryCocina(data, label20.Text, nombre, telefono, direccion, referencia);
+                        Dcocina = MessageBox.Show("Desea Imprimir nuevamente el Comprobante de Cocina?", "COCINA", MessageBoxButtons.YesNo);
+                    } while (Dcocina == DialogResult.Yes);
+
+                    
                 }
                 //***************************************************//
 
