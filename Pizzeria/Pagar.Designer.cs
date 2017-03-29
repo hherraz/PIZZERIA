@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pagar));
             this.lbltxtPedido = new System.Windows.Forms.Label();
             this.lblPedido = new System.Windows.Forms.Label();
             this.dgConsumo = new System.Windows.Forms.DataGridView();
@@ -52,6 +53,9 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgConsumo)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -173,6 +177,9 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.btnOtro);
             this.groupBox1.Controls.Add(this.btnTarjeta);
             this.groupBox1.Controls.Add(this.btnEfectivo);
@@ -186,40 +193,46 @@
             // 
             // btnOtro
             // 
-            this.btnOtro.BackColor = System.Drawing.Color.Aqua;
+            this.btnOtro.BackColor = System.Drawing.Color.White;
+            this.btnOtro.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOtro.BackgroundImage")));
+            this.btnOtro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnOtro.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOtro.ForeColor = System.Drawing.Color.Black;
             this.btnOtro.Location = new System.Drawing.Point(201, 20);
             this.btnOtro.Name = "btnOtro";
-            this.btnOtro.Size = new System.Drawing.Size(92, 83);
+            this.btnOtro.Size = new System.Drawing.Size(92, 73);
             this.btnOtro.TabIndex = 2;
-            this.btnOtro.Text = "OTRO";
+            this.btnOtro.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnOtro.UseVisualStyleBackColor = false;
             this.btnOtro.Click += new System.EventHandler(this.btnOtro_Click);
             // 
             // btnTarjeta
             // 
-            this.btnTarjeta.BackColor = System.Drawing.Color.Aqua;
+            this.btnTarjeta.BackColor = System.Drawing.Color.White;
+            this.btnTarjeta.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTarjeta.BackgroundImage")));
+            this.btnTarjeta.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTarjeta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTarjeta.ForeColor = System.Drawing.Color.Black;
             this.btnTarjeta.Location = new System.Drawing.Point(104, 20);
             this.btnTarjeta.Name = "btnTarjeta";
-            this.btnTarjeta.Size = new System.Drawing.Size(92, 83);
+            this.btnTarjeta.Size = new System.Drawing.Size(92, 73);
             this.btnTarjeta.TabIndex = 1;
-            this.btnTarjeta.Text = "TARJETA";
+            this.btnTarjeta.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnTarjeta.UseVisualStyleBackColor = false;
             this.btnTarjeta.Click += new System.EventHandler(this.btnTarjeta_Click);
             // 
             // btnEfectivo
             // 
-            this.btnEfectivo.BackColor = System.Drawing.Color.Aqua;
+            this.btnEfectivo.BackColor = System.Drawing.Color.White;
+            this.btnEfectivo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnEfectivo.BackgroundImage")));
+            this.btnEfectivo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnEfectivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEfectivo.ForeColor = System.Drawing.Color.Black;
             this.btnEfectivo.Location = new System.Drawing.Point(7, 20);
             this.btnEfectivo.Name = "btnEfectivo";
-            this.btnEfectivo.Size = new System.Drawing.Size(92, 83);
+            this.btnEfectivo.Size = new System.Drawing.Size(92, 73);
             this.btnEfectivo.TabIndex = 0;
-            this.btnEfectivo.Text = "EFECTIVO";
+            this.btnEfectivo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnEfectivo.UseVisualStyleBackColor = false;
             this.btnEfectivo.Click += new System.EventHandler(this.btnEfectivo_Click);
             // 
@@ -349,6 +362,36 @@
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(25, 96);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "EFECTIVO";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(123, 96);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "TARJETA";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(226, 96);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "OTRO";
+            // 
             // Pagar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -371,6 +414,7 @@
             this.Load += new System.EventHandler(this.Pagar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgConsumo)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -406,5 +450,8 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }

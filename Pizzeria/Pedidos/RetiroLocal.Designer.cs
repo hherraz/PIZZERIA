@@ -126,9 +126,9 @@
             this.btnGuardarConsumo.BackColor = System.Drawing.Color.Blue;
             this.btnGuardarConsumo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardarConsumo.ForeColor = System.Drawing.Color.Yellow;
-            this.btnGuardarConsumo.Location = new System.Drawing.Point(339, 362);
+            this.btnGuardarConsumo.Location = new System.Drawing.Point(616, 365);
             this.btnGuardarConsumo.Name = "btnGuardarConsumo";
-            this.btnGuardarConsumo.Size = new System.Drawing.Size(167, 49);
+            this.btnGuardarConsumo.Size = new System.Drawing.Size(167, 47);
             this.btnGuardarConsumo.TabIndex = 22;
             this.btnGuardarConsumo.Text = "GUARDAR";
             this.btnGuardarConsumo.UseVisualStyleBackColor = false;
@@ -235,7 +235,7 @@
             this.PanelTotal.Controls.Add(this.btnPagar);
             this.PanelTotal.Location = new System.Drawing.Point(525, 311);
             this.PanelTotal.Name = "PanelTotal";
-            this.PanelTotal.Size = new System.Drawing.Size(258, 100);
+            this.PanelTotal.Size = new System.Drawing.Size(258, 51);
             this.PanelTotal.TabIndex = 18;
             // 
             // label5
@@ -270,6 +270,7 @@
             this.btnPagar.TabIndex = 15;
             this.btnPagar.Text = "PAGAR";
             this.btnPagar.UseVisualStyleBackColor = false;
+            this.btnPagar.Visible = false;
             this.btnPagar.Click += new System.EventHandler(this.btn_pagar_Click);
             // 
             // label4

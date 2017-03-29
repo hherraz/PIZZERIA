@@ -79,6 +79,7 @@
             this.PanelConsumoLocal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.PanelConsumoLocal.Controls.Add(this.IDCLIENTE);
             this.PanelConsumoLocal.Controls.Add(this.status);
+            this.PanelConsumoLocal.Controls.Add(this.btnPagar);
             this.PanelConsumoLocal.Controls.Add(this.panel1);
             this.PanelConsumoLocal.Controls.Add(this.deliveryBorrar);
             this.PanelConsumoLocal.Controls.Add(this.deliveryModificar);
@@ -102,7 +103,7 @@
             // 
             // IDCLIENTE
             // 
-            this.IDCLIENTE.Location = new System.Drawing.Point(620, 505);
+            this.IDCLIENTE.Location = new System.Drawing.Point(32, 512);
             this.IDCLIENTE.Name = "IDCLIENTE";
             this.IDCLIENTE.Size = new System.Drawing.Size(63, 20);
             this.IDCLIENTE.TabIndex = 34;
@@ -123,7 +124,7 @@
             this.panel1.Controls.Add(this.txtVuelto);
             this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.FormaPago);
-            this.panel1.Location = new System.Drawing.Point(32, 454);
+            this.panel1.Location = new System.Drawing.Point(502, 463);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(280, 71);
             this.panel1.TabIndex = 32;
@@ -327,7 +328,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(748, 508);
+            this.label1.Location = new System.Drawing.Point(160, 515);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 22;
@@ -373,7 +374,7 @@
             this.label20.AutoSize = true;
             this.label20.BackColor = System.Drawing.Color.White;
             this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(701, 508);
+            this.label20.Location = new System.Drawing.Point(113, 515);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(41, 13);
             this.label20.TabIndex = 6;
@@ -385,7 +386,7 @@
             this.btnGuardarConsumo.BackColor = System.Drawing.Color.Blue;
             this.btnGuardarConsumo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardarConsumo.ForeColor = System.Drawing.Color.Yellow;
-            this.btnGuardarConsumo.Location = new System.Drawing.Point(339, 456);
+            this.btnGuardarConsumo.Location = new System.Drawing.Point(32, 459);
             this.btnGuardarConsumo.Name = "btnGuardarConsumo";
             this.btnGuardarConsumo.Size = new System.Drawing.Size(167, 49);
             this.btnGuardarConsumo.TabIndex = 22;
@@ -400,10 +401,9 @@
             this.PanelTotal.BackgroundImage = global::Pizzeria.Properties.Resources.fondo;
             this.PanelTotal.Controls.Add(this.label5);
             this.PanelTotal.Controls.Add(this.Total);
-            this.PanelTotal.Controls.Add(this.btnPagar);
             this.PanelTotal.Location = new System.Drawing.Point(525, 405);
             this.PanelTotal.Name = "PanelTotal";
-            this.PanelTotal.Size = new System.Drawing.Size(258, 100);
+            this.PanelTotal.Size = new System.Drawing.Size(258, 52);
             this.PanelTotal.TabIndex = 18;
             // 
             // label5
@@ -432,12 +432,13 @@
             this.btnPagar.BackColor = System.Drawing.Color.DarkRed;
             this.btnPagar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPagar.ForeColor = System.Drawing.Color.Yellow;
-            this.btnPagar.Location = new System.Drawing.Point(24, 52);
+            this.btnPagar.Location = new System.Drawing.Point(205, 459);
             this.btnPagar.Name = "btnPagar";
-            this.btnPagar.Size = new System.Drawing.Size(216, 36);
+            this.btnPagar.Size = new System.Drawing.Size(167, 49);
             this.btnPagar.TabIndex = 15;
             this.btnPagar.Text = "PAGAR";
             this.btnPagar.UseVisualStyleBackColor = false;
+            this.btnPagar.Visible = false;
             this.btnPagar.Click += new System.EventHandler(this.btn_pagar_Click);
             // 
             // label4

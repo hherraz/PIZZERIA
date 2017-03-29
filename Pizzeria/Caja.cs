@@ -124,5 +124,24 @@ namespace Pizzeria
             txtTotal.Text = suma.ToString("#,##0");
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void BtnExcel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnMail_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnPrint_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
