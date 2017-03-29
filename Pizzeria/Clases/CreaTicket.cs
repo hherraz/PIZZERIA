@@ -179,7 +179,7 @@ namespace Pizzeria
                 try
                 {
                     Ticket1.LineasGuion();                                                                                      // imprime una linea de guiones
-                    Ticket1.AgregaArticuloCocina(Convert.ToString(row[1]), Convert.ToInt32(row[0]));                            //imprime una linea de descripcion
+                    Ticket1.AgregaArticulo(Convert.ToString(row[1]), Convert.ToInt32(row[0]), Convert.ToDouble(row[2]), Convert.ToDouble(row[3]));                        //imprime una linea de descripcion
                 }
                 catch (Exception ex)
                 {
@@ -215,7 +215,7 @@ namespace Pizzeria
                 try
                 {
                     Ticket1.LineasGuion();
-                    Ticket1.AgregaArticuloCocina(Convert.ToString(row[1]), Convert.ToInt32(row[0]));                            //imprime una linea de descripcion
+                    Ticket1.AgregaArticulo(Convert.ToString(row[1]), Convert.ToInt32(row[0]), Convert.ToDouble(row[2]), Convert.ToDouble(row[3]));
                 }
                 catch (Exception ex)
                 {
